@@ -25,7 +25,7 @@ async def vc(ctx , code = None , server = None):
 	else:
 		cat = ctx.message.channel.category
 
-	await ctx.author.guild.create_voice_channel(name = f"{code} -> {server}" , category = category)
+	await ctx.author.guild.create_voice_channel(name = f"{code} -> {server}" , category = cat)
 	vch = discord.utils.get(ctx.author.guild.voice_channels , name = f"{code} -> {server}")
 	vch.permissions_for(ctx.author)
 	await ctx.author.dm_channel.send("Your voice channel has been created successfully, It will be deleted after 30 seconds. Here is your link.")
