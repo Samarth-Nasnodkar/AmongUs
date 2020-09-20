@@ -29,9 +29,11 @@ async def vc(ctx , code = None , server = None):
 	vch = discord.utils.get(ctx.author.guild.voice_channels , name = f"{code} -> {server}")
 	vch.permissions_for(ctx.author)
 	await ctx.author.create_dm()
-	await ctx.author.dm_channel.send("Your voice channel has been created successfully, It will be deleted after 30 seconds. Here is your link.")
-	link = await vch.create_invite(max_age = 30 , max_uses = 11)
+	await ctx.author.dm_channel.send("Your voice channel has been created successfully, It will be deleted after 30 minutes. Here is your link.")
+	link = await vch.create_invite(max_uses = 11)
 	await ctx.author.dm_channel.send(f"{link}")
+	await asyncio.sleep(1800)
+	await vch.delete()
 
 @client.command(aliases = ["Guide" , "GUIDE"])
 async def guide(ctx):
@@ -81,8 +83,10 @@ async def help(ctx):
 	helpm  = discord.Embed(title = f"Among Us Help!" , color = discord.Color.darker_grey())
 	helpm.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
 	helpm.add_field(name = "Hey! My prefix is a!" , value = "So Lets go through my commands" , inline = False)
-	helpm.add_field(name = ":one: guide" , value = "this will give you all the required information about the game" , inline = False)
-	helpm.add_field(name = ":two: maps" , value = "this will give you the blueprints of all the maps" , inline = False)
+	helpm.add_field(name = ":one: guide -> will guide you" , value = "This will give you all the required information about the game" , inline = False)
+	helpm.add_field(name = ":two: maps -> will show you all maps" , value = "This will give you the blueprints of all the maps" , inline = False)
+	helpm.add_field(name = ":three: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
+	helpm.add_field(name = f":four: vc {code} {server} -> Makes a special voice channel" , value = "U can invite the people you want(limit = 11)" , inline = False)
 	await ctx.message.author.dm_channel.send(embed = helpm)
 	await ctx.send("You've got mail!!")
 
