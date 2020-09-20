@@ -18,7 +18,11 @@ client.remove_command('help')
 async def on_ready():
 	print("Bot is ready.")
 
-@client.command()
+@client.command(aliases = ["Invite" , "INVITE"])
+async def invite(ctx):
+	await ctx.send("Invite Amongus bot to your server using the link below\nhttps://discord.com/api/oauth2/authorize?client_id=757272442820362281&permissions=8&scope=bot")
+
+@client.command(aliases = ["Vc" , "VC"])
 async def vc(ctx , code = None , server = None):
 	if ctx.guild.id == 757239002826014731:
 		cat = discord.utils.get(ctx.guild.categories , id = 757247392981450813)
@@ -45,7 +49,7 @@ async def guide(ctx):
 	guide.add_field(name = ":map:Full Guide" , value = "https://bit.ly/2ZHsF2A")
 	guide.add_field(name = "<:among_us:755993889508163655>Crewmate" , value = "https://bit.ly/3khxtU6")
 	guide.add_field(name = ":detective:Imposter" , value = "https://bit.ly/2ZHsF2A")
-	guide.add_field(name = "To learn about maps use the below command" , value = "jarvis maps" , inline = False)
+	guide.add_field(name = "To learn about maps use the below command" , value = "a!maps" , inline = False)
 	guide.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
 	await msg.edit(embed = guide)
 
