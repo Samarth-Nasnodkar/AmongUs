@@ -20,7 +20,10 @@ async def on_ready():
 
 @client.command(aliases = ["Invite" , "INVITE"])
 async def invite(ctx):
-	await ctx.send("Invite Amongus bot to your server using the link below\nhttps://discord.com/api/oauth2/authorize?client_id=757272442820362281&permissions=8&scope=bot")
+	embed = discord.Embed(title = "Invite Among Us bot using the below link" , color = discord.Color.green())
+	embed.add_field(name = "https://bit.ly/3ceYuEW" , value = "Invite the best Among Us Bot")
+	await ctx.send(embed = embed)
+	
 
 @client.command(aliases = ["Vc" , "VC"])
 async def vc(ctx , code = None , server = None):
