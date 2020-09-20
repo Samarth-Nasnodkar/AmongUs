@@ -18,6 +18,20 @@ client.remove_command('help')
 async def on_ready():
 	print("Bot is ready.")
 
+@client.command()
+async def vc(ctx , code = None , server = None):
+	if ctx.guild.id == 757239002826014731:
+		cat = discord.utils.get(ctx.guild.categories , id = 757247392981450813)
+	else:
+		cat = ctx.message.channel.category
+
+	await ctx.author.guild.create_voice_channel(name = f"{code} -> {server}" , category = category)
+	vch = discord.utils.get(ctx.author.guild.voice_channels , name = f"{code} -> {server}")
+	vch.permissions_for(ctx.author)
+	await ctx.author.dm_channel.send("Your voice channel has been created successfully, It will be deleted after 30 seconds. Here is your link.")
+	link = await vch.create_invite(max_age = 30 , max_uses = 11)
+	await ctx.author.dm_channel.send(f"{link}")
+
 @client.command(aliases = ["Guide" , "GUIDE"])
 async def guide(ctx):
 	embed = discord.Embed(title = "Among Us Guide Page" , color = discord.Color.orange())
