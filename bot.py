@@ -13,10 +13,16 @@ from discord import Spotify
 
 client = commands.Bot(command_prefix="a!")
 client.remove_command('help')
+status = cycle(["Listening to a!help" , "Playing Among Us"])
 
 @client.event
 async def on_ready():
+	change_status.start()
 	print("Bot is ready.")
+
+@tasks.loop(minutes=60)
+async def change_status():
+	await client.change_presence(activity=discord.Game(next(status)))
 
 @client.command(aliases = ["Invite" , "INVITE"])
 async def invite(ctx):
