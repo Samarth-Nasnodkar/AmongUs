@@ -16,7 +16,6 @@ client.remove_command('help')
 
 @client.event
 async def on_ready():
-	change_status.start()
 	print("Bot is ready.")
 
 @client.command(aliases = ["Guide" , "GUIDE"])
