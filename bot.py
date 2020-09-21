@@ -13,7 +13,7 @@ from discord import Spotify
 
 client = commands.Bot(command_prefix="a!")
 client.remove_command('help')
-status = cycle(["Listening to a!help" , "Playing Among Us"])
+status = cycle(["Listening to a!help" , "Among Us"])
 
 @client.event
 async def on_ready():
