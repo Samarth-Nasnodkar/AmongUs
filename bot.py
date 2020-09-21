@@ -39,7 +39,7 @@ async def vc(ctx , code = None , server = None):
 	else:
 		cat = ctx.message.channel.category
 
-	await ctx.author.guild.create_voice_channel(name = f"{code} -> {server}" , category = cat)
+	await ctx.author.guild.create_voice_channel(name = f"{code} -> {server}" , category = cat , user_limit = 11)
 	vch = discord.utils.get(ctx.author.guild.voice_channels , name = f"{code} -> {server}")
 	vch.permissions_for(ctx.author)
 	await ctx.author.create_dm()
