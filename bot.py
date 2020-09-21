@@ -27,7 +27,8 @@ async def change_status():
 @client.command(aliases = ["Invite" , "INVITE"])
 async def invite(ctx):
 	embed = discord.Embed(title = "Invite Among Us bot using the below link" , color = discord.Color.green())
-	embed.add_field(name = "https://bit.ly/3ceYuEW" , value = "Invite the best Among Us Bot")
+	embed.add_field(name = "Go to the official website" , value = "https://bit.ly/3mGSXvR")
+	embed.add_field(name = "Invite the best Among Us Bot" , value = "https://bit.ly/3ceYuEW")
 	embed.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
 	await ctx.send(embed = embed)
 	
