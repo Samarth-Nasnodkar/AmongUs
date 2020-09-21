@@ -49,6 +49,10 @@ async def vc(ctx , code = None , server = None):
 	await asyncio.sleep(1800)
 	await vch.delete()
 
+@client.command()
+async def server_count(ctx):
+	await ctx.send(f"I am in {len(client.guilds)}")
+
 @client.command(aliases = ["Guide" , "GUIDE"])
 async def guide(ctx):
 	embed = discord.Embed(title = "Among Us Guide Page" , color = discord.Color.orange())
