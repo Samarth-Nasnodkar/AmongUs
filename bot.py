@@ -92,9 +92,16 @@ async def mirahq(ctx):
 	mira.set_image(url = 'https://vignette.wikia.nocookie.net/among-us-wiki/images/0/0a/Mirahq.png/revision/latest?cb=20200907132939')
 	await ctx.send(embed = mira)
 
-@client.command()
+@client.command(aliases = ["Ping" , "PING"])
 async def ping(ctx):
 	await ctx.send(f'Ping: {round(client.latency * 1000)} ms')
+
+@client.command(aliases = ["Mod" , "MOD"])
+async def mod(ctx):
+	embed = discord.Embed(title = "Get free Among Us skins" , color = discord.Color.orange())
+	embed.add_field(name = "Download mod the apk from the link below" , value = "https://bit.ly/2HnBp7K")
+	embed.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+	await ctx.send(embed = embed)
 
 @client.command(aliases=['HELP', 'Help'])
 async def help(ctx):
