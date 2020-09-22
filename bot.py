@@ -92,6 +92,19 @@ async def mirahq(ctx):
 	mira.set_image(url = 'https://vignette.wikia.nocookie.net/among-us-wiki/images/0/0a/Mirahq.png/revision/latest?cb=20200907132939')
 	await ctx.send(embed = mira)
 
+@client.command(aliases = ["Kill" , "KILL" , "hit" , "Hit" , "HIT"])
+async def kill(ctx , user:discord.Member = None):
+	if user == ctx.author:
+		link = "https://media.tenor.com/images/084529f26cc165e65ea6009206174f29/tenor.gif"
+		lit = f"{ctx.author.display_name} Killed himself"
+	else:
+		links = ["https://media.tenor.com/images/2ad01fc73cc91abd54069f2e8deb50cc/tenor.gif","https://media.tenor.com/images/49f4a71df065a3bf90d9ebfd0cbd2d58/tenor.gif" , "https://media.tenor.com/images/091a8ed3a3896e8f3b4bffa02c298491/tenor.gif" , "https://media.tenor.com/images/f2295524300b47930f650f82080e0bb5/tenor.gif" ,"https://media.tenor.com/images/a461243877f3e2494a4c69999b232a97/tenor.gif" ,"https://media.tenor.com/images/7bb1baedb25f70d66d811088e464c4a3/tenor.gif" ,"https://media.tenor.com/images/d46c724d422714d738a84a51f1caf00b/tenor.gif" , "https://media.tenor.com/images/a166604b0b8f34779dbbd2dd690efb58/tenor.gif"]
+		link = random.choice(links)
+		lit = f"{ctx.author.display_name} Killed {user.display_name}"
+	embed = discord.Embed(title = lit , color = discord.Color.red())
+	embed.set_image(url = link)
+	await ctx.send(embed = embed)
+
 @client.command(aliases = ["Ping" , "PING"])
 async def ping(ctx):
 	await ctx.send(f'Ping: {round(client.latency * 1000)} ms')
@@ -114,6 +127,7 @@ async def help(ctx):
 	helpm.add_field(name = ":three: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
 	helpm.add_field(name = ":four: vc {code} {server} -> Makes a special voice channel" , value = "U can invite the people you want(limit = 11)" , inline = False)
 	helpm.add_field(name = ":five: mod -> generates link to download Mod apk" , value = "Get free skins and more" , inline = False)
+	helpm.add_field(name = ":six: kill/hit {user} -> Just a fun command" , value = "try it, it's epic" , inline = False)
 	await ctx.message.author.dm_channel.send(embed = helpm)
 	await ctx.send("You've got mail!!")
 
