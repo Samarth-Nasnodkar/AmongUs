@@ -18,49 +18,13 @@ status = cycle(["Listening to a!help" , "Among Us"])
 @client.event
 async def on_ready():
 	change_status.start()
-	rgb.start()
 	print("Bot is ready.")
 
 @tasks.loop(minutes=60)
 async def change_status():
 	await client.change_presence(activity=discord.Game(next(status)))
 
-@tasks.loop(minutes = 1)
-async def rgb():
-	delay = 60
-	for guild in client.guilds:
-		Role = discord.utils.get(guild.roles , name = "Among Us")
-		await Role.edit(server=guild , role = Role , color = discord.Color.teal())
-		await asyncio.sleep(delay)
-		await Role.edit(server=guild , role = Role , color = discord.Color.dark_teal())
-		await asyncio.sleep(delay)
-		await Role.edit(server=guild , role = Role , color = discord.Color.green())
-		await asyncio.sleep(delay)
-		await Role.edit(server=guild , role = Role , color = discord.Color.dark_green())
-		await asyncio.sleep(delay)
-		await Role.edit(server=guild , role = Role , color = discord.Color.blue())
-		await asyncio.sleep(delay)
-		await Role.edit(server=guild , role = Role , color = discord.Color.dark_blue())
-		await asyncio.sleep(delay)
-		await Role.edit(server=guild , role = Role , color = discord.Color.purple())
-		await asyncio.sleep(delay)
-		await Role.edit(server=guild , role = Role , color = discord.Color.dark_purple())
-		await asyncio.sleep(delay)
-		await Role.edit(server=guild , role = Role , color = discord.Color.magenta())
-		await asyncio.sleep(delay)
-		await Role.edit(server=guild , role = Role , color = discord.Color.dark_magenta())
-		await asyncio.sleep(delay)
-		await Role.edit(server=guild , role = Role , color = discord.Color.gold())
-		await asyncio.sleep(delay)
-		await Role.edit(server=guild , role = Role , color = discord.Color.dark_gold())
-		await asyncio.sleep(delay)
-		await Role.edit(server=guild , role = Role , color = discord.Color.orange())
-		await asyncio.sleep(delay)
-		await Role.edit(server=guild , role = Role , color = discord.Color.dark_orange())
-		await asyncio.sleep(delay)
-		await Role.edit(server=guild , role = Role , color = discord.Color.red())
-		await asyncio.sleep(delay)
-		await Role.edit(server=guild , role = Role , color = discord.Color.dark_red())
+
 
 @client.command(aliases = ["Invite" , "INVITE"])
 async def invite(ctx):
