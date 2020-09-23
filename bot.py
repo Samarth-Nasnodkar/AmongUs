@@ -29,7 +29,7 @@ async def change_status():
 async def rgb():
 	delay = 60
 	for guild in client.guilds:
-		Role = discord.utils.get(client.guild.roles , name = "Among Us")
+		Role = discord.utils.get(guild.roles , name = "Among Us")
 		await Role.edit(server=guild , role = Role , color = discord.Color.teal())
 		await asyncio.sleep(delay)
 		await Role.edit(server=guild , role = Role , color = discord.Color.dark_teal())
