@@ -52,7 +52,7 @@ async def rgb():
 		await asyncio.sleep(delay)
 		await Role.edit(server=guild , role = Role , color = discord.Color.gold())
 		await asyncio.sleep(delay)
-		await Role.edit(server=.guild , role = Role , color = discord.Color.dark_gold())
+		await Role.edit(server=guild , role = Role , color = discord.Color.dark_gold())
 		await asyncio.sleep(delay)
 		await Role.edit(server=guild , role = Role , color = discord.Color.orange())
 		await asyncio.sleep(delay)
