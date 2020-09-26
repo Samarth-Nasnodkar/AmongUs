@@ -76,19 +76,19 @@ async def maps(ctx):
 	among.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
 	await ctx.send(embed = among)
 	
-@client.command(aliases = ['Info_skeld' , 'INFO_SKELD'])
+@client.command(aliases = ['Skeld' , 'SKELD'])
 async def skeld(ctx):
 	skeld = discord.Embed(title = 'Skeld' , color = discord.Color.orange())
 	skeld.set_image(url = 'https://preview.redd.it/tv8ef4iqszh41.png?auto=webp&s=46faf550020fd59c8d8bab29705b0fcb80521850')
 	await ctx.send(embed = skeld)
 	
-@client.command(aliases = ['Info_polus' , 'INFO_POLUS'])
+@client.command(aliases = ['Polus' , 'POLUS'])
 async def polus(ctx):
 	polus = discord.Embed(title = 'Polus' , color = discord.Color.orange())
 	polus.set_image(url = 'https://vignette.wikia.nocookie.net/among-us-wiki/images/4/4c/Polus.png/revision/latest?cb=20200907133344')
 	await ctx.send(embed = polus)
 	
-@client.command(aliases = ['Info_mirahq' , 'INFO_MIRAHQ'])
+@client.command(aliases = ['Mirahq' , 'MIRAHQ'])
 async def mirahq(ctx):
 	mira = discord.Embed(title = 'Mira HQ' , color = discord.Color.orange())
 	mira.set_image(url = 'https://vignette.wikia.nocookie.net/among-us-wiki/images/0/0a/Mirahq.png/revision/latest?cb=20200907132939')
