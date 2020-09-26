@@ -120,7 +120,7 @@ async def mod(ctx):
 
 @client.event
 async def on_guild_join(guild):
-	cnl = discord.utils.get(client.textchannels , id= 759265178616332308)
+	cnl = client.get_channel(759265178616332308)
 	await cnl.send(f"Among Us bot was added to {guild.name}")
 
 @client.command(aliases=['HELP', 'Help'])
