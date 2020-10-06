@@ -38,7 +38,7 @@ async def add_emoji(ctx , name = None, number = 0):
 		for i in range(len(emojis)):
 			embed.add_field(name = "** **" , value = f"{i+1} : {emojis[i]}")
 
-		embed.set_footer(text = "You need manage emojis permissions to use this" , icon_url = "https://www.celsoazevedo.com/files/2019/05/app-cloner-icon.png")
+		embed.set_footer(text = "You need manage emojis permissions to use this" , icon_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS4HiptS4Q-kl6KMfBkVeJXTMqoVL4gO0rbaQ&usqp=CAU")
 
 		await ctx.send(embed = embed)
 		await ctx.send(f"Use add_emoji <name> <number> to add the emoji to your server")
