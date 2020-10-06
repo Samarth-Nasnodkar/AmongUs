@@ -38,17 +38,22 @@ async def add_emoji(ctx , name = None, number = 0):
 		for i in range(len(emojis)):
 			embed.add_field(name = "** **" , value = f"{i+1} : {emojis[i]}")
 
+		embed.set_footer(text = "You need manage emojis permissions to use this" , icon_url = "https://www.celsoazevedo.com/files/2019/05/app-cloner-icon.png")
+
 		await ctx.send(embed = embed)
 		await ctx.send(f"Use add_emoji <name> <number> to add the emoji to your server")
 	else:
-		needed = number - 1
-		emojid = ["759276088412471316" , "759276133157044264" , "759278022686670880" , "759275487222169600" , "759276168679129108",  "759275533023444992" , "759275796816461834" , "759275922028757012" , "759275576480890880" , "759275748778967070" , "759276199406600244" , "759275974708690974" , "759276019303055360" , "759276054320775188" , "759275840948404266"]
-		emid = int(emojid[needed])
-		emoji = client.get_emoji(emid)
-		url = emoji.url
-		img = await url.read()
-		await ctx.author.guild.create_custom_emoji(name = name , image = img)
-		await ctx.send("Emoji created")
+		if ctx.author.guild_permissions.manage_emojis:
+			needed = number - 1
+			emojid = ["759276088412471316" , "759276133157044264" , "759278022686670880" , "759275487222169600" , "759276168679129108",  "759275533023444992" , "759275796816461834" , "759275922028757012" , "759275576480890880" , "759275748778967070" , "759276199406600244" , "759275974708690974" , "759276019303055360" , "759276054320775188" , "759275840948404266"]
+			emid = int(emojid[needed])
+			emoji = client.get_emoji(emid)
+			url = emoji.url
+			img = await url.read()
+			await ctx.author.guild.create_custom_emoji(name = name , image = img)
+			await ctx.send("Emoji created")
+		else:
+			await ctx.send("You dont have the necessary permissions")
 
 
 
