@@ -106,8 +106,7 @@ async def unmute(ctx):
 		if member.top_role < ctx.author.top_role:
 			await member.edit(mute = False)
 
-@client.event
-async def 
+
 
 @client.command(aliases = ["Guide" , "GUIDE"])
 async def guide(ctx):
@@ -189,8 +188,10 @@ async def help(ctx):
 	helpm.add_field(name = ":five: mod -> generates link to download Mod apk" , value = "Get free skins and more" , inline = False)
 	helpm.add_field(name = ":six: kill/hit {user} -> Just a fun command" , value = "try it, it's epic" , inline = False)
 	helpm.add_field(name = ":seven: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
-	helpm.add_field(name = ":fire:New Feature!!" , value = "** **" , inline = False)
+	helpm.add_field(name = ":fire:New Features!!:fire:" , value = "** **" , inline = False)
 	helpm.add_field(name = ":eight: add_emoji/add -> adds the among us emoji to your server" , value = "use a!add to know how to go forward" , inline = False)
+	helpm.add_field(name = ":nine: mute -> Mutes the people in the voice channel" , value = "Only the people who have a role lower than you will be muted" , inline = False)
+	helpm.add_field(name = ":ten: unmute -> Unmutes the people in the voice channel" , value = "Keep the discussions going" , inline = False)
 	await ctx.message.author.dm_channel.send(embed = helpm)
 	await ctx.send("You've got mail!!")
 
