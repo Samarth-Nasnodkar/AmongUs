@@ -82,6 +82,33 @@ async def vc(ctx , code = None , server = None):
 async def server_count(ctx):
 	await ctx.send(f"I am in {len(client.guilds)} servers")
 
+@client.command(aliases = ["Mute" , "MUTE"])
+async def mute(ctx):
+	if ctx.author.voice.channel == None:
+		await ctx.send("You have to be connected to a voice channel first")
+		return
+
+	await ctx.author.edit(mute = True)
+
+	for member in ctx.author.voice.channel.members:
+		if member.top_role < ctx.author.top_role:
+			await member.edit(mute = True)
+
+@client.command(aliases = ["Unmute" , "UNMUTE"])
+async def unmute(ctx):
+	if ctx.author.voice.channel == None:
+		await ctx.send("You have to be connected to a voice channel first")
+		return
+
+	await ctx.author.edit(mute = False)
+		
+	for member in ctx.author.voice.channel.members:
+		if member.top_role < ctx.author.top_role:
+			await member.edit(mute = False)
+
+@client.event
+async def 
+
 @client.command(aliases = ["Guide" , "GUIDE"])
 async def guide(ctx):
 	embed = discord.Embed(title = "Among Us Guide Page" , color = discord.Color.orange())
