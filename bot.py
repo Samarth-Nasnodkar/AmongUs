@@ -25,7 +25,7 @@ async def p_e(ctx):
 	for guild in client.guilds:
 		for i in range(len(guild.emojis)):
 			if guild.emojis[i].animated:
-				await ctx.send(guild/emojis[i])
+				await ctx.send(guild.emojis[i])
 		
 	print("Process finished")
 
