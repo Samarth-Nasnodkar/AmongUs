@@ -185,12 +185,6 @@ async def kill(ctx , user:discord.Member = None):
 async def ping(ctx):
 	await ctx.send(f'Ping: {round(client.latency * 1000)} ms')
 
-@client.command(aliases = ["Mod" , "MOD"])
-async def mod(ctx):
-	embed = discord.Embed(title = "Get free Among Us skins" , color = discord.Color.orange())
-	embed.add_field(name = "Download mod the apk from the link below" , value = "https://bit.ly/2HnBp7K")
-	embed.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
-	await ctx.send(embed = embed)
 
 @client.event
 async def on_guild_join(guild):
@@ -207,13 +201,12 @@ async def help(ctx):
 	helpm.add_field(name = ":two: maps -> will show you all maps" , value = "This will give you the blueprints of all the maps" , inline = False)
 	helpm.add_field(name = ":three: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
 	helpm.add_field(name = ":four: vc {code} {server} -> Makes a special voice channel" , value = "U can invite the people you want(limit = 11)" , inline = False)
-	helpm.add_field(name = ":five: mod -> generates link to download Mod apk" , value = "Get free skins and more" , inline = False)
-	helpm.add_field(name = ":six: kill/hit {user} -> Just a fun command" , value = "try it, it's epic" , inline = False)
-	helpm.add_field(name = ":seven: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
+	helpm.add_field(name = ":five: kill/hit {user} -> Just a fun command" , value = "try it, it's epic" , inline = False)
+	helpm.add_field(name = ":six: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
 	helpm.add_field(name = ":fire:New Features!!:fire:" , value = "** **" , inline = False)
-	helpm.add_field(name = ":eight: add_emoji/add -> adds the among us emoji to your server" , value = "use a!add to know how to go forward" , inline = False)
-	helpm.add_field(name = ":nine: mute -> Mutes the people in the voice channel" , value = "Only the people who have a role lower than you will be muted" , inline = False)
-	helpm.add_field(name = ":keycap_ten: unmute -> Unmutes the people in the voice channel" , value = "Keep the discussions going" , inline = False)
+	helpm.add_field(name = ":seven: add_emoji/add -> adds the among us emoji to your server" , value = "use a!add to know how to go forward" , inline = False)
+	helpm.add_field(name = ":eight: mute -> Mutes the people in the voice channel" , value = "Only the people who have a role lower than you will be muted" , inline = False)
+	helpm.add_field(name = ":nine: unmute -> Unmutes the people in the voice channel" , value = "Keep the discussions going" , inline = False)
 	await ctx.message.author.dm_channel.send(embed = helpm)
 	await ctx.send("You've got mail!!")
 
