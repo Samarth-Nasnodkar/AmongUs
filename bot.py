@@ -13,7 +13,10 @@ from discord import Spotify
 
 client = commands.Bot(command_prefix="a!")
 client.remove_command('help')
-status = cycle(["Listening to a!help" , "Among Us"])
+m_count = 0
+for guild in client.guilds:
+	m_count += len(guild.members)
+status = cycle([f"Listening to {m_count} users" , "Listening to a!help"])
 
 @client.event
 async def on_ready():
@@ -22,7 +25,7 @@ async def on_ready():
 
 @tasks.loop(minutes=60)
 async def change_status():
-	await client.change_presence(activity=discord.Game(next(status)))
+	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening , name = next(status)))
 
 @client.command(aliases = ["Emoji" , "EMOJI"])
 async def emoji(ctx):
