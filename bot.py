@@ -93,6 +93,8 @@ async def stats(ctx):
 
 	embed.add_field(name = "Total members" , value = f"`{count}`")
 
+	await ctx.send(embed = embed)
+
 @client.command(aliases = ["Mute" , "MUTE"])
 async def mute(ctx):
 	if ctx.author.voice.channel == None:
