@@ -133,7 +133,7 @@ async def unmute(ctx):
 @client.command(aliases = ["Guide" , "GUIDE"])
 async def guide(ctx):
 	embed = discord.Embed(title = "Among Us Guide Page" , color = discord.Color.orange())
-	embed.set_image(url = "https://static.wixstatic.com/media/9c8bab_551ea43d32db4c099dadc8d76509da95~mv2.gif")
+	embed.set_image(url = "https://media.tenor.com/images/c3b4688a7189725f664c9c6af0b33003/tenor.gif")
 	msg = await ctx.send(embed = embed)
 	await asyncio.sleep(30)
 	guide = discord.Embed(title = "Among Us Guide Page" , color = discord.Color.orange())
