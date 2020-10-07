@@ -83,9 +83,15 @@ async def vc(ctx , code = None , server = None):
 	await asyncio.sleep(1800)
 	await vch.delete()
 
-@client.command()
-async def server_count(ctx):
-	await ctx.send(f"I am in {len(client.guilds)} servers")
+@client.command(aliases = ["Stats" , "STATS"])
+async def stats(ctx):
+	embed = discord.Embed(title = "Among us Bot stats!" , color = discord.Color.green())
+	embed.add_field(name = "Total servers " , value = f"`{len(client.guilds)}`")
+	count = 0
+	for guild in client.guilds:
+		count += len(guild.members)
+
+	embed.add_field(name = "Total members" , value = f"`{count}`")
 
 @client.command(aliases = ["Mute" , "MUTE"])
 async def mute(ctx):
