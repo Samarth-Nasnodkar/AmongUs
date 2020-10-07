@@ -20,6 +20,15 @@ async def on_ready():
 	change_status.start()
 	print("Bot is ready.")
 
+@client.command()
+async def p_e(ctx):
+	for guild in client.guilds:
+		for i in range(len(guild.emojis)):
+			if guild.emojis[i].animated:
+				await ctx.send(guild/emojis[i])
+		
+	print("Process finished")
+
 @tasks.loop(minutes=60)
 async def change_status():
 	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening , name = next(status)))
