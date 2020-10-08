@@ -190,6 +190,8 @@ async def stats(ctx):
 	for used in users:
 		embed.add_field(name = f"{used}" , value = f'''`{users[used]["count"]}`''')
 
+	embed.set_thumbnail(url = "https://5droid.ru/uploads/posts/2020-02/1581588210_among-us.png")
+
 	await ctx.send(embed = embed)
 
 @client.command(aliases = ["Mute" , "MUTE"])
