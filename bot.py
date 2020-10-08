@@ -157,7 +157,7 @@ async def stats(ctx):
 	for used in users:
 		c_count += users[used]["count"]
 
-	embed.add_field(name = "Total commands used" , value = f"{c_count}" , inline = False)
+	embed.add_field(name = "Total commands used" , value = f"`{c_count}`" , inline = False)
 
 	for used in users:
 		embed.add_field(name = f"{used}" , value = f'''`{users[used]["count"]}`''')
