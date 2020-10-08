@@ -153,9 +153,14 @@ async def stats(ctx):
 	users = await get_log_data()
 
 	embed.add_field(name = "Today's commands stats!" , value = "** **" , inline = False)
+	c_count =  0
+	for used in users:
+		c_count += users[used]["count"]
+
+	embed.add_field(name = "Total commands used" , value = f"{c_count}" , inline = False)
 
 	for used in users:
-		embed.add_field(name = f"{used}" , value = f'''`{users[used]["count"]}`''' , inline = False)
+		embed.add_field(name = f"{used}" , value = f'''`{users[used]["count"]}`''')
 
 	await ctx.send(embed = embed)
 
