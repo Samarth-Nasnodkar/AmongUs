@@ -11,7 +11,20 @@ from discord.utils import get
 import datetime
 from discord import Spotify
 
-client = commands.Bot(command_prefix="a!")
+
+def get_prefix(client , message):
+	c_server = message.guild
+	nickname = c_server.me.display_name
+	if nickname.find('-') != -1:
+		n1 , n2 = nickname.split('-')
+		prefix_is = n1
+		return prefix_is
+
+	if nickname.find("-") == -1:
+		prefix_is = "a!"
+		return prefix_is
+
+client = commands.Bot(command_prefix= get_prefix)
 client.remove_command('help')
 status = cycle(["49,675 users" , "a!help"])
 
@@ -286,7 +299,9 @@ async def help(ctx):
 	await ctx.message.author.create_dm()
 	helpm  = discord.Embed(title = f"Among Us Help!" , color = discord.Color.darker_grey())
 	helpm.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
-	helpm.add_field(name = "Hey! My prefix is a!" , value = "So Lets go through my commands" , inline = False)
+	prfx = get_prefix(client = client , message = ctx.message)
+	helpm.add_field(name = f"Hey! My prefix is {prfx}" , value = "So Lets go through my commands" , inline = False)
+	helpm.add_field(name = "To set a custom prefix change the bot's nickname to {prefix}-{any name u want}" , value = "Eg. if the prefix is ?, change nickname to ?-Among Us")
 	helpm.add_field(name = ":one: guide -> will guide you" , value = "This will give you all the required information about the game" , inline = False)
 	helpm.add_field(name = ":two: maps -> will show you all maps" , value = "This will give you the blueprints of all the maps" , inline = False)
 	helpm.add_field(name = ":three: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
