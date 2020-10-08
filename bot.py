@@ -61,7 +61,7 @@ async def add_emoji(ctx , name = None, number = 0):
 	users = await get_log_data()
 	await update_log("add_emoji")
 	emojis = ["<:yes:759276088412471316>" , "<:why:759276133157044264>" , "<:whoIsImposter:759278022686670880>" , "<:whoareu:759275487222169600>" , "<:what:759276168679129108>",  "<:ruImposter:759275533023444992>" , "<:IsawUkilled:759275796816461834>" , "<:IdontKnow:759275922028757012>" , "<:idontkill:759275576480890880>" , "<:iamImposter:759275748778967070>" , "<:Hello:759276199406600244>" , "<:deadbody:759275974708690974>" , "<:dead:759276019303055360>" , "<:crewmate:759276054320775188>" , "<:letVoteOut:759275840948404266>" , "<:me_ghost:763035423769100288>" , "<:shy_witch:763035032033165322>" , "<:doc_imposter:763035079706017832>" , "<:imposter:763035386585808916>" , "<:leave_me:763035256139022346>" , "<:announce:763035338842832897>" , "<:magician:763035212245368852>" , "<:not_me:763035139948281856>"]
-	if number == 0:
+	if name == None:
 		embed = discord.Embed(title = "Emojis" , color = discord.Color.red())
 		for i in range(len(emojis)):
 			embed.add_field(name = "** **" , value = f"{i+1} : {emojis[i]}")
@@ -69,7 +69,22 @@ async def add_emoji(ctx , name = None, number = 0):
 		embed.set_footer(text = "You need manage emojis permissions to use this" , icon_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS4HiptS4Q-kl6KMfBkVeJXTMqoVL4gO0rbaQ&usqp=CAU")
 
 		await ctx.send(embed = embed)
-		await ctx.send(f"Use add_emoji <name> <number> to add the emoji to your server")
+		await ctx.send(f"Use add_emoji <name> <number> to add the emoji to your server Or add_emoji full-pack to add all emojis")
+	
+	elif name == "full-pack":
+		if ctx.author.guild_permissions.manage_emojis:
+			emojid = ["759276088412471316" , "759276133157044264" , "759278022686670880" , "759275487222169600" , "759276168679129108",  "759275533023444992" , "759275796816461834" , "759275922028757012" , "759275576480890880" , "759275748778967070" , "759276199406600244" , "759275974708690974" , "759276019303055360" , "759276054320775188" , "759275840948404266" , "763035423769100288" , "763035032033165322" , "763035079706017832" , "763035386585808916" , "763035256139022346" , "763035338842832897" , "763035212245368852" , "763035139948281856"]
+
+			for emoji_id in emojid:
+				emj = client.get_emoji(int(emoji_id))
+				url = emj.url
+				img = await url.read()
+				emoji_name = emj.name
+				await ctx.author.guild.create_custom_emoji(name = emoji_name , image = img)
+			
+			await ctx.send("Emojis successfully created")
+		else:
+			await ctx.send("You don't have the necessary permissions")
 	else:
 		if ctx.author.guild_permissions.manage_emojis:
 			needed = number - 1
