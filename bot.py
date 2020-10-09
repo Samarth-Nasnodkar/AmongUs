@@ -338,7 +338,7 @@ async def help(ctx):
 	helpm.add_field(name = ":eight: add_emoji/add -> adds the among us emoji to your server" , value = "use a!add to know how to go forward" , inline = False)
 	helpm.add_field(name = ":nine: mute -> Mutes the people in the voice channel" , value = "Only the people who have a role lower than you will be muted" , inline = False)
 	helpm.add_field(name = ":keycap_ten: unmute -> Unmutes the people in the voice channel" , value = "Keep the discussions going" , inline = False)
-	helpm.add_field(name = ":one::one: report {complain} -> UReport's the complain to the bot's devs" , value = "Don't use this feature unnecessarily" , inline = False)
+	helpm.add_field(name = ":one::one: report {complain} -> Report's the complain to the bot's devs" , value = "Don't use this feature unnecessarily" , inline = False)
 	await ctx.message.author.dm_channel.send(embed = helpm)
 	await ctx.send("You've got mail!!")
 
