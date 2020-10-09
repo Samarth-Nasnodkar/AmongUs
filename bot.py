@@ -110,6 +110,14 @@ async def invite(ctx):
 	embed.add_field(name = "Invite the best Among Us Bot" , value = "https://bit.ly/3ceYuEW")
 	embed.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
 	await ctx.send(embed = embed)
+
+@client.command(aliases = ["Report" , "REPORT"])
+async def report(ctx, * ,problem = None):
+	server = discord.utils.get(client.guilds , id = 757239002826014731)
+	cnl = server.get_channel(763763201069940756)
+	embed = discord.Embed(title = f"{ctx.author.username}'s Complaint/report" , color = discord.Color.orange())
+	embed.add_field(name = "** **" , value = problem)
+	await cnl.send(embed = embed)
 	
 
 @client.command(aliases = ["Vc" , "VC"])
@@ -330,6 +338,7 @@ async def help(ctx):
 	helpm.add_field(name = ":eight: add_emoji/add -> adds the among us emoji to your server" , value = "use a!add to know how to go forward" , inline = False)
 	helpm.add_field(name = ":nine: mute -> Mutes the people in the voice channel" , value = "Only the people who have a role lower than you will be muted" , inline = False)
 	helpm.add_field(name = ":keycap_ten: unmute -> Unmutes the people in the voice channel" , value = "Keep the discussions going" , inline = False)
+	helpm.add_field(name = ":one::one: report {complain} -> UReport's the complain to the bot's devs" , value = "Don't use this feature unnecessarily" , inline = False)
 	await ctx.message.author.dm_channel.send(embed = helpm)
 	await ctx.send("You've got mail!!")
 
