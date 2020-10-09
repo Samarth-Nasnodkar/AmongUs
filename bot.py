@@ -115,7 +115,7 @@ async def invite(ctx):
 async def report(ctx, * ,problem = None):
 	server = discord.utils.get(client.guilds , id = 757239002826014731)
 	cnl = server.get_channel(763763201069940756)
-	embed = discord.Embed(title = f"{ctx.author.username}'s Complaint/report" , color = discord.Color.orange())
+	embed = discord.Embed(title = f"{ctx.author.display_name}'s Complaint/report" , color = discord.Color.orange())
 	embed.add_field(name = "** **" , value = problem)
 	await cnl.send(embed = embed)
 	
