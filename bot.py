@@ -55,6 +55,164 @@ async def emoji(ctx):
 	emj = random.choice(emojis)
 	await ctx.send(emj)
 
+@client.command(aliases = ["RPS" , "Rps"])
+async def rps(ctx):
+	await start_log("1p")
+	users = await get_log_data()
+	await update_log("1p")
+	await ctx.send("Play your move(rock/paper/scissors)")
+	results = ["rock" , "paper" , "scissors"]
+	def check(message):
+		return message.author == ctx.author and message.channel == ctx.message.channel
+
+	try:
+		msg = await client.wait_for('message' , timeout = 30.0 , check = check)
+	except asyncio.TimeoutError:
+		await ctx.send("You took too long to play")
+	else:
+		answer = random.choice(results)
+		if msg.content.lower() == "rock":
+			if answer == "paper":
+				await ctx.send("I chose paper and won!!, Better luck next time!")
+			elif answer == "rock":
+				await ctx.send("We both chose rock, Oof a TIE!!")
+			elif answer == "scissors":
+				await ctx.send("GG, You Won. Congratulations :partying_face:")
+			else:
+				await ctx.send("Please choose a valid option. Game Ended")
+		elif msg.content.lower() == "paper":
+			if answer == "scissors":
+				await ctx.send("I chose Scissors and won!!, Better luck next time!")
+			elif answer == "paper":
+				await ctx.send("We both chose paper, Oof a TIE!!")
+			elif answer == "rock":
+				await ctx.send("GG, You Won. Congratulations :partying_face:")
+			else:
+				await ctx.send("Please choose a valid option. Game Ended")
+		elif msg.content.lower() == "scissors":
+			if answer == "rock":
+				await ctx.send("I chose rock and won!!, Better luck next time!")
+			elif answer == "scissors":
+				await ctx.send("We both chose scissors, Oof a TIE!!")
+			elif answer == "paper":
+				await ctx.send("GG, You Won. Congratulations :partying_face:")
+			else:
+				await ctx.send("Please choose a valid option. Game Ended")
+		else:
+			await ctx.send("Please choose a valid option. Game Ended")
+
+@client.command(aliases = ["Challenge" , "CHALLENGE"])
+async def challenge(ctx , opponent:discord.Member):
+	await start_log("2p")
+	users = await get_log_data()
+	await update_log("2p")
+
+	if opponent == ctx.author:
+		await ctx.send("You cannot play against yourself")
+		return
+
+	await ctx.send(f"{opponent.mention}, Do you accept the challenge?(yes/no)")
+	def check(message):
+		return message.channel == ctx.message.channel and message.author == opponent
+
+	try:
+		msg = await client.wait_for('message' , timeout = 30.0 , check = check)
+	except asyncio.TimeoutError:
+		await ctx.send("You took too long to accept")
+	else:
+		await ctx.send("Get ready contestants, Check your dm")
+		c1 = await ctx.author.create_dm()
+		c2 = await opponent.create_dm()
+		await ctx.author.dm_channel.send("Game starting in 5s")
+		await opponent.dm_channel.send("Game starting in 5s")
+		await asyncio.sleep(3)
+		embed = discord.Embed(title = "Among Us Hand cricket!" , color = discord.Color.red())
+		embed.set_image(url = "https://media.tenor.com/images/2ab9e2f21aece2154bc36bf6c9b2e09e/tenor.gif")
+		embed.add_field(name = "Play your move(rock/paper/scissors)" , value = "** **")
+		embedo = discord.Embed(title = "Among Us Hand cricket!" , color = discord.Color.blue())
+		embedo.set_image(url = "https://media.tenor.com/images/d075fedb342564f3aefb67ff7895b953/tenor.gif")
+		embedo.add_field(name = "Play your move(rock/paper/scissors)" , value = "** **")
+		await ctx.author.dm_channel.send(embed = embed)
+		await opponent.dm_channel.send(embed = embedo)
+		def checka(message):
+			return isinstance(message.channel, discord.channel.DMChannel) and message.author == ctx.author
+		def checko(message):
+			return isinstance(message.channel, discord.channel.DMChannel) and message.author == opponent
+		try:
+			msg = await client.wait_for('message' , timeout = 30.0 , check = checka)
+			mtg = await client.wait_for('message' , timeout = 30.0 , check = checko)
+			answer = mtg.content.lower()
+		except asyncio.TimeoutError:
+			await ctx.send("You took too long to respond")
+		else:
+			await c1.send(f"Your opponent chose {answer}")
+			await c2.send(f"Your opponent chose {msg.content}")
+			if msg.content.lower() == "rock":
+				if answer == "paper":
+					await c1.send("Better luck next time!")
+					await c2.send("Congratulations:partying_face: You won!!")
+					await ctx.send(f"{opponent.mention} Won against {ctx.author.mention}")
+				elif answer == "rock":
+					await c1.send("GG, You both tied")
+					await c2.send("GG, You both tied")
+					await ctx.send(f"{ctx.author.mention} and {opponent.mention} TIED!!")
+				elif answer == "scissors":
+					await c1.send("Congratulations:partying_face: You won!!")
+					await c2.send("Better luck next time!")
+					await ctx.send(f"{ctx.author.mention} Won against {opponent.mention}")
+				else:
+					await c2.send("Please choose a valid option. Game Ended")
+			elif msg.content.lower() == "paper":
+				if answer == "scissors":
+					await c1.send("Better luck next time!")
+					await c2.send("Congratulations:partying_face: You won!!")
+					await ctx.send(f"{opponent.mention} Won against {ctx.author.mention}")
+				elif answer == "paper":
+					await c1.send("GG, You both tied")
+					await c2.send("GG, You both tied")
+					await ctx.send(f"{ctx.author.mention} and {opponent.mention} TIED!!")
+				elif answer == "rock":
+					await c1.send("Congratulations:partying_face: You won!!")
+					await c2.send("Better luck next time!")
+					await ctx.send(f"{ctx.author.mention} Won against {opponent.mention}")
+				else:
+					await c2.send("Please choose a valid option. Game Ended")
+			elif msg.content.lower() == "scissors":
+				if answer == "rock":
+					await c1.send("Better luck next time!")
+					await c2.send("Congratulations:partying_face: You won!!")
+					await ctx.send(f"{opponent.mention} Won against {ctx.author.mention}")
+				elif answer == "scissors":
+					await c1.send("GG, You both tied")
+					await c2.send("GG, You both tied")
+					await ctx.send(f"{ctx.author.mention} and {opponent.mention} TIED!!")
+				elif answer == "paper":
+					await c1.send("Congratulations:partying_face: You won!!")
+					await c2.send("Better luck next time!")
+					await ctx.send(f"{ctx.author.mention} Won against {opponent.mention}")
+				else:
+					await c2.send("Please choose a valid option. Game Ended")
+			else:
+				await c1.send("Please choose a valid option. Game Ended")
+
+
+
+
+@client.command(aliases = ["Coin_flip" , "COIN_FLIP" , "Flip_coin" , "flip_coin" , "FLIP_COIN" , "FLIP" , "Flip" , "coin_flip"])
+async def flip(ctx):
+	await start_log("coin_flip")
+	users = await get_log_data()
+	await update_log("coin_flip")
+	embed = discord.Embed(title = f"{ctx.author.display_name} Has flipped a coin" , color = discord.Color.orange())
+	embed.set_thumbnail(url = ctx.author.avatar_url)
+	embed.set_image(url = "https://i.pinimg.com/originals/d7/49/06/d74906d39a1964e7d07555e7601b06ad.gif")
+	links = ["https://media.tenor.com/images/d9cc74bec0a2a582d1887045c62595c9/tenor.gif" , "https://media.tenor.com/images/1de5555846dc3e3cd279983cbd2e986d/tenor.gif"]
+	msg = await ctx.send(embed = embed)
+	nembed = discord.Embed(title = f"And the result is ....." , color = discord.Color.orange())
+	nembed.set_image(url = random.choice(links)) 
+	await asyncio.sleep(8)
+	await msg.edit(embed = nembed)
+
 @client.command(aliases = ["Add_emoji" , "ADD_EMOJI" , "Add" , "add" , "ADD"])
 async def add_emoji(ctx , name = None, number = 0):
 	await start_log("add_emoji")
@@ -334,11 +492,14 @@ async def help(ctx):
 	helpm.add_field(name = ":five: invite -> Generates an invite link for the bot" , value = "You can get the link to the official server")
 	helpm.add_field(name = ":six: kill/hit {user} -> Just a fun command" , value = "try it, it's epic" , inline = False)
 	helpm.add_field(name = ":seven: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
-	helpm.add_field(name = ":fire:New Features!!:fire:" , value = "** **" , inline = False)
 	helpm.add_field(name = ":eight: add_emoji/add -> adds the among us emoji to your server" , value = "use a!add to know how to go forward" , inline = False)
 	helpm.add_field(name = ":nine: mute -> Mutes the people in the voice channel" , value = "Only the people who have a role lower than you will be muted" , inline = False)
 	helpm.add_field(name = ":keycap_ten: unmute -> Unmutes the people in the voice channel" , value = "Keep the discussions going" , inline = False)
 	helpm.add_field(name = ":one::one: report {complain} -> Report's the complain to the bot's devs" , value = "Don't use this feature unnecessarily" , inline = False)
+	helpm.add_field(name = ":fire:New Features!!:fire:" , value = "** **" , inline = False)
+	helpm.add_field(name = ":one::two: rps -> Starts a rock, paper , scissors game with the bot" , value = "It is really fun" , inline = False)
+	helpm.add_field(name = ":one::three: challenge {user} -> Play a 1v1 rock, paper scissors with your friend" , value = "It takes place in Dm, Don't worry" , inline = False)
+	helpm.add_field(name = ":one::four: flip -> Flips a coin for you" , value = "Solve your disputes with just a flip of the coin" , inline = False)
 	await ctx.message.author.dm_channel.send(embed = helpm)
 	await ctx.send("You've got mail!!")
 
