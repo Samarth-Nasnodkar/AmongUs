@@ -120,6 +120,9 @@ async def challenge(ctx , opponent:discord.Member):
 	except asyncio.TimeoutError:
 		await ctx.send("You took too long to accept")
 	else:
+		if msg.content.lower() == "no":
+			await ctx.send("Game ended")
+			return
 		await ctx.send("Get ready contestants, Check your dm")
 		c1 = await ctx.author.create_dm()
 		c2 = await opponent.create_dm()
