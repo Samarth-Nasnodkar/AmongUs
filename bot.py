@@ -113,7 +113,7 @@ async def challenge(ctx , opponent:discord.Member):
 
 	await ctx.send(f"{opponent.mention}, Do you accept the challenge?(yes/no)")
 	def check(message):
-		return message.channel == ctx.message.channel and message.author == opponent
+		return message.channel == ctx.message.channel and message.author == opponent and message.content.lower() == 'yes' or message.content.lower() == 'no'
 
 	try:
 		msg = await client.wait_for('message' , timeout = 30.0 , check = check)
@@ -123,6 +123,7 @@ async def challenge(ctx , opponent:discord.Member):
 		if msg.content.lower() == "no":
 			await ctx.send("Game ended")
 			return
+			
 		await ctx.send("Get ready contestants, Check your dm")
 		c1 = await ctx.author.create_dm()
 		c2 = await opponent.create_dm()
