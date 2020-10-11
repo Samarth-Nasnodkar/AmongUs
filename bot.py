@@ -23,23 +23,19 @@ def get_prefix(client , message):
 	if nickname.find("-") == -1:
 		prefix_is = "a!"
 		return prefix_is
-def get_users(client):
-	usrs = len(client.users)
-	return usrs
+
 
 client = commands.Bot(command_prefix= get_prefix)
 client.remove_command('help')
-usrs = get_users(client = client)
-status = cycle([f"{usrs} users"])
+status = cycle(["50000 users" , "a!help"])
 
 @client.event
 async def on_ready():
 	change_status.start()
 	print("Bot is ready.")
 
-@tasks.loop(minutes=60)
+@tasks.loop(minutes=15)
 async def change_status():
-	usrs = get_users(client = client)
 	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening , name = next(status)))
 
 @client.command(aliases = ["Emoji" , "EMOJI"])
