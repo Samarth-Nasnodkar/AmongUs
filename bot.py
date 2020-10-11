@@ -26,7 +26,7 @@ def get_prefix(client , message):
 
 client = commands.Bot(command_prefix= get_prefix)
 client.remove_command('help')
-status = cycle(["49,675 users" , "a!help"])
+status = cycle([f"{len(client.users)} users"])
 
 @client.event
 async def on_ready():
