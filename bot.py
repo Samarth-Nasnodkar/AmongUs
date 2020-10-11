@@ -29,8 +29,7 @@ def get_users(client):
 
 client = commands.Bot(command_prefix= get_prefix)
 client.remove_command('help')
-usrs = 
-status = cycle([get_users + "users"])
+status = cycle([f"{usrs} users"])
 
 @client.event
 async def on_ready():
@@ -39,7 +38,7 @@ async def on_ready():
 
 @tasks.loop(minutes=60)
 async def change_status():
-	usrs = len(client.users)
+	usrs = get_users
 	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening , name = next(status)))
 
 @client.command(aliases = ["Emoji" , "EMOJI"])
