@@ -33,15 +33,6 @@ async def on_ready():
 	change_status.start()
 	print("Bot is ready.")
 
-@client.command()
-async def p_e(ctx):
-	for guild in client.guilds:
-		for i in range(len(guild.emojis)):
-			if guild.emojis[i].animated:
-				await ctx.send(guild.emojis[i])
-		
-	print("Process finished")
-
 @tasks.loop(minutes=60)
 async def change_status():
 	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening , name = next(status)))
@@ -217,13 +208,6 @@ async def flip(ctx):
 	await asyncio.sleep(8)
 	await msg.edit(embed = nembed)
 
-@client.event
-async def on_message(message):
-	await start_log("message")
-	users = await get_log_data()
-	await update_log("message")
-
-	await client.process_commands(message)
 
 @client.command(aliases = ["Add_emoji" , "ADD_EMOJI" , "Add" , "add" , "ADD"])
 async def add_emoji(ctx , name = None, number = 0):
