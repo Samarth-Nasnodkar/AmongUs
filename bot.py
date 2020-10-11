@@ -26,7 +26,8 @@ def get_prefix(client , message):
 
 client = commands.Bot(command_prefix= get_prefix)
 client.remove_command('help')
-status = cycle([f"{len(Bot.users)} users"])
+usrs = len(client.users)
+status = cycle([f"{usrs} users"])
 
 @client.event
 async def on_ready():
@@ -35,6 +36,7 @@ async def on_ready():
 
 @tasks.loop(minutes=60)
 async def change_status():
+	usrs = len(client.users)
 	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening , name = next(status)))
 
 @client.command(aliases = ["Emoji" , "EMOJI"])
