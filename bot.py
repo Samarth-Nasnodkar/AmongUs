@@ -29,6 +29,7 @@ def get_users(client):
 
 client = commands.Bot(command_prefix= get_prefix)
 client.remove_command('help')
+usrs = get_users
 status = cycle([f"{usrs} users"])
 
 @client.event
