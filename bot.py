@@ -23,11 +23,14 @@ def get_prefix(client , message):
 	if nickname.find("-") == -1:
 		prefix_is = "a!"
 		return prefix_is
+def get_users(client):
+	usrs = len(client.users)
+	return usrs
 
 client = commands.Bot(command_prefix= get_prefix)
 client.remove_command('help')
-usrs = len(client.users)
-status = cycle([f"{usrs} users"])
+usrs = 
+status = cycle([get_users + "users"])
 
 @client.event
 async def on_ready():
