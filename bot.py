@@ -10,6 +10,10 @@ import asyncio
 from discord.utils import get
 import datetime
 from discord import Spotify
+from PIL import Image
+from io import BytesIO
+from PIL import ImageFont
+from PIL import ImageDraw
 
 
 def get_prefix(client , message):
