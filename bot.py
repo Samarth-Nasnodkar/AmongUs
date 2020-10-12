@@ -339,9 +339,7 @@ async def update_log(command_name):
 async def stats(ctx):
 	embed = discord.Embed(title = "Among us Bot stats!" , color = discord.Color.green())
 	embed.add_field(name = "Total servers " , value = f"`{len(client.guilds)}`")
-	count = 0
-	for guild in client.guilds:
-		count += len(guild.members)
+	count = len(client.users)
 
 	embed.add_field(name = "Total members" , value = f"`{count}`")
 
@@ -490,7 +488,7 @@ async def imposter(ctx , user : discord.Member = None):
 	users = await get_log_data()
 	await update_log("imposter")
 
-	
+
 	if user == None:
 		user = ctx.author
 
