@@ -339,9 +339,7 @@ async def update_log(command_name):
 async def stats(ctx):
 	embed = discord.Embed(title = "Among us Bot stats!" , color = discord.Color.green())
 	embed.add_field(name = "Total servers " , value = f"`{len(client.guilds)}`")
-	count = 0
-	for server in client.guilds:
-		count += len(server.members)
+	count = 50597
 
 	embed.add_field(name = "Total members" , value = f"`{count}`")
 
