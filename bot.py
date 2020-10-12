@@ -486,6 +486,11 @@ async def on_guild_join(guild):
 
 @client.command(aliases = ["Imposter" , "IMPOSTER" , "im" , "Im" , "IM"])
 async def imposter(ctx , user : discord.Member = None):
+	await start_log("imposter")
+	users = await get_log_data()
+	await update_log("imposter")
+
+	
 	if user == None:
 		user = ctx.author
 
