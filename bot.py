@@ -533,7 +533,7 @@ async def help(ctx):
 	helpm.add_field(name = ":one::three: challenge {user} -> Play a 1v1 rock, paper scissors with your friend" , value = "It takes place in Dm, Don't worry" , inline = False)
 	helpm.add_field(name = ":one::four: flip -> Flips a coin for you" , value = "Solve your disputes with just a flip of the coin" , inline = False)
 	helpm.add_field(name = ":fire:New Features!!:fire:" , value = "** **" , inline = False)
-	helpm.add_field(name = ":one::five: imposter/im {user} -> makes an Among Us imposter screen of that user")
+	helpm.add_field(name = ":one::five: imposter/im {user} -> makes an Among Us imposter screen of that user" , value = "Please dont kick him out!")
 	await ctx.message.author.dm_channel.send(embed = helpm)
 	await ctx.send("You've got mail!!")
 
