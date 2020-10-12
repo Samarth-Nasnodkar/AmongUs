@@ -480,6 +480,34 @@ async def on_guild_join(guild):
 	cnl = client.get_channel(759265178616332308)
 	await cnl.send(f"Among Us bot was added to {guild.name}")
 
+@client.command(aliases = ["Imposter" , "IMPOSTER" , "im" , "Im" , "IM"])
+async def imposter(ctx , user : discord.Member = None):
+	if user == None:
+		user = ctx.author
+
+	impost = Image.open("imposter.jpg")
+
+	asset = user.avatar_url_as(format = 'jpg' , size = 1024)
+	data = BytesIO(await asset.read())
+	pfp = Image.open(data)
+
+	pfp = pfp.resize((177 , 177))
+
+	impost.paste(pfp , (225 , 176))
+
+	impost.save("profile.jpg")
+
+	img = Image.open("profile.jpg")
+	draw = ImageDraw.Draw(img)
+
+	font = ImageFont.truetype("arial.ttf", 30)
+
+	draw.text((257, 369),f"{user.display_name}",(255,0,0),font=font)
+
+	img.save('profile.jpg')
+
+	await ctx.send(file = discord.File("profile.jpg"))
+
 @client.command(aliases=['HELP', 'Help'])
 async def help(ctx):
 	await start_log("help")
@@ -502,10 +530,11 @@ async def help(ctx):
 	helpm.add_field(name = ":nine: mute -> Mutes the people in the voice channel" , value = "Only the people who have a role lower than you will be muted" , inline = False)
 	helpm.add_field(name = ":keycap_ten: unmute -> Unmutes the people in the voice channel" , value = "Keep the discussions going" , inline = False)
 	helpm.add_field(name = ":one::one: report {complain} -> Report's the complain to the bot's devs" , value = "Don't use this feature unnecessarily" , inline = False)
-	helpm.add_field(name = ":fire:New Features!!:fire:" , value = "** **" , inline = False)
 	helpm.add_field(name = ":one::two: rps -> Starts a rock, paper , scissors game with the bot" , value = "It is really fun" , inline = False)
 	helpm.add_field(name = ":one::three: challenge {user} -> Play a 1v1 rock, paper scissors with your friend" , value = "It takes place in Dm, Don't worry" , inline = False)
 	helpm.add_field(name = ":one::four: flip -> Flips a coin for you" , value = "Solve your disputes with just a flip of the coin" , inline = False)
+	helpm.add_field(name = ":fire:New Features!!:fire:" , value = "** **" , inline = False)
+	helpm.add_field(name = ":one::five: imposter/im {user} -> makes an Among Us imposter screen of that user")
 	await ctx.message.author.dm_channel.send(embed = helpm)
 	await ctx.send("You've got mail!!")
 
