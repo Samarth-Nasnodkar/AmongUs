@@ -1,1 +1,0 @@
-pytest_astropy_header
