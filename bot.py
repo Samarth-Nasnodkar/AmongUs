@@ -501,14 +501,6 @@ async def imposter(ctx , user : discord.Member = None):
 
 	impost.save("profile.jpg")
 
-	img = Image.open("profile.jpg")
-	draw = ImageDraw.Draw(img)
-
-	font = ImageFont.truetype("arial.ttf", 30)
-
-	draw.text((257, 369),f"{user.display_name}",(255,0,0),font=font)
-
-	img.save('profile.jpg')
 
 	await ctx.send(file = discord.File("profile.jpg"))
 
