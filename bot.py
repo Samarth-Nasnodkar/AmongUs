@@ -15,6 +15,7 @@ from io import BytesIO
 from PIL import ImageFont
 from PIL import ImageDraw
 import aiohttp
+from discord.ext import menus
 
 
 def get_prefix(client , message):
@@ -518,35 +519,147 @@ async def imposter(ctx , user : discord.Member = None):
 
 	await ctx.send(file = discord.File("profile.jpg"))
 
+@client.command(aliases = ["Crewmate" , "CREWMATE" , "cm" , "Cm" , "CM"])
+async def crewmate(ctx , user : discord.Member = None):
+	await start_log("crewmate")
+	users = await get_log_data()
+	await update_log("crewmate")
+
+
+	if user == None:
+		user = ctx.author
+
+	impost = Image.open("crewmate.png")
+
+	asset = user.avatar_url_as(format = 'png' , size = 1024)
+	data = BytesIO(await asset.read())
+	pfp = Image.open(data)
+
+	pfp = pfp.resize((181 , 181))
+
+	impost.paste(pfp , (529 , 431))
+
+	impost.save("profile.png")
+
+
+	await ctx.send(file = discord.File("profile.png"))
+
+class helper(menus.Menu):
+	global i
+	i = 0
+
+	def __init__(self):
+		super().__init__(timeout = 30.0 , delete_message_after = False)
+
+
+	async def send_initial_message(self , ctx , channel):
+		prfx = get_prefix(client = client , message = self.ctx.message)
+		embed0 = discord.Embed(title = "Among Us help!" , description = f"Hey!, I am the Among us Bot!, I do some cool things(that's why i am the best)\nMy prefix is {prfx}, So let's go through my commands!\n\n==============\n\n<:deadbody:759275974708690974> **Page 2** : `Among us utilities`\n\n<:emoji_2:757285636083286099> **Page 3** : `Fun commands`\n\n<:emoji_1:757245814837084191> **Page 4** : `General utilities`\n\n==============" , color = discord.Color.orange())
+		embed0.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+		global i
+		i = 1
+
+		return await channel.send(embed = embed0)
+
+	@menus.button('⏮')
+	async def on_begin(self , payload):
+		global i
+		prfx = get_prefix(client = client , message = self.ctx.message)
+		embed0 = discord.Embed(title = "Among Us help!" , description = f"Hey!, I am the Among us Bot!, I do some cool things(that's why i am the best)\nMy prefix is {prfx}, So let's go through my commands!\n\n==============\n\n<:deadbody:759275974708690974> **Page 2** : `Among us utilities`\n\n<:emoji_2:757285636083286099> **Page 3** : `Fun commands`\n\n<:emoji_1:757245814837084191> **Page 4** : `General utilities`\n\n==============" , color = discord.Color.orange())
+		embed0.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+		await self.message.edit(embed = embed0)
+		i = 1
+
+	@menus.button('⏪')
+	async def on_rewind(self , payload):
+		global i
+		if i == 3:
+			helpm2  = discord.Embed(title = f"Among Us Help! Page {i - 1}" , color = discord.Color.darker_grey())
+			helpm2.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+			helpm2.add_field(name = ":one: guide -> will guide you" , value = "This will give you all the required information about the game" , inline = False)
+			helpm2.add_field(name = ":two: maps -> will show you all maps" , value = "This will give you the blueprints of all the maps" , inline = False)
+			helpm2.add_field(name = ":three: vc {code} {server} -> Makes a special voice channel" , value = "U can invite the people you want(limit = 11)" , inline = False)
+			helpm2.add_field(name = ":four: mute -> Mutes the people in the voice channel" , value = "Only the people who have a role lower than you will be muted" , inline = False)
+			helpm2.add_field(name = ":five: unmute -> Unmutes the people in the voice channel" , value = "Keep the discussions going" , inline = False)
+			await self.message.edit(embed = helpm2)
+			i = i - 1
+		elif i == 4:
+			helpm2  = discord.Embed(title = f"Among Us Help! Page {i - 1}" , color = discord.Color.darker_grey())
+			helpm2.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+			helpm2.add_field(name = ":one: rps -> Starts a rock, paper , scissors game with the bot" , value = "It is really fun" , inline = False)
+			helpm2.add_field(name = ":two: challenge {user} -> Play a 1v1 rock, paper scissors with your friend" , value = "It takes place in Dm, Don't worry" , inline = False)
+			helpm2.add_field(name = ":three: flip -> Flips a coin for you" , value = "Solve your disputes with just a flip of the coin" , inline = False)
+			helpm2.add_field(name = ":four: kill/hit {user} -> Just a fun command" , value = "try it, it's epic" , inline = False)
+			helpm2.add_field(name = ":five: imposter/im {user} -> makes an Among Us imposter screen of that user" , value = "Please dont kick him out!" , inline = False)
+			await self.message.edit(embed = helpm2)
+			i = i - 1
+		elif i == 2:
+			embed0 = discord.Embed(title = "Among Us help!" , description = "Hey!, I am the Among us Bot!, I do some cool things(that's why i am the best)\nMy prefix is a!, So let's go through my commands!\n\n==============\n\n<:deadbody:759275974708690974> **Page 2** : `Among us utilities`\n\n<:emoji_2:757285636083286099> **Page 3** : `Fun commands`\n\n<:emoji_1:757245814837084191> **Page 4** : `General utilities`\n\n==============" , color = discord.Color.orange())
+			embed0.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+			i = i - 1
+			await self.message.edit(embed = embed0)
+
+	@menus.button('⏯')
+	async def on_stop(self, payload):
+		self.stop()
+
+	@menus.button('⏩')
+	async def on_skip(self , payload):
+		global i
+		if i == 1:
+			helpm2  = discord.Embed(title = f"Among Us Help! Page {i + 1}" , color = discord.Color.darker_grey())
+			helpm2.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+			helpm2.add_field(name = ":one: guide -> will guide you" , value = "This will give you all the required information about the game" , inline = False)
+			helpm2.add_field(name = ":two: maps -> will show you all maps" , value = "This will give you the blueprints of all the maps" , inline = False)
+			helpm2.add_field(name = ":three: vc {code} {server} -> Makes a special voice channel" , value = "U can invite the people you want(limit = 11)" , inline = False)
+			helpm2.add_field(name = ":four: mute -> Mutes the people in the voice channel" , value = "Only the people who have a role lower than you will be muted" , inline = False)
+			helpm2.add_field(name = ":five: unmute -> Unmutes the people in the voice channel" , value = "Keep the discussions going" , inline = False)
+			await self.message.edit(embed = helpm2)
+			i+=1
+		elif i == 2:
+			helpm2  = discord.Embed(title = f"Among Us Help! Page {i + 1}" , color = discord.Color.darker_grey())
+			helpm2.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+			helpm2.add_field(name = ":one: rps -> Starts a rock, paper , scissors game with the bot" , value = "It is really fun" , inline = False)
+			helpm2.add_field(name = ":two: challenge {user} -> Play a 1v1 rock, paper scissors with your friend" , value = "It takes place in Dm, Don't worry" , inline = False)
+			helpm2.add_field(name = ":three: flip -> Flips a coin for you" , value = "Solve your disputes with just a flip of the coin" , inline = False)
+			helpm2.add_field(name = ":four: kill/hit {user} -> Just a fun command" , value = "try it, it's epic" , inline = False)
+			helpm2.add_field(name = ":five: imposter/im {user} -> makes an Among Us imposter screen of that user" , value = "Please dont kick him out!" , inline = False)
+			await self.message.edit(embed = helpm2)
+			i+=1
+		elif i == 3:
+			prfx = get_prefix(client = client , message = self.ctx.message)
+			helpm2  = discord.Embed(title = f"Among Us Help! Page {i + 1}" , color = discord.Color.darker_grey())
+			helpm2.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+			helpm2.add_field(name = ":one: meme -> Generates a random meme from Reddit" , value = "I enjoy those memes a lot!!, so will you" , inline = False)
+			helpm2.add_field(name = ":two: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
+			helpm2.add_field(name = ":three: add_emoji/add -> adds the among us emoji to your server" , value = f"use {prfx}add to know how to go forward" , inline = False)
+			helpm2.add_field(name = ":four: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
+			helpm2.add_field(name = ":five: imposter/im {user} -> makes an Among Us imposter screen of that user" , value = "Please dont kick him out!" , inline = False)
+			await self.message.edit(embed = helpm2)
+			i+=1
+
+		
+	@menus.button('⏭')
+	async def on_end(self, payload):
+		global i
+		prfx = get_prefix(client = client , message = self.ctx.message)
+		helpm2  = discord.Embed(title = f"Among Us Help! Page 4" , color = discord.Color.darker_grey())
+		helpm2.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+		helpm2.add_field(name = ":one: meme -> Generates a random meme from Reddit" , value = "I enjoy those memes a lot!!, so will you" , inline = False)
+		helpm2.add_field(name = ":two: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
+		helpm2.add_field(name = ":three: add_emoji/add -> adds the among us emoji to your server" , value = f"use {prfx}add to know how to go forward" , inline = False)
+		helpm2.add_field(name = ":four: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
+		helpm2.add_field(name = ":five: imposter/im {user} -> makes an Among Us imposter screen of that user" , value = "Please dont kick him out!" , inline = False)
+		await self.message.edit(embed = helpm2)
+		i = 4
+
+
 @client.command(aliases=['HELP', 'Help'])
 async def help(ctx):
 	await start_log("help")
 	users = await get_log_data()
 	await update_log("help")
-	await ctx.message.author.create_dm()
-	helpm  = discord.Embed(title = f"Among Us Help!" , color = discord.Color.darker_grey())
-	helpm.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
-	prfx = get_prefix(client = client , message = ctx.message)
-	helpm.add_field(name = f"Hey! My prefix is {prfx}" , value = "So Lets go through my commands" , inline = False)
-	helpm.add_field(name = "To set a custom prefix change the bot's nickname to {prefix}-{any name u want}" , value = "Eg. if the prefix is ?, change nickname to ?-Among Us")
-	helpm.add_field(name = ":one: guide -> will guide you" , value = "This will give you all the required information about the game" , inline = False)
-	helpm.add_field(name = ":two: maps -> will show you all maps" , value = "This will give you the blueprints of all the maps" , inline = False)
-	helpm.add_field(name = ":three: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
-	helpm.add_field(name = ":four: vc {code} {server} -> Makes a special voice channel" , value = "U can invite the people you want(limit = 11)" , inline = False)
-	helpm.add_field(name = ":five: invite -> Generates an invite link for the bot" , value = "You can get the link to the official server")
-	helpm.add_field(name = ":six: kill/hit {user} -> Just a fun command" , value = "try it, it's epic" , inline = False)
-	helpm.add_field(name = ":seven: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
-	helpm.add_field(name = ":eight: add_emoji/add -> adds the among us emoji to your server" , value = "use a!add to know how to go forward" , inline = False)
-	helpm.add_field(name = ":nine: mute -> Mutes the people in the voice channel" , value = "Only the people who have a role lower than you will be muted" , inline = False)
-	helpm.add_field(name = ":keycap_ten: unmute -> Unmutes the people in the voice channel" , value = "Keep the discussions going" , inline = False)
-	helpm.add_field(name = ":one::one: report {complain} -> Report's the complain to the bot's devs" , value = "Don't use this feature unnecessarily" , inline = False)
-	helpm.add_field(name = ":one::two: rps -> Starts a rock, paper , scissors game with the bot" , value = "It is really fun" , inline = False)
-	helpm.add_field(name = ":one::three: challenge {user} -> Play a 1v1 rock, paper scissors with your friend" , value = "It takes place in Dm, Don't worry" , inline = False)
-	helpm.add_field(name = ":one::four: flip -> Flips a coin for you" , value = "Solve your disputes with just a flip of the coin" , inline = False)
-	helpm.add_field(name = ":fire:New Features!!:fire:" , value = "** **" , inline = False)
-	helpm.add_field(name = ":one::five: imposter/im {user} -> makes an Among Us imposter screen of that user" , value = "Please dont kick him out!" , inline = False)
-	helpm.add_field(name = ":one::six: meme -> Generates a random meme from Reddit" , value = "I enjoy those memes a lot!!, so will you" , inline = False)
-	await ctx.message.author.dm_channel.send(embed = helpm)
-	await ctx.send("You've got mail!!")
+	m = helper()
+	await m.start(ctx)
 
 client.run("NzU3MjcyNDQyODIwMzYyMjgx.X2d-6w.IFFVlAkqE_16LP41xGMCpFiJAy4")
