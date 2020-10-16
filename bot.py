@@ -634,7 +634,6 @@ class helper(menus.Menu):
 			helpm2.add_field(name = ":two: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
 			helpm2.add_field(name = ":three: add_emoji/add -> adds the among us emoji to your server" , value = f"use {prfx}add to know how to go forward" , inline = False)
 			helpm2.add_field(name = ":four: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
-			helpm2.add_field(name = ":five: imposter/im {user} -> makes an Among Us imposter screen of that user" , value = "Please dont kick him out!" , inline = False)
 			await self.message.edit(embed = helpm2)
 			i+=1
 
@@ -649,7 +648,6 @@ class helper(menus.Menu):
 		helpm2.add_field(name = ":two: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
 		helpm2.add_field(name = ":three: add_emoji/add -> adds the among us emoji to your server" , value = f"use {prfx}add to know how to go forward" , inline = False)
 		helpm2.add_field(name = ":four: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
-		helpm2.add_field(name = ":five: imposter/im {user} -> makes an Among Us imposter screen of that user" , value = "Please dont kick him out!" , inline = False)
 		await self.message.edit(embed = helpm2)
 		i = 4
 
