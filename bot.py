@@ -554,7 +554,7 @@ class helper(menus.Menu):
 
 	async def send_initial_message(self , ctx , channel):
 		prfx = get_prefix(client = client , message = self.ctx.message)
-		embed0 = discord.Embed(title = "Among Us help!" , description = f"Hey!, I am the Among us Bot!, I do some cool things(that's why i am the best)\nMy prefix is {prfx}, So let's go through my commands!\n\n==============\n\n<:deadbody:759275974708690974> **Page 2** : `Among us utilities`\n\n<:emoji_2:757285636083286099> **Page 3** : `Fun commands`\n\n<:emoji_1:757245814837084191> **Page 4** : `General utilities`\n\n==============" , color = discord.Color.orange())
+		embed0 = discord.Embed(title = "Among Us help!" , description = f"Hey!, I am the Among us Bot!, I do some cool things(that's why i am the best)\nMy prefix is {prfx}, So let's go through my commands!\n\n==============\n\n<:deadbody:759275974708690974> **Page 2** : `Among us utilities`\n\n<:reddit:314349923103670272> **Page 3** : `Fun commands`\n\n<:staff:314068430787706880> **Page 4** : `General utilities`\n\n==============" , color = discord.Color.orange())
 		embed0.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
 		global i
 		i = 1
@@ -594,7 +594,7 @@ class helper(menus.Menu):
 			await self.message.edit(embed = helpm2)
 			i = i - 1
 		elif i == 2:
-			embed0 = discord.Embed(title = "Among Us help!" , description = "Hey!, I am the Among us Bot!, I do some cool things(that's why i am the best)\nMy prefix is a!, So let's go through my commands!\n\n==============\n\n<:deadbody:759275974708690974> **Page 2** : `Among us utilities`\n\n<:emoji_2:757285636083286099> **Page 3** : `Fun commands`\n\n<:emoji_1:757245814837084191> **Page 4** : `General utilities`\n\n==============" , color = discord.Color.orange())
+			embed0 = discord.Embed(title = "Among Us help!" , description = "Hey!, I am the Among us Bot!, I do some cool things(that's why i am the best)\nMy prefix is a!, So let's go through my commands!\n\n==============\n\n<:deadbody:759275974708690974> **Page 2** : `Among us utilities`\n\n<:reddit:314349923103670272> **Page 3** : `Fun commands`\n\n<:staff:314068430787706880> **Page 4** : `General utilities`\n\n==============" , color = discord.Color.orange())
 			embed0.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
 			i = i - 1
 			await self.message.edit(embed = embed0)
