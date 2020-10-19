@@ -479,15 +479,6 @@ async def ping(ctx):
 	await update_log("ping")
 	await ctx.send(f'Ping: {round(client.latency * 1000)} ms')
 
-@client.command()
-async def pirate(ctx , emid = 0):
-	if ctx.author.id == 727539383405772901:
-		emj = client.get_emoji(int(emid))
-		url = emj.url
-		img = await url.read()
-		emoji_name = emj.name
-		await ctx.author.guild.create_custom_emoji(name = emoji_name , image = img)
-
 
 @client.event
 async def on_guild_join(guild):
