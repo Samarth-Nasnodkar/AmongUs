@@ -414,7 +414,7 @@ async def guide(ctx):
 	await asyncio.sleep(30)
 	guide = discord.Embed(title = "Among Us Guide Page" , color = discord.Color.orange())
 	guide.add_field(name = ":map:Full Guide" , value = "[Guide](https://bit.ly/2ZHsF2A)")
-	guide.add_field(name = "<:among_us:755993889508163655>Crewmate" , value = "[Crewmate](https://bit.ly/3khxtU6)")
+	guide.add_field(name = "<:among_us:769073995324063755>Crewmate" , value = "[Crewmate](https://bit.ly/3khxtU6)")
 	guide.add_field(name = ":detective:Imposter" , value = "[Imposter](https://bit.ly/2ZHsF2A)")
 	guide.add_field(name = "To learn about maps use the below command" , value = "a!maps" , inline = False)
 	guide.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
