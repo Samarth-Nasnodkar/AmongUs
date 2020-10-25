@@ -608,10 +608,9 @@ class helper(menus.Menu):
 			prfx = get_prefix(client = client , message = self.ctx.message)
 			helpm2  = discord.Embed(title = f"Among Us Help! Page {i + 1}" , color = discord.Color.darker_grey())
 			helpm2.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
-			helpm2.add_field(name = ":one: meme -> Generates a random meme from Reddit" , value = "I enjoy those memes a lot!!, so will you" , inline = False)
-			helpm2.add_field(name = ":two: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
-			helpm2.add_field(name = ":three: add_emoji/add -> adds the among us emoji to your server" , value = f"use {prfx}add to know how to go forward" , inline = False)
-			helpm2.add_field(name = ":four: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
+			helpm2.add_field(name = ":one: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
+			helpm2.add_field(name = ":two: add_emoji/add -> adds the among us emoji to your server" , value = f"use {prfx}add to know how to go forward" , inline = False)
+			helpm2.add_field(name = ":three: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
 			await self.message.edit(embed = helpm2)
 			i+=1
 
@@ -622,10 +621,9 @@ class helper(menus.Menu):
 		prfx = get_prefix(client = client , message = self.ctx.message)
 		helpm2  = discord.Embed(title = f"Among Us Help! Page 4" , color = discord.Color.darker_grey())
 		helpm2.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
-		helpm2.add_field(name = ":one: meme -> Generates a random meme from Reddit" , value = "I enjoy those memes a lot!!, so will you" , inline = False)
-		helpm2.add_field(name = ":two: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
-		helpm2.add_field(name = ":three: add_emoji/add -> adds the among us emoji to your server" , value = f"use {prfx}add to know how to go forward" , inline = False)
-		helpm2.add_field(name = ":four: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
+		helpm2.add_field(name = ":one: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
+		helpm2.add_field(name = ":two: add_emoji/add -> adds the among us emoji to your server" , value = f"use {prfx}add to know how to go forward" , inline = False)
+		helpm2.add_field(name = ":three: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
 		await self.message.edit(embed = helpm2)
 		i = 4
 
