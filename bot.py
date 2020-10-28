@@ -30,7 +30,9 @@ def get_prefix(client , message):
 		return prefix_is
 
 
-client = commands.Bot(command_prefix= get_prefix)
+
+intents = discord.Intents(messages=True, guilds=True , members = True, reactions = True)
+client = commands.Bot(command_prefix= get_prefix , intents = intents)
 client.remove_command('help')
 status = cycle(["HARI" , "HARI"])
 
