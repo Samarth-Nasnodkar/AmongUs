@@ -54,7 +54,7 @@ async def emoji(ctx):
 
 @client.command()
 async def tmc(ctx):
-        await ctx.send(f"I am in {len(client.users} servers")
+        await ctx.send(f"I am in {len(client.users)} servers")
 
 
 @client.command(aliases = ["RPS" , "Rps"])
