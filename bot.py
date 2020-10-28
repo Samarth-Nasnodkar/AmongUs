@@ -52,11 +52,6 @@ async def emoji(ctx):
 	emj = random.choice(emojis)
 	await ctx.send(emj)
 
-@client.command()
-async def tmc(ctx):
-        await ctx.send(f"I am in {len(client.users)} servers")
-
-
 @client.command(aliases = ["RPS" , "Rps"])
 async def rps(ctx):
 	await start_log("1p")
