@@ -335,6 +335,31 @@ async def update_log(command_name):
 
 	return bal
 
+@client.command(aliases = ["Guess" , "GUESS"])
+async def guess(ctx):
+	embed = discord.Embed(name = "One of the below colors is an imposter, Let's see if you can spot it" , color = ctx.author.color)
+	embed.set_image(url = "https://i.redd.it/7xvv3tmx8vo51.png")
+	embed.set_footer(text = "Respond with your color, Let's see if you win!" , icon_url = "https://5droid.ru/uploads/posts/2020-02/1581588210_among-us.png")
+	await ctx.send(embed = embed)
+	colors = ["green" , "black" , "purple" , "blue" , "lime" , "white" , "pink" , "cyan" , "teal" , "yellow" , "red" , "brown" , "orange"]
+	def check(message):
+		return message.author == ctx.author and message.channel == ctx.channel and message.content.lower() in colors
+	try:
+		msg = await client.wait_for('message' , timeout = 30.0 , check = check)
+	except asyncio.TimeoutError:
+		await ctx.send("You took too long to respond. What a loser!!")
+	else:
+		ans2 = ""
+		ans = random.choice(colors)
+		if ans == "cyan" or ans == "teal":
+			ans = "cyan"
+			ans2 = "teal"
+		if msg.content.lower() == ans or msg.content.lower() == ans2:
+			await ctx.send(f":partying_face: You won!! GG :partying_face:")
+		else:
+			await ctx.send(f"{ans} was the imposter. Oof you missed it. Better luck next time")
+
+
 
 
 @client.command(aliases = ["Stats" , "STATS"])
@@ -571,6 +596,8 @@ class helper(menus.Menu):
 			helpm2.add_field(name = ":three: flip -> Flips a coin for you" , value = "Solve your disputes with just a flip of the coin" , inline = False)
 			helpm2.add_field(name = ":four: kill/hit {user} -> Just a fun command" , value = "try it, it's epic" , inline = False)
 			helpm2.add_field(name = ":five: imposter/im {user} -> makes an Among Us imposter screen of that user" , value = "Please dont kick him out!" , inline = False)
+			helpm2.add_field(name = ":fire::fire: New Feature!!" , value = "** **" , inline = False)
+			helpm2.add_field(name = ":six: guess -> creates a guessing game where you have to guess the imposter" , value = "Hmmm, fascinating!" , inline = False)
 			await self.message.edit(embed = helpm2)
 			i = i - 1
 		elif i == 2:
@@ -604,6 +631,8 @@ class helper(menus.Menu):
 			helpm2.add_field(name = ":three: flip -> Flips a coin for you" , value = "Solve your disputes with just a flip of the coin" , inline = False)
 			helpm2.add_field(name = ":four: kill/hit {user} -> Just a fun command" , value = "try it, it's epic" , inline = False)
 			helpm2.add_field(name = ":five: imposter/im {user} -> makes an Among Us imposter screen of that user" , value = "Please dont kick him out!" , inline = False)
+			helpm2.add_field(name = ":fire::fire: New Feature!!" , value = "** **" , inline = False)
+			helpm2.add_field(name = ":six: guess -> creates a guessing game where you have to guess the imposter" , value = "Hmmm, fascinating!" , inline = False)
 			await self.message.edit(embed = helpm2)
 			i+=1
 		elif i == 3:
