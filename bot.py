@@ -337,7 +337,7 @@ async def update_log(command_name):
 
 @client.command(aliases = ["Guess" , "GUESS"])
 async def guess(ctx):
-	embed = discord.Embed(name = "One of the below colors is an imposter, Let's see if you can spot it" , color = ctx.author.color)
+	embed = discord.Embed(title = "One of the below characters is an imposter, Let's see if you can spot it" , color = ctx.author.color)
 	embed.set_image(url = "https://i.redd.it/7xvv3tmx8vo51.png")
 	embed.set_footer(text = "Respond with your color, Let's see if you win!" , icon_url = "https://5droid.ru/uploads/posts/2020-02/1581588210_among-us.png")
 	await ctx.send(embed = embed)
