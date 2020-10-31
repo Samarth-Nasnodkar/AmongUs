@@ -15,6 +15,7 @@ from io import BytesIO
 from PIL import ImageFont
 from PIL import ImageDraw
 from discord.ext import menus
+import tenorpy
 
 
 def get_prefix(client , message):
@@ -473,12 +474,16 @@ async def kill(ctx , user:discord.Member = None):
 	await start_log("kill")
 	users = await get_log_data()
 	await update_log("kill")
+	
+	t = tenorpy.Tenor()
 	if user == ctx.author:
 		link = "https://media.tenor.com/images/084529f26cc165e65ea6009206174f29/tenor.gif"
 		lit = f"{ctx.author.display_name} Killed himself"
 	else:
 		links = ["https://media.tenor.com/images/2ad01fc73cc91abd54069f2e8deb50cc/tenor.gif","https://media.tenor.com/images/49f4a71df065a3bf90d9ebfd0cbd2d58/tenor.gif" , "https://media.tenor.com/images/091a8ed3a3896e8f3b4bffa02c298491/tenor.gif" , "https://media.tenor.com/images/f2295524300b47930f650f82080e0bb5/tenor.gif" ,"https://media.tenor.com/images/a461243877f3e2494a4c69999b232a97/tenor.gif" ,"https://media.tenor.com/images/7bb1baedb25f70d66d811088e464c4a3/tenor.gif" ,"https://media.tenor.com/images/d46c724d422714d738a84a51f1caf00b/tenor.gif" , "https://media.tenor.com/images/a166604b0b8f34779dbbd2dd690efb58/tenor.gif"]
-		link = random.choice(links)
+		lnk = t.search(tag = "among us kill" , limit = 20)
+		link_start = random.choice(lnk['results'])
+		link = link_start['media'][0]['gif']['url']
 		lit = f"{ctx.author.display_name} Killed {user.display_name}"
 	embed = discord.Embed(title = lit , color = discord.Color.red())
 	embed.set_image(url = link)
