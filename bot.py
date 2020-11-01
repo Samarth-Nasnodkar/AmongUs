@@ -40,20 +40,20 @@ async def prefix(ctx , prfx:str = ""):
 		await ctx.send("You do not have the necessary permissions")
 		return
 		
-    if prfx == "":
-        await ctx.send("Please specify a valid prefix")
-        return
-    else:
-        main_server = client.get_guild(730075470694973461)
-        for channel in main_server.text_channels:
-            if channel.name == f"{ctx.guild.id}":
-                await channel.edit(topic = prfx)
-                await ctx.send(f"Your prefix changes successfully to {prfx}")
-                return
-        
-        
-        await main_server.create_text_channel(name = ctx.guild.id , topic = prfx)
-        await ctx.send(f"Your prefix changes successfully to {prfx}")
+	if prfx == "":
+		await ctx.send("Please specify a valid prefix")
+		return
+	else:
+		main_server = client.get_guild(730075470694973461)
+		for channel in main_server.text_channels:
+			if channel.name == f"{ctx.guild.id}":
+				await channel.edit(topic = prfx)
+				await ctx.send(f"Your prefix changes successfully to {prfx}")
+				return
+		
+		
+		await main_server.create_text_channel(name = ctx.guild.id , topic = prfx)
+		await ctx.send(f"Your prefix changes successfully to {prfx}")
 
 @client.event
 async def on_ready():
