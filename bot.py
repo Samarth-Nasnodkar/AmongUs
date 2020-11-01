@@ -19,15 +19,22 @@ import tenorpy
 
 
 def get_prefix(client , message):
-    main_server = client.get_guild(730075470694973461)
-    for channel in main_server.text_channels:
-        if str(channel.name) == str(message.guild.id):
-            prfx = channel.topic
-            return prfx
+	main_server = client.get_guild(730075470694973461)
+	if len(main_server.text_channels) > 480:
+		main_server_2 = client.get_guild(753269919684231178)
+		for channel in main_server_2.text_channels:
+			if str(channel.name) == str(message.guild.id):
+				prfx = channel.topic
+				return prfx
 
-    else:
-        basic_prefix = "a!"
-        return basic_prefix
+
+	for channel in main_server.text_channels:
+		if str(channel.name) == str(message.guild.id):
+			prfx = channel.topic
+			return prfx
+
+	basic_prefix = "a!"
+	return basic_prefix
 
 
 client = commands.Bot(command_prefix= get_prefix)
