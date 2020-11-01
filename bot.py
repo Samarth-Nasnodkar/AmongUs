@@ -19,21 +19,37 @@ import tenorpy
 
 
 def get_prefix(client , message):
-	c_server = message.guild
-	nickname = c_server.me.display_name
-	if nickname.find('-') != -1:
-		n1 , n2 = nickname.split('-')
-		prefix_is = n1
-		return prefix_is
+    main_server = client.get_guild(730075470694973461)
+    for channel in main_server.text_channels:
+        if str(channel.name) == str(message.guild.id):
+            prfx = channel.topic
+            return prfx
 
-	if nickname.find("-") == -1:
-		prefix_is = "a!"
-		return prefix_is
+    else:
+        basic_prefix = "a!"
+        return basic_prefix
 
 
 client = commands.Bot(command_prefix= get_prefix)
 client.remove_command('help')
 status = cycle(["HARI" , "HARI"])
+
+@client.command(aliases = ["Prefix" , "PREFIX"])
+async def prefix(ctx , prfx:str = ""):
+    if prfx == "":
+        await ctx.send("Please specify a valid prefix")
+        return
+    else:
+        main_server = client.get_guild(730075470694973461)
+        for channel in main_server.text_channels:
+            if channel.name == f"{ctx.guild.id}":
+                await channel.edit(topic = prfx)
+                await ctx.send(f"Your prefix changes successfully to {prfx}")
+                return
+        
+        
+        await main_server.create_text_channel(name = ctx.guild.id , topic = prfx)
+        await ctx.send(f"Your prefix changes successfully to {prfx}")
 
 @client.event
 async def on_ready():
@@ -438,7 +454,8 @@ async def maps(ctx):
 	await start_log("maps")
 	users = await get_log_data()
 	await update_log("maps")
-	among = discord.Embed(title = "Choose one of the below maps by typing the command `a!{map name}`.\n Eg. a!skeld \nyou can choose between skeld, mirahq and polus" , color = discord.Color.orange())
+	prfx = get_prefix(client = client , message = ctx.message)
+	among = discord.Embed(title = f"Choose one of the below maps by typing the command `{prfx}(map name)`.\n Eg. {prfx}skeld \nyou can choose between skeld, mirahq and polus" , color = discord.Color.orange())
 	among.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
 	await ctx.send(embed = among)
 	
@@ -647,6 +664,7 @@ class helper(menus.Menu):
 			helpm2.add_field(name = ":one: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
 			helpm2.add_field(name = ":two: add_emoji/add -> adds the among us emoji to your server" , value = f"use {prfx}add to know how to go forward" , inline = False)
 			helpm2.add_field(name = ":three: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
+			helpm2.add_field(name = ":four: prefix {new prefix} -> to change the bot's prefix" , value = "The default prefix of the bot is a!" , inline = False)
 			await self.message.edit(embed = helpm2)
 			i+=1
 
@@ -660,6 +678,7 @@ class helper(menus.Menu):
 		helpm2.add_field(name = ":one: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
 		helpm2.add_field(name = ":two: add_emoji/add -> adds the among us emoji to your server" , value = f"use {prfx}add to know how to go forward" , inline = False)
 		helpm2.add_field(name = ":three: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
+		helpm2.add_field(name = ":four: prefix {new prefix} -> to change the bot's prefix" , value = "The default prefix of the bot is a!" , inline = False)
 		await self.message.edit(embed = helpm2)
 		i = 4
 
