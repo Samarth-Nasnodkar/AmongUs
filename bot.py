@@ -39,7 +39,7 @@ def get_prefix(client , message):
 
 client = commands.Bot(command_prefix= get_prefix)
 client.remove_command('help')
-status = cycle(["HARI" , "HARI"])
+status = cycle(["Waiting for a ping!!" , "Waiting for a ping!!"])
 
 @client.command(aliases = ["Prefix" , "PREFIX"])
 async def prefix(ctx , prfx:str = ""):
@@ -61,6 +61,22 @@ async def prefix(ctx , prfx:str = ""):
 		
 		await main_server.create_text_channel(name = ctx.guild.id , topic = prfx)
 		await ctx.send(f"Your prefix changes successfully to {prfx}")
+
+@client.event
+async def on_message(message):
+	for member in message.mentions:
+		if member == message.guild.me:
+			embed = discord.Embed(title = "Bot details!!" , color = message.author.color)
+			embed.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+			prfx = get_prefix(client = client , message = message)
+			embed.add_field(name = "Among Us Unofficial#6602" , value = f"** **" , inline = False)
+			embed.add_field(name = f"Current server prefix = {prfx}" , value = f"currently in {len(client.guilds)} servers" , inline = False)
+			embed.add_field(name = f"For more information use {prfx}help" , value = "Join the support server here: [**Click Me**](https://discord.gg/tgyW2Jz)" , inline = False)
+			embed.set_footer(text = "Bot developed by @Sammy Sins#6969" , icon_url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+			await message.channel.send(embed = embed)
+
+
+	await client.process_commands(message)
 
 @client.event
 async def on_ready():
