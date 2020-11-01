@@ -36,7 +36,7 @@ status = cycle(["HARI" , "HARI"])
 
 @client.command(aliases = ["Prefix" , "PREFIX"])
 async def prefix(ctx , prfx:str = ""):
-	if not ctx.author.guild_permissions.manage_server:
+	if not ctx.author.guild_permissions.manage_guild:
 		await ctx.send("You do not have the necessary permissions")
 		return
 		
