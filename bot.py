@@ -408,20 +408,13 @@ async def guess(ctx):
 
 @client.command(aliases = ["Stats" , "STATS"])
 async def stats(ctx):
-	embed = discord.Embed(title = "Among us Bot stats!" , color = discord.Color.green())
-	embed.add_field(name = "Total servers " , value = f"`{len(client.guilds)}`" , inline = False)
-
 	users = await get_log_data()
 
-	embed.add_field(name = "Today's commands stats!" , value = "** **" , inline = False)
 	c_count =  0
 	for used in users:
 		c_count += users[used]["count"]
 
-	embed.add_field(name = "Total commands used" , value = f"`{c_count}`" , inline = False)
-
-	for used in users:
-		embed.add_field(name = f"{used}" , value = f'''`{users[used]["count"]}`''')
+	embed = discord.Embed(title="Among us Bot stats!",description=f"==============\n**Servers** : `{len(client.guilds)}`\n**Commands** : `{c_count}`\n==============", color=discord.Color.green())
 
 	embed.set_thumbnail(url = "https://5droid.ru/uploads/posts/2020-02/1581588210_among-us.png")
 
@@ -545,6 +538,14 @@ async def ping(ctx):
 async def on_guild_join(guild):
 	cnl = client.get_channel(759265178616332308)
 	await cnl.send(f"Among Us bot was added to {guild.name}")
+	embed = discord.Embed(title="Bot details!!", color=discord.Color.orange())
+	embed.set_thumbnail(url="https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+	prfx = 'a!'
+	embed.add_field(name="Among Us Unofficial#6602", value=f"** **", inline=False)
+	embed.add_field(name=f"Current server prefix = {prfx}", value=f"currently in {len(client.guilds)} servers",inline=False)
+	embed.add_field(name=f"For more information use {prfx}help",value="Join the support server here: [**Click Me**](https://discord.gg/tgyW2Jz)", inline=False)
+	embed.set_footer(text="Bot developed by @Sammy Sins#7295",icon_url="https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+	await guild.system_channel.send(embed = embed)
 
 @client.command(aliases = ["Imposter" , "IMPOSTER" , "im" , "Im" , "IM"])
 async def imposter(ctx , user : discord.Member = None):
