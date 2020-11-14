@@ -41,6 +41,66 @@ client = commands.Bot(command_prefix= get_prefix)
 client.remove_command('help')
 status = cycle(["Waiting for a ping!!" , "Waiting for a ping!!"])
 
+async def add_game(matchid , server , user , channel_to):
+    with open('games.json' , 'r') as f:
+        games = json.load(f)
+
+    if str(user.id) in games:
+        return await channel_to.send('You already have a Game running.')
+
+    servers = ['asia' , 'europe' , 'na']
+
+    if not server.lower() in servers:
+        return await channel_to.send('Please specify a valid server among Asia , Europe and NA')
+
+    games[str(user.id)] = {}
+    games[str(user.id)]['id'] = matchid
+    games[str(user.id)]['server'] = server
+
+    with open('games.json', 'w') as f:
+        json.dump(games , f)
+
+    await channel_to.send('Your game added successfully!.')
+
+async def fetch_available_games(channel_to , server:str = ''):
+    with open('games.json' , 'r') as f:
+        games = json.load(f)
+
+    availableServers = ['asia' , 'europe' , 'na' , '']
+
+    if not server.lower() in availableServers:
+        return await channel_to.send('Invalid server name specified. Please choose one of Asia , Europe and NA')
+
+
+    if len(games) == 0:
+        return await channel_to.send('No games available right now. Please try again after some time.')
+
+    string = ''
+    correctServer = False
+    for game in games:
+        if server == '':
+            string = string + '**Server** : ' + games[game]['server'] + ' , **id** : ' + games[game]['id'] + '\n'
+            correctServer = True
+        else:
+            if games[game]['server'].lower() == server.lower():
+                string = string + '**Server** : ' + games[game]['server'] + ' , **id** : ' + games[game]['id'] + '\n'
+                correctServer = True
+
+    if not correctServer:
+        return await channel_to.send('No games available right now. Please try again')
+
+    await channel_to.send(f'**Currently available Games**\n====================\n{string}\n====================')
+
+
+async def remove_game(user):
+    with open('games.json' , 'r') as f:
+        games = json.load(f)
+
+    del games[str(user.id)]
+
+    with open('games.json' , 'w') as f:
+        json.dump(games , f)
+
 @client.command(aliases = ["Prefix" , "PREFIX"])
 async def prefix(ctx , prfx:str = ""):
 	if not ctx.author.guild_permissions.manage_guild:
@@ -77,6 +137,33 @@ async def on_message(message):
 
 
 	await client.process_commands(message)
+
+@client.command(aliases = ['Host' , 'HOST'])
+async def host(ctx , matchid:str = '' , server:str = ''):
+	if matchid == '' or server == '':
+		return await ctx.send('Please specify the Match ID and Server correctly')
+
+	await add_game(matchid , server , ctx.author , ctx.channel)
+
+	await asyncio.sleep(60)
+	await remove_game(ctx.author)
+
+@client.command()
+async def push_update(ctx):
+	embed = discord.Embed(title = "Among Us Bot update 2.0" ,description = f"\n\n==============\n\nWe are very happy to announce the addition of some new features in the Bot.\nWith this update You can now play will all people of the Among Us community(believe me, there are a lot)\nYou can Host a game and also find matches using these new commands\nuse {prfx}help for more information`.Hope you enjoy the new feature.==============", color = discord.Color.orange())
+	embed.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+	embed.set_footer(text = "With love. Among us team.")
+	print('Pushing Update')
+	for server in client.guilds:
+		if not server.id == 110373943822540800:
+			if server.system_channel is not None:
+				await server.system_channel.send(embed = embed)
+
+	print("Update pushed successfully")
+
+@client.command(aliases = ['Match' , 'MATCH'])
+async def match(ctx , server:str = ''):
+	await fetch_available_games(ctx.channel , server)
 
 @client.event
 async def on_ready():
@@ -636,6 +723,9 @@ class helper(menus.Menu):
 			helpm2.add_field(name = ":three: vc {code} {server} -> Makes a special voice channel" , value = "U can invite the people you want(limit = 11)" , inline = False)
 			helpm2.add_field(name = ":four: mute -> Mutes the people in the voice channel" , value = "Only the people who have a role lower than you will be muted" , inline = False)
 			helpm2.add_field(name = ":five: unmute -> Unmutes the people in the voice channel" , value = "Keep the discussions going" , inline = False)
+			helpm2.add_field(name = ":fire::fire:New Features :fire::fire:" , value = "** **" , inline = False)
+			helpm2.add_field(name = ":six: host {Code} {Server} -> Hosts a Game which is available to the Entire community." , value = "Yous game will be erased after 60s" , inline = False)
+			helpm2.add_field(name = ":seven: match {server} -> Shows all the available games in that server which have been Hosted" , value = "If server not specified, It will search globally.Servers -> Asia , Europe , NA" , inline = False)
 			await self.message.edit(embed = helpm2)
 			i = i - 1
 		elif i == 4:
@@ -646,7 +736,6 @@ class helper(menus.Menu):
 			helpm2.add_field(name = ":three: flip -> Flips a coin for you" , value = "Solve your disputes with just a flip of the coin" , inline = False)
 			helpm2.add_field(name = ":four: kill/hit {user} -> Just a fun command" , value = "try it, it's epic" , inline = False)
 			helpm2.add_field(name = ":five: imposter/im {user} -> makes an Among Us imposter screen of that user" , value = "Please dont kick him out!" , inline = False)
-			helpm2.add_field(name = ":fire::fire: New Feature!!" , value = "** **" , inline = False)
 			helpm2.add_field(name = ":six: guess -> creates a guessing game where you have to guess the imposter" , value = "Hmmm, fascinating!" , inline = False)
 			await self.message.edit(embed = helpm2)
 			i = i - 1
@@ -671,6 +760,13 @@ class helper(menus.Menu):
 			helpm2.add_field(name = ":three: vc {code} {server} -> Makes a special voice channel" , value = "U can invite the people you want(limit = 11)" , inline = False)
 			helpm2.add_field(name = ":four: mute -> Mutes the people in the voice channel" , value = "Only the people who have a role lower than you will be muted" , inline = False)
 			helpm2.add_field(name = ":five: unmute -> Unmutes the people in the voice channel" , value = "Keep the discussions going" , inline = False)
+			helpm2.add_field(name=":fire::fire:New Features :fire::fire:", value="** **", inline=False)
+			helpm2.add_field(
+				name=":six: host {Code} {Server} -> Hosts a Game which is available to the Entire community.",
+				value="Yous game will be erased after 60s", inline=False)
+			helpm2.add_field(
+				name=":seven: match {server} -> Shows all the available games in that server which have been Hosted",
+				value="If server not specified, It will search globally.Servers -> Asia , Europe , NA", inline=False)
 			await self.message.edit(embed = helpm2)
 			i+=1
 		elif i == 2:
@@ -681,7 +777,6 @@ class helper(menus.Menu):
 			helpm2.add_field(name = ":three: flip -> Flips a coin for you" , value = "Solve your disputes with just a flip of the coin" , inline = False)
 			helpm2.add_field(name = ":four: kill/hit {user} -> Just a fun command" , value = "try it, it's epic" , inline = False)
 			helpm2.add_field(name = ":five: imposter/im {user} -> makes an Among Us imposter screen of that user" , value = "Please dont kick him out!" , inline = False)
-			helpm2.add_field(name = ":fire::fire: New Feature!!" , value = "** **" , inline = False)
 			helpm2.add_field(name = ":six: guess -> creates a guessing game where you have to guess the imposter" , value = "Hmmm, fascinating!" , inline = False)
 			await self.message.edit(embed = helpm2)
 			i+=1
