@@ -150,7 +150,7 @@ async def host(ctx , matchid:str = '' , server:str = ''):
 
 @client.command()
 async def push_update(ctx):
-	embed = discord.Embed(title = "Among Us Bot update 2.0" ,description = f"\n\n==============\n\nWe are very happy to announce the addition of some new features in the Bot.\nWith this update You can now play will all people of the Among Us community(believe me, there are a lot)\nYou can Host a game and also find matches using these new commands\nuse {prfx}help for more information`.Hope you enjoy the new feature.==============", color = discord.Color.orange())
+	embed = discord.Embed(title = "Among Us Bot update 2.0" ,description = "\n\n==============\n\nWe are very happy to announce the addition of some new features in the Bot.\nWith this update You can now play will all people of the Among Us community(believe me, there are a lot)\nYou can Host a game and also find matches using these new commands\nuse {prefix} help for more information`.Hope you enjoy the new feature.==============", color = discord.Color.orange())
 	embed.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
 	embed.set_footer(text = "With love. Among us team.")
 	print('Pushing Update')
