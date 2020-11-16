@@ -145,7 +145,7 @@ async def host(ctx , matchid:str = '' , server:str = ''):
 
 	await add_game(matchid , server , ctx.author , ctx.channel)
 
-	await asyncio.sleep(60)
+	await asyncio.sleep(300)
 	await remove_game(ctx.author)
 
 @client.command()
