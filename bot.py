@@ -157,7 +157,10 @@ async def push_update(ctx):
 	for server in client.guilds:
 		if not server.id == 110373943822540800:
 			if server.system_channel is not None:
-				await server.system_channel.send(embed = embed)
+				try:
+					await server.system_channel.send(embed = embed)
+				except discord.Forbidden:
+					pass
 
 	print("Update pushed successfully")
 
