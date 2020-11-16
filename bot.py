@@ -161,6 +161,8 @@ async def push_update(ctx):
 					await server.system_channel.send(embed = embed)
 				except discord.Forbidden:
 					pass
+				else:
+					print(f'Update pushed in {server.name}')
 
 	print("Update pushed successfully")
 
