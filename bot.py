@@ -185,6 +185,7 @@ async def on_ready():
 
 @tasks.loop(minutes=15)
 async def change_status():
+	value = get_count(client)
 	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening , name = next(status)))
 
 @client.command(aliases = ["Emoji" , "EMOJI"])
