@@ -46,7 +46,8 @@ def get_count(client):
 
 client = commands.Bot(command_prefix= get_prefix)
 client.remove_command('help')
-status = cycle([f"{get_count(client)} members" , f"{get_count(client)} members"])
+value = get_count(client)
+status = cycle([f"{value} members" , f"{value} members"])
 
 async def add_game(matchid , server , user , channel_to):
     with open('games.json' , 'r') as f:
