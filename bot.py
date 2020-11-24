@@ -39,7 +39,7 @@ def get_prefix(client , message):
 
 client = commands.Bot(command_prefix= get_prefix)
 client.remove_command('help')
-status = cycle(["Waiting for a ping!!" , "Waiting for a ping!!"])
+status = cycle(["Check the help command and invite the cricket bot" , "Check the help command and invite the cricket bot"])
 
 async def add_game(matchid , server , user , channel_to):
     with open('games.json' , 'r') as f:
@@ -699,7 +699,7 @@ class helper(menus.Menu):
 
 	async def send_initial_message(self , ctx , channel):
 		prfx = get_prefix(client = client , message = self.ctx.message)
-		embed0 = discord.Embed(title = "Among Us help!" , description = f"Hey!, I am the Among us Bot!, I do some cool things(that's why i am the best)\nMy prefix is {prfx}, So let's go through my commands!\n\n==============\n\n<:deadbody:759275974708690974> **Page 2** : `Among us utilities`\n\n<:reddit:314349923103670272> **Page 3** : `Fun commands`\n\n<:staff:314068430787706880> **Page 4** : `General utilities`\n\n`To join the support server` : [**Click Here**](https://discord.gg/pzxhrJ4UHV)\n`To go to the official website` : [**Click Here**](https://amongusunofficial.godaddysites.com/)\n\n==============" , color = discord.Color.orange())
+		embed0 = discord.Embed(title = "Among Us help!" , description = f"Hey!, I am the Among us Bot!, I do some cool things(that's why i am the best)\nMy prefix is {prfx}, So let's go through my commands!\n\n==============\n\n<:deadbody:759275974708690974> **Page 2** : `Among us utilities`\n\n<:reddit:314349923103670272> **Page 3** : `Fun commands`\n\n<:staff:314068430787706880> **Page 4** : `General utilities`\n\n:cricket_game: **Page 5** : `Cricket Bot`\n\n`To join the support server` : [**Click Here**](https://discord.gg/pzxhrJ4UHV)\n`To go to the official website` : [**Click Here**](https://amongusunofficial.godaddysites.com/)\n\n==============" , color = discord.Color.orange())
 		embed0.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")	
 		embed0.set_footer(text = "Use the below reactions to navigate")	
 		global i
@@ -711,7 +711,7 @@ class helper(menus.Menu):
 	async def on_begin(self , payload):
 		global i
 		prfx = get_prefix(client = client , message = self.ctx.message)
-		embed0 = discord.Embed(title = "Among Us help!" , description = f"Hey!, I am the Among us Bot!, I do some cool things(that's why i am the best)\nMy prefix is {prfx}, So let's go through my commands!\n\n==============\n\n<:deadbody:759275974708690974> **Page 2** : `Among us utilities`\n\n<:reddit:314349923103670272> **Page 3** : `Fun commands`\n\n<:staff:314068430787706880> **Page 4** : `General utilities`\n\n`To join the support server` : [**Click Here**](https://discord.gg/pzxhrJ4UHV)\n`To go to the official website` : [**Click Here**](https://amongusunofficial.godaddysites.com/)\n\n==============" , color = discord.Color.orange())
+		embed0 = discord.Embed(title = "Among Us help!" , description = f"Hey!, I am the Among us Bot!, I do some cool things(that's why i am the best)\nMy prefix is {prfx}, So let's go through my commands!\n\n==============\n\n<:deadbody:759275974708690974> **Page 2** : `Among us utilities`\n\n<:reddit:314349923103670272> **Page 3** : `Fun commands`\n\n<:staff:314068430787706880> **Page 4** : `General utilities`\n\n:cricket_game: **Page 5** : `Cricket Bot`\n\n`To join the support server` : [**Click Here**](https://discord.gg/pzxhrJ4UHV)\n`To go to the official website` : [**Click Here**](https://amongusunofficial.godaddysites.com/)\n\n==============" , color = discord.Color.orange())
 		embed0.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
 		embed0.set_footer(text = "use the below reactions to navigate")
 		await self.message.edit(embed = embed0)
@@ -745,10 +745,20 @@ class helper(menus.Menu):
 			await self.message.edit(embed = helpm2)
 			i = i - 1
 		elif i == 2:
-			embed0 = discord.Embed(title = "Among Us help!" , description = "Hey!, I am the Among us Bot!, I do some cool things(that's why i am the best)\nMy prefix is a!, So let's go through my commands!\n\n==============\n\n<:deadbody:759275974708690974> **Page 2** : `Among us utilities`\n\n<:reddit:314349923103670272> **Page 3** : `Fun commands`\n\n<:staff:314068430787706880> **Page 4** : `General utilities`\n\n`To join the support server` : [**Click Here**](https://discord.gg/pzxhrJ4UHV)\n`To go to the official website` : [**Click Here**](https://amongusunofficial.godaddysites.com/)\n\n==============" , color = discord.Color.orange())
+			embed0 = discord.Embed(title = "Among Us help!" , description = "Hey!, I am the Among us Bot!, I do some cool things(that's why i am the best)\nMy prefix is a!, So let's go through my commands!\n\n==============\n\n<:deadbody:759275974708690974> **Page 2** : `Among us utilities`\n\n<:reddit:314349923103670272> **Page 3** : `Fun commands`\n\n<:staff:314068430787706880> **Page 4** : `General utilities`\n\n:cricket_game: **Page 5** : `Cricket Bot`\n\n`To join the support server` : [**Click Here**](https://discord.gg/pzxhrJ4UHV)\n`To go to the official website` : [**Click Here**](https://amongusunofficial.godaddysites.com/)\n\n==============" , color = discord.Color.orange())
 			embed0.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
 			i = i - 1
 			await self.message.edit(embed = embed0)
+		elif i == 5:
+			prfx = get_prefix(client = client , message = self.ctx.message)
+			helpm2 = discord.Embed(title = f"Among Us Help! Page {i - 1}" , color = discord.Color.darker_grey())
+			helpm2.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+			helpm2.add_field(name = ":one: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
+			helpm2.add_field(name = ":two: add_emoji/add -> adds the among us emoji to your server" , value = f"use {prfx}add to know how to go forward" , inline = False)
+			helpm2.add_field(name = ":three: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
+			helpm2.add_field(name = ":four: prefix {new prefix} -> to change the bot's prefix" , value = "The default prefix of the bot is a!" , inline = False)
+			await self.message.edit(embed = helpm2)
+			i = i - 1
 
 	@menus.button('⏯')
 	async def on_stop(self, payload):
@@ -795,20 +805,29 @@ class helper(menus.Menu):
 			helpm2.add_field(name = ":four: prefix {new prefix} -> to change the bot's prefix" , value = "The default prefix of the bot is a!" , inline = False)
 			await self.message.edit(embed = helpm2)
 			i+=1
+		elif i == 4:
+			hc = discord.Embed(title = 'Introducing Hand Cricketer bot' , description = "**Wanna play Cricket on Discord with your friends?**\nDon't worry, we got you covered.Invite the new handcricketer bot and play cricket with your friends all day long via Discord.\n=========================\nBot Invite Link : [Click Here](https://bit.ly/35XyyvT)\n=========================\n" , color = discord.Color.darker_grey())
+			hc.set_footer(text = "To Advertise your discord bot/server, join the support server.")
+			hc.set_thumbnail(url = 'https://cdn.discordapp.com/avatars/709733907053936712/0670b3d504ecbe6c4871c6301bf68cea.webp')
+			await self.message.edit(embed = hc)
 
 		
 	@menus.button('⏭')
 	async def on_end(self, payload):
 		global i
-		prfx = get_prefix(client = client , message = self.ctx.message)
-		helpm2  = discord.Embed(title = f"Among Us Help! Page 4" , color = discord.Color.darker_grey())
-		helpm2.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
-		helpm2.add_field(name = ":one: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
-		helpm2.add_field(name = ":two: add_emoji/add -> adds the among us emoji to your server" , value = f"use {prfx}add to know how to go forward" , inline = False)
-		helpm2.add_field(name = ":three: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
-		helpm2.add_field(name = ":four: prefix {new prefix} -> to change the bot's prefix" , value = "The default prefix of the bot is a!" , inline = False)
-		await self.message.edit(embed = helpm2)
-		i = 4
+		# prfx = get_prefix(client = client , message = self.ctx.message)
+		# helpm2  = discord.Embed(title = f"Among Us Help! Page 4" , color = discord.Color.darker_grey())
+		# helpm2.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+		# helpm2.add_field(name = ":one: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
+		# helpm2.add_field(name = ":two: add_emoji/add -> adds the among us emoji to your server" , value = f"use {prfx}add to know how to go forward" , inline = False)
+		# helpm2.add_field(name = ":three: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
+		# helpm2.add_field(name = ":four: prefix {new prefix} -> to change the bot's prefix" , value = "The default prefix of the bot is a!" , inline = False)
+		# await self.message.edit(embed = helpm2)
+		hc = discord.Embed(title = 'Introducing Hand Cricketer bot' , description = "**Wanna play Cricket on Discord with your friends?**\nDon't worry, we got you covered.Invite the new handcricketer bot and play cricket with your friends all day long via Discord.\n=========================\nBot Invite Link : [Click Here](https://bit.ly/35XyyvT)\n=========================\n" , color = discord.Color.darker_grey())
+		hc.set_footer(text = "To Advertise your discord bot/server, join the support server.")
+		hc.set_thumbnail(url = 'https://cdn.discordapp.com/avatars/709733907053936712/0670b3d504ecbe6c4871c6301bf68cea.webp')
+		await self.message.edit(embed = hc)
+		i = 5
 
 
 @client.command(aliases=['HELP', 'Help'])
