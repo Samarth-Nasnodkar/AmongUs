@@ -815,7 +815,7 @@ class helper(menus.Menu):
 			await self.message.edit(embed = helpm2)
 			i+=1
 		elif i == 4:
-			hc = discord.Embed(title = 'Introducing Hand Cricketer bot' , description = "**Wanna play Cricket on Discord with your friends?**\nDon't worry, we got you covered.Invite the new handcricketer bot and play cricket with your friends all day long via Discord.\n=========================\nBot Invite Link : [Click Here](https://bit.ly/35XyyvT)\n=========================\n" , color = discord.Color.darker_grey())
+			hc = discord.Embed(title = 'Introducing Hand Cricketer bot' , description = "**Wanna play Cricket on Discord with your friends?**\nDon't worry, we got you covered.Invite the new handcricketer bot and play cricket with your friends all day long via Discord.\n=========================\nBot Invite Link : [Click Here](https://top.gg/bot/709733907053936712)\n=========================\n" , color = discord.Color.darker_grey())
 			hc.set_footer(text = "To Advertise your discord bot/server, join the support server.")
 			hc.set_thumbnail(url = 'https://cdn.discordapp.com/avatars/709733907053936712/0670b3d504ecbe6c4871c6301bf68cea.webp')
 			await self.message.edit(embed = hc)
@@ -832,7 +832,7 @@ class helper(menus.Menu):
 		# helpm2.add_field(name = ":three: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
 		# helpm2.add_field(name = ":four: prefix {new prefix} -> to change the bot's prefix" , value = "The default prefix of the bot is a!" , inline = False)
 		# await self.message.edit(embed = helpm2)
-		hc = discord.Embed(title = 'Introducing Hand Cricketer bot' , description = "**Wanna play Cricket on Discord with your friends?**\nDon't worry, we got you covered.Invite the new handcricketer bot and play cricket with your friends all day long via Discord.\n=========================\nBot Invite Link : [Click Here](https://bit.ly/35XyyvT)\n=========================\n" , color = discord.Color.darker_grey())
+		hc = discord.Embed(title = 'Introducing Hand Cricketer bot' , description = "**Wanna play Cricket on Discord with your friends?**\nDon't worry, we got you covered.Invite the new handcricketer bot and play cricket with your friends all day long via Discord.\n=========================\nBot Invite Link : [Click Here](https://top.gg/bot/709733907053936712)\n=========================\n" , color = discord.Color.darker_grey())
 		hc.set_footer(text = "To Advertise your discord bot/server, join the support server.")
 		hc.set_thumbnail(url = 'https://cdn.discordapp.com/avatars/709733907053936712/0670b3d504ecbe6c4871c6301bf68cea.webp')
 		await self.message.edit(embed = hc)
