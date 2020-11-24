@@ -36,10 +36,17 @@ def get_prefix(client , message):
 	basic_prefix = "a!"
 	return basic_prefix
 
+def get_count(client):
+	count = 0
+	for guild in client.guilds:
+		count += guild.member_count
+
+	return count
+
 
 client = commands.Bot(command_prefix= get_prefix)
 client.remove_command('help')
-status = cycle(["Check the help command and invite the cricket bot" , "Check the help command and invite the cricket bot"])
+status = cycle([f"{get_count(client)} members" , f"{get_count(client)} members"])
 
 async def add_game(matchid , server , user , channel_to):
     with open('games.json' , 'r') as f:
