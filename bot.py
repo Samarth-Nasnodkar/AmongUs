@@ -43,8 +43,8 @@ def get_count(client):
 
 	return count
 
-
-client = commands.Bot(command_prefix= get_prefix)
+intents = discord.Intents(messages = True , guilds = True)
+client = commands.Bot(command_prefix= get_prefix , intents = intents)
 client.remove_command('help')
 value = get_count(client)
 status = cycle([f"{value} members" , f"{value} members"])
