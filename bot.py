@@ -16,6 +16,7 @@ from PIL import ImageFont
 from PIL import ImageDraw
 from discord.ext import menus
 import tenorpy
+import pyfiglet
 
 
 def get_prefix(client , message):
@@ -108,6 +109,17 @@ async def remove_game(user):
 
     with open('games.json' , 'w') as f:
         json.dump(games , f)
+
+@client.command(aliases = ['Ascii' , 'ASCII'])
+async def ascii(ctx , * , text = ''):
+	await start_log("ascii")
+	users = await get_log_data()
+	await update_log("ascii")
+	if text == '':
+		return await ctx.send('Please provide some text.')
+	
+	ascii_banner = pyfiglet.figlet_format(text)
+	await ctx.send(f'```{text}```')
 
 @client.command(aliases = ["Prefix" , "PREFIX"])
 async def prefix(ctx , prfx:str = ""):
@@ -751,6 +763,7 @@ class helper(menus.Menu):
 			helpm2.add_field(name = ":four: kill/hit {user} -> Just a fun command" , value = "try it, it's epic" , inline = False)
 			helpm2.add_field(name = ":five: imposter/im {user} -> makes an Among Us imposter screen of that user" , value = "Please dont kick him out!" , inline = False)
 			helpm2.add_field(name = ":six: guess -> creates a guessing game where you have to guess the imposter" , value = "Hmmm, fascinating!" , inline = False)
+			helpm2.add_field(name = ':seven: ascii {text} -> creates an ascii banner of thaat text.' , value = 'ASCII is dope.' , inline = False)
 			await self.message.edit(embed = helpm2)
 			i = i - 1
 		elif i == 2:
@@ -802,6 +815,7 @@ class helper(menus.Menu):
 			helpm2.add_field(name = ":four: kill/hit {user} -> Just a fun command" , value = "try it, it's epic" , inline = False)
 			helpm2.add_field(name = ":five: imposter/im {user} -> makes an Among Us imposter screen of that user" , value = "Please dont kick him out!" , inline = False)
 			helpm2.add_field(name = ":six: guess -> creates a guessing game where you have to guess the imposter" , value = "Hmmm, fascinating!" , inline = False)
+			helpm2.add_field(name = ':seven: ascii {text} -> creates an ascii banner of thaat text.' , value = 'ASCII is dope.' , inline = False)
 			await self.message.edit(embed = helpm2)
 			i+=1
 		elif i == 3:
