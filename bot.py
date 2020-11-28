@@ -861,4 +861,4 @@ async def help(ctx):
 	m = helper()
 	await m.start(ctx)
 
-client.run("NzU3MjcyNDQyODIwMzYyMjgx.X2d-6w.IFFVlAkqE_16LP41xGMCpFiJAy4")
+client.run("NzU3MjcyNDQyODIwMzYyMjgx.X2d-6w.Usb_-Pugc_dqEg-v4KYEQQEk9eI")
