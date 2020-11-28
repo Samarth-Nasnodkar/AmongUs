@@ -119,7 +119,7 @@ async def ascii(ctx , * , text = ''):
 		return await ctx.send('Please provide some text.')
 	
 	ascii_banner = pyfiglet.figlet_format(text)
-	await ctx.send(f'```{text}```')
+	await ctx.send(f'```{ascii_banner}```')
 
 @client.command(aliases = ["Prefix" , "PREFIX"])
 async def prefix(ctx , prfx:str = ""):
