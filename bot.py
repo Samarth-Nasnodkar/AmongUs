@@ -709,7 +709,7 @@ async def crewmate(ctx , user : discord.Member = None):
 
 class testing(menus.Menu):
 	def __init__(self):
-		super().__init__(timeout=60.0 , delete_message_after=False)
+		super().__init__(timeout=90.0 , delete_message_after=True)
 
 	async def send_initial_message(self , ctx ,channel):
 		start = discord.Embed(title = 'Among Us Help' , description = 'React below to pick an option\n:radioactive: ➜ Among Us Utilities\n:game_die: ➜ Fun & Games\n:clipboard: ➜ Utilities\n:cricket_game: ➜ Hand Cricket Bot' , color = discord.Color.orange())
