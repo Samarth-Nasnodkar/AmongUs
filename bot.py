@@ -113,7 +113,6 @@ async def remove_game(user):
 @client.command(aliases = ['Ascii' , 'ASCII'])
 async def ascii(ctx , * , text = ''):
 	await start_log("ascii")
-	users = await get_log_data()
 	await update_log("ascii")
 	if text == '':
 		return await ctx.send('Please provide some text.')
@@ -622,15 +621,13 @@ async def mirahq(ctx):
 @client.command(aliases = ["Kill" , "KILL" , "hit" , "Hit" , "HIT"])
 async def kill(ctx , user:discord.Member = None):
 	await start_log("kill")
-	users = await get_log_data()
 	await update_log("kill")
 	
 	t = tenorpy.Tenor()
 	if user == ctx.author:
-		link = "https://media.tenor.com/images/084529f26cc165e65ea6009206174f29/tenor.gif"
-		lit = f"{ctx.author.display_name} Killed himself"
+		return await ctx.send('You cannot kill yourself, Please mention someone else.')
 	else:
-		links = ["https://media.tenor.com/images/2ad01fc73cc91abd54069f2e8deb50cc/tenor.gif","https://media.tenor.com/images/49f4a71df065a3bf90d9ebfd0cbd2d58/tenor.gif" , "https://media.tenor.com/images/091a8ed3a3896e8f3b4bffa02c298491/tenor.gif" , "https://media.tenor.com/images/f2295524300b47930f650f82080e0bb5/tenor.gif" ,"https://media.tenor.com/images/a461243877f3e2494a4c69999b232a97/tenor.gif" ,"https://media.tenor.com/images/7bb1baedb25f70d66d811088e464c4a3/tenor.gif" ,"https://media.tenor.com/images/d46c724d422714d738a84a51f1caf00b/tenor.gif" , "https://media.tenor.com/images/a166604b0b8f34779dbbd2dd690efb58/tenor.gif"]
+		# links = ["https://media.tenor.com/images/2ad01fc73cc91abd54069f2e8deb50cc/tenor.gif","https://media.tenor.com/images/49f4a71df065a3bf90d9ebfd0cbd2d58/tenor.gif" , "https://media.tenor.com/images/091a8ed3a3896e8f3b4bffa02c298491/tenor.gif" , "https://media.tenor.com/images/f2295524300b47930f650f82080e0bb5/tenor.gif" ,"https://media.tenor.com/images/a461243877f3e2494a4c69999b232a97/tenor.gif" ,"https://media.tenor.com/images/7bb1baedb25f70d66d811088e464c4a3/tenor.gif" ,"https://media.tenor.com/images/d46c724d422714d738a84a51f1caf00b/tenor.gif" , "https://media.tenor.com/images/a166604b0b8f34779dbbd2dd690efb58/tenor.gif"]
 		lnk = t.search(tag = "among us kill" , limit = 20)
 		link_start = random.choice(lnk['results'])
 		link = link_start['media'][0]['gif']['url']
@@ -709,6 +706,42 @@ async def crewmate(ctx , user : discord.Member = None):
 
 
 	await ctx.send(file = discord.File("profile.png"))
+
+class testing(menus.Menu):
+	def __init__(self):
+		super().__init__(timeout=60.0 , delete_message_after=False)
+
+	async def send_initial_message(self , ctx ,channel):
+		start = discord.Embed(title = 'Among Us Help' , description = 'React below to pick an option\n:radioactive: ➜ Among Us Utilities\n:game_die: ➜ Fun & Games\n:clipboard: ➜ Utilities\n:cricket_game: ➜ Hand Cricket Bot' , color = discord.Color.orange())
+		start.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+		start.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
+
+		return await channel.send(embed = start)
+
+	@menus.button('☢')
+	async def amngutils(self , payload):
+		p = get_prefix(client = client , message = self.message)
+		au = discord.Embed(title = '☢ Among us Utilities' , description = f'`{p}guide` ➜ Will teach you to play\n`{p}maps` ➜ Will show you the blueprints of all maps\n`{p}vc <code> <server>` ➜ Will create a voice channel\n`{p}mute` ➜ Mutes people lower than you in the vc\n`{p}unmute` ➜ Unmutes people lower than you in the vc\n`{p}host <Code> <Server>` ➜ Makes your game discoverable to others\n`{p}match <server>` ➜ Shows you the visible games in that server' , color = discord.Color.orange())
+		au.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+		au.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
+		await self.message.edit(embed = au)
+
+	@menus.button('🎲')
+	async def fng(self , payload):
+		p = get_prefix(client = client , message = self.message)
+		f = discord.Embed(title = '🎲 Fun & Games' , description = f'`{p}rps` ➜ Starts a rock, paper , scissors game with the bot\n`{p}challenge <user>` ➜ Play a 1v1 rock, paper scissors with your friend\n`{p}flip` ➜ Flips a coin for you\n`{p}kill <user>` ➜ Sends a cool among us killing gif\n`{p}imposter <user>` ➜ makes him an Imposter\n`{p}guess` ➜ You have to guess the imposter\n`{p}ascii <text>` ➜ Crestes an ASCII banner of that text' , color = discord.Color.orange())
+		f.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+		f.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
+		await self.message.edit(embed = f)
+
+	@menus.button('📋')
+	async def utils(self , payload):
+		p = get_prefix(client = client , message = self.message)
+		u = discord.Embed(title = '📋 Utilities' , description = f'`{p}emoji` ➜ Generates a random Among Us emoji\n`{p}add` ➜ Adds emojis to your server\n`{p}ping` ➜ displays the bots latency\n`{p}prefix <new prefix>` ➜ Changes the bots prefix' , color = discord.Color.orange())
+		u.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+		u.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
+		await self.message.edit(embed = u)
+
 
 class helper(menus.Menu):
 	global i
@@ -858,7 +891,7 @@ async def help(ctx):
 	await start_log("help")
 	users = await get_log_data()
 	await update_log("help")
-	m = helper()
+	m = testing()
 	await m.start(ctx)
 
 client.run("NzU3MjcyNDQyODIwMzYyMjgx.X2d-6w.Usb_-Pugc_dqEg-v4KYEQQEk9eI")
