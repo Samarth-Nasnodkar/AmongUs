@@ -712,7 +712,7 @@ class testing(menus.Menu):
 		super().__init__(timeout=90.0 , delete_message_after=True)
 
 	async def send_initial_message(self , ctx ,channel):
-		start = discord.Embed(title = 'Among Us Help' , description = 'React below to pick an option\n:radioactive: ➜ Among Us Utilities\n:game_die: ➜ Fun & Games\n:clipboard: ➜ Utilities\n:cricket_game: ➜ Hand Cricket Bot\n`To join support server` : [Click Here](https://discord.gg/tgyW2Jz)\n`To go to bots website` : [Click Here](https://amongusunofficial.godaddysites.com/)' , color = discord.Color.orange())
+		start = discord.Embed(title = 'Among Us Help' , description = 'React below to pick an option\n:radioactive: ➜ Among Us Utilities\n:game_die: ➜ Fun & Games\n:clipboard: ➜ Utilities\n`To join support server` : [Click Here](https://discord.gg/tgyW2Jz)\n`To go to bots website` : [Click Here](https://amongusunofficial.godaddysites.com/)' , color = discord.Color.orange())
 		start.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
 		start.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
 
@@ -742,12 +742,12 @@ class testing(menus.Menu):
 		u.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
 		await self.message.edit(embed = u)
 
-	@menus.button('🏏')
-	async def crick(self , payload):
-		hc = discord.Embed(title = 'Introducing Hand Cricketer bot' , description = "**Wanna play Cricket on Discord with your friends?**\nDon't worry, we got you covered.Invite the new handcricketer bot and play cricket with your friends all day long via Discord.\n=========================\nBot Invite Link : [Click Here](https://top.gg/bot/709733907053936712)\n=========================\n" , color = discord.Color.darker_grey())
-		hc.set_footer(text = "To Advertise your discord bot/server, join the support server.")
-		hc.set_thumbnail(url = 'https://cdn.discordapp.com/avatars/709733907053936712/0670b3d504ecbe6c4871c6301bf68cea.webp')
-		await self.message.edit(embed = hc)
+	# @menus.button('🏏')
+	# async def crick(self , payload):
+	# 	hc = discord.Embed(title = 'Introducing Hand Cricketer bot' , description = "**Wanna play Cricket on Discord with your friends?**\nDon't worry, we got you covered.Invite the new handcricketer bot and play cricket with your friends all day long via Discord.\n=========================\nBot Invite Link : [Click Here](https://top.gg/bot/709733907053936712)\n=========================\n" , color = discord.Color.darker_grey())
+	# 	hc.set_footer(text = "To Advertise your discord bot/server, join the support server.")
+	# 	hc.set_thumbnail(url = 'https://cdn.discordapp.com/avatars/709733907053936712/0670b3d504ecbe6c4871c6301bf68cea.webp')
+	# 	await self.message.edit(embed = hc)
 
 
 class helper(menus.Menu):
