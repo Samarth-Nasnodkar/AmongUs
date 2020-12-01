@@ -28,4 +28,4 @@ jobs:
       - name: Run a multi-line script
         run: python3 --version
         env:
-          discord_bot_token: 'NzU3MjcyNDQyODIwMzYyMjgx.X2d-6w.Usb_-Pugc_dqEg-v4KYEQQEk9eI'
+          discord_bot_token: "NzU3MjcyNDQyODIwMzYyMjgx.X2d-6w.Usb_-Pugc_dqEg-v4KYEQQEk9eI"
