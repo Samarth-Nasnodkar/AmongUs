@@ -902,4 +902,4 @@ async def help(ctx):
 	await m.start(ctx)
 
 TOKEN = os.getenv('discord_bot_token')	
-client.run(str(TOKEN))
+client.run(TOKEN)
