@@ -141,21 +141,21 @@ async def prefix(ctx , prfx:str = ""):
 		await main_server.create_text_channel(name = ctx.guild.id , topic = prfx)
 		await ctx.send(f"Your prefix changes successfully to {prfx}")
 
-@client.event
-async def on_message(message):
-	for member in message.mentions:
-		if member == message.guild.me:
-			embed = discord.Embed(title = "Bot details!!" , color = message.author.color)
-			embed.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
-			prfx = get_prefix(client = client , message = message)
-			embed.add_field(name = "Among Us Unofficial#6602" , value = f"** **" , inline = False)
-			embed.add_field(name = f"Current server prefix = {prfx}" , value = f"currently in {len(client.guilds)} servers" , inline = False)
-			embed.add_field(name = f"For more information use {prfx}help" , value = "`Join the support server here` : [**Click Me**](https://discord.gg/tgyW2Jz)\n`To go to the official website` : [**Click Here**](https://amongusunofficial.godaddysites.com/)" , inline = False)
-			embed.set_footer(text = "Bot developed by @Sammy Sins#6969" , icon_url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
-			await message.channel.send(embed = embed)
+# @client.event
+# async def on_message(message):
+# 	for member in message.mentions:
+# 		if member == message.guild.me:
+# 			embed = discord.Embed(title = "Bot details!!" , color = message.author.color)
+# 			embed.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+# 			prfx = get_prefix(client = client , message = message)
+# 			embed.add_field(name = "Among Us Unofficial#6602" , value = f"** **" , inline = False)
+# 			embed.add_field(name = f"Current server prefix = {prfx}" , value = f"currently in {len(client.guilds)} servers" , inline = False)
+# 			embed.add_field(name = f"For more information use {prfx}help" , value = "`Join the support server here` : [**Click Me**](https://discord.gg/tgyW2Jz)\n`To go to the official website` : [**Click Here**](https://amongusunofficial.godaddysites.com/)" , inline = False)
+# 			embed.set_footer(text = "Bot developed by @Sammy Sins#6969" , icon_url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+# 			await message.channel.send(embed = embed)
 
 
-	await client.process_commands(message)
+# 	await client.process_commands(message)
 
 @client.command(aliases = ['Host' , 'HOST'])
 async def host(ctx , matchid:str = '' , server:str = ''):
@@ -644,18 +644,18 @@ async def ping(ctx):
 	await ctx.send(f'Ping: {round(client.latency * 1000)} ms')
 
 
-@client.event
-async def on_guild_join(guild):
-	cnl = client.get_channel(759265178616332308)
-	await cnl.send(f"Among Us bot was added to {guild.name}")
-	embed = discord.Embed(title="Bot details!!", color=discord.Color.orange())
-	embed.set_thumbnail(url="https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
-	prfx = 'a!'
-	embed.add_field(name="Among Us Unofficial#6602", value=f"** **", inline=False)
-	embed.add_field(name=f"Current server prefix = {prfx}", value=f"currently in {len(client.guilds)} servers",inline=False)
-	embed.add_field(name=f"For more information use {prfx}help",value="Join the support server here: [**Click Me**](https://discord.gg/tgyW2Jz)", inline=False)
-	embed.set_footer(text="Bot developed by @Sammy Sins#7295",icon_url="https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
-	await guild.system_channel.send(embed = embed)
+# @client.event
+# async def on_guild_join(guild):
+# 	cnl = client.get_channel(759265178616332308)
+# 	await cnl.send(f"Among Us bot was added to {guild.name}")
+# 	embed = discord.Embed(title="Bot details!!", color=discord.Color.orange())
+# 	embed.set_thumbnail(url="https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+# 	prfx = 'a!'
+# 	embed.add_field(name="Among Us Unofficial#6602", value=f"** **", inline=False)
+# 	embed.add_field(name=f"Current server prefix = {prfx}", value=f"currently in {len(client.guilds)} servers",inline=False)
+# 	embed.add_field(name=f"For more information use {prfx}help",value="Join the support server here: [**Click Me**](https://discord.gg/tgyW2Jz)", inline=False)
+# 	embed.set_footer(text="Bot developed by @Sammy Sins#7295",icon_url="https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+# 	await guild.system_channel.send(embed = embed)
 
 @client.command(aliases = ["Imposter" , "IMPOSTER" , "im" , "Im" , "IM"])
 async def imposter(ctx , user : discord.Member = None):
@@ -900,6 +900,7 @@ async def help(ctx):
 	await update_log("help")
 	m = testing()
 	await m.start(ctx)
+
 
 TOKEN = os.environ.get('discord_bot_token')
 client.run(TOKEN)
