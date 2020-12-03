@@ -901,4 +901,5 @@ async def help(ctx):
 	m = testing()
 	await m.start(ctx)
 
-client.run("NzU3MjcyNDQyODIwMzYyMjgx.X2d-6w.Usb_-Pugc_dqEg-v4KYEQQEk9eI")
+TOKEN = os.environ.get('discord_bot_token')
+client.run(TOKEN)
