@@ -17,6 +17,37 @@ from PIL import ImageDraw
 from discord.ext import menus
 import tenorpy
 import pyfiglet
+import dbl
+
+
+class TopGG(commands.Cog):
+    """
+    This example uses tasks provided by discord.ext to create a task that posts guild count to top.gg every 30 minutes.
+    """
+
+    def __init__(self, bot):
+        self.bot = bot
+        self.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1NzI3MjQ0MjgyMDM2MjI4MSIsImJvdCI6dHJ1ZSwiaWF0IjoxNjA3MjQ1Nzg4fQ.CkBsHh6MMWl0lLpGAJ4NdN52Qi96wNwElh_uUs1CfzQ'  # set this to your DBL token
+        self.dblpy = dbl.DBLClient(self.bot, self.token)
+        self.update_stats.start()
+
+    def cog_unload(self):
+        self.update_stats.cancel()
+
+    @tasks.loop(minutes=30)
+    async def update_stats(self):
+        """This function runs every 30 minutes to automatically update your server count."""
+        await self.bot.wait_until_ready()
+        try:
+            server_count = len(self.bot.guilds)
+            await self.dblpy.post_guild_count(server_count)
+            print('Posted server count ({})'.format(server_count))
+        except Exception as e:
+            print('Failed to post server count\n{}: {}'.format(type(e).__name__, e))
+
+
+def setup(bot):
+    bot.add_cog(TopGG(bot))
 
 
 def get_prefix(client , message):
