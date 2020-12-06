@@ -223,6 +223,7 @@ async def match(ctx , server:str = ''):
 @client.event
 async def on_ready():
 	change_status.start()
+	setup(client)
 	print("Bot is ready.")
 
 @tasks.loop(minutes=15)
