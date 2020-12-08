@@ -19,31 +19,46 @@ import tenorpy
 import pyfiglet
 import dbl
 
+global topggvotes
+topggvotes = 0
 
 class TopGG(commands.Cog):
-    """
-    This example uses tasks provided by discord.ext to create a task that posts guild count to top.gg every 30 minutes.
-    """
+    
+	def __init__(self, bot):
+		global topggvotes
+		self.bot = bot
+		self.token = os.environ.get('dbl_token')  # set this to your DBL token
+		self.dblpy = dbl.DBLClient(self.bot, self.token)
+		somerandomvoters = await self.dblpy.get_bot_upvotes()
+		topggvotes = len(somerandomvoters)
+		self.update_stats.start()
+		self.updated_votes.start()
 
-    def __init__(self, bot):
-        self.bot = bot
-        self.token = os.environ.get('dbl_token')  # set this to your DBL token
-        self.dblpy = dbl.DBLClient(self.bot, self.token)
-        self.update_stats.start()
+	def cog_unload(self):
+		self.update_stats.cancel()
 
-    def cog_unload(self):
-        self.update_stats.cancel()
+	@tasks.loop(minutes=30)
+	async def update_stats(self):
+		"""This function runs every 30 minutes to automatically update your server count."""
+		await self.bot.wait_until_ready()
+		try:
+			server_count = len(self.bot.guilds)
+			await self.dblpy.post_guild_count(server_count)
+			print('Posted server count ({})'.format(server_count))
+		except Exception as e:
+			print('Failed to post server count\n{}: {}'.format(type(e).__name__, e))
 
-    @tasks.loop(minutes=30)
-    async def update_stats(self):
-        """This function runs every 30 minutes to automatically update your server count."""
-        await self.bot.wait_until_ready()
-        try:
-            server_count = len(self.bot.guilds)
-            await self.dblpy.post_guild_count(server_count)
-            print('Posted server count ({})'.format(server_count))
-        except Exception as e:
-            print('Failed to post server count\n{}: {}'.format(type(e).__name__, e))
+	@tasks.loop(minutes = 1)
+	async def updated_votes(self):
+		global topggvotes
+		channel = self.bot.get_channel(785782444594036747)
+		voters = await self.dblpy.get_bot_upvotes()
+		if len(voters) > topggvotes:
+			newvoters = voters[topggvotes - 1 :]
+			for voter in newvoters:
+				user = self.bot.get_user(int(voter))
+				await channel.send(f'{user.name} Voted for the Among Us Bot')
+		
 
 
 def setup(bot):
