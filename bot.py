@@ -25,7 +25,6 @@ topggvotes = 0
 class TopGG(commands.Cog):
     
 	def __init__(self, bot):
-		global topggvotes
 		self.bot = bot
 		self.token = os.environ.get('dbl_token')  # set this to your DBL token
 		self.dblpy = dbl.DBLClient(self.bot, self.token)
