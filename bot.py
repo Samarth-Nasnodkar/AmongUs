@@ -24,13 +24,11 @@ topggvotes = 0
 
 class TopGG(commands.Cog):
     
-	async def __init__(self, bot):
+	def __init__(self, bot):
 		global topggvotes
 		self.bot = bot
 		self.token = os.environ.get('dbl_token')  # set this to your DBL token
 		self.dblpy = dbl.DBLClient(self.bot, self.token)
-		somerandomvoters = await self.dblpy.get_bot_upvotes()
-		topggvotes = len(somerandomvoters)
 		self.update_stats.start()
 		self.updated_votes.start()
 
@@ -58,6 +56,8 @@ class TopGG(commands.Cog):
 			for voter in newvoters:
 				user = self.bot.get_user(int(voter))
 				await channel.send(f'{user.name} Voted for the Among Us Bot')
+
+			topggvotes = len(voters)
 		
 
 
