@@ -20,7 +20,7 @@ import pyfiglet
 import dbl
 
 global topggvotes
-topggvotes = 0
+topggvotes = 1
 
 class TopGG(commands.Cog):
     
