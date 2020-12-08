@@ -49,6 +49,8 @@ class TopGG(commands.Cog):
 def setup(bot):
     bot.add_cog(TopGG(bot))
 
+# Testing if it works!
+
 
 def get_prefix(client , message):
 	main_server = client.get_guild(730075470694973461)
