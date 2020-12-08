@@ -51,7 +51,7 @@ class TopGG(commands.Cog):
 		channel = self.bot.get_channel(785782444594036747)
 		voters = await self.dblpy.get_bot_upvotes()
 		if len(voters) > topggvotes:
-			newvoters = voters[topggvotes - 1 :]
+			newvoters = voters[0 : len(voters) - topggvotes]
 			for voter in newvoters:
 				username = voter['username']
 				await channel.send(f'{username} Voted for the Among Us Bot')
