@@ -53,7 +53,8 @@ class TopGG(commands.Cog):
 		if len(voters) > topggvotes:
 			newvoters = voters[topggvotes - 1 :]
 			for voter in newvoters:
-				user = self.bot.get_user(int(voter))
+				user_id = voter['id']
+				user = self.bot.get_user(int(user_id))
 				await channel.send(f'{user.name} Voted for the Among Us Bot')
 
 			topggvotes = len(voters)
