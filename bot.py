@@ -245,8 +245,7 @@ async def on_ready():
 @tasks.loop(minutes=15)
 async def change_status():
 	value = get_count(client)
-	# await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening , name = f"{value} users"))
-	await client.change_presence(activity = discord.CustomActivity(name = 'Just received a new Update. Check Help command' , emoji = discord.PartialEmoji(name = 'meme_face' , animated = False , id = 786155319314087967)))
+	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening , name = f"New Update. Use help command."))
 
 @client.command(aliases = ["Emoji" , "EMOJI"])
 async def emoji(ctx):
