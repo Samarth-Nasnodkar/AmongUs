@@ -286,7 +286,7 @@ class Memes(commands.Cog):
             draw.text((130,470+increment) , text , (0,0,0) , font = font)
 
         else:
-            draw.text((130,470) , txt , (0,0,0) , font = font)
+            draw.text((130,470) , text , (0,0,0) , font = font)
 
         img.save('patrickout.jpg')
         await ctx.send(file = discord.File('patrickout.jpg'))
@@ -321,7 +321,7 @@ class Memes(commands.Cog):
             draw.text((60,85+increment) , text , (0,0,0) , font = font)
 
         else:
-            draw.text((60,85) , txt , (0,0,0) , font = font)
+            draw.text((60,85) , text , (0,0,0) , font = font)
 
         img.save('spongeout.png')
         await ctx.send(file = discord.File('spongeout.png'))
@@ -356,7 +356,7 @@ class Memes(commands.Cog):
             draw.text((90,210+increment) , text , (0,0,0) , font = font)
 
         else:
-            draw.text((90,210) , txt , (0,0,0) , font = font)
+            draw.text((90,210) , text , (0,0,0) , font = font)
 
         img.save('shitout.jpg')
         await ctx.send(file = discord.File('shitout.jpg'))
@@ -391,7 +391,7 @@ class Memes(commands.Cog):
             draw.text((40,475+increment) , text , (0,0,0) , font = font)
 
         else:
-            draw.text((40,475) , txt , (0,0,0) , font = font)
+            draw.text((40,475) , text , (0,0,0) , font = font)
 
         img.save('santaout.jpg')
         await ctx.send(file = discord.File('santaout.jpg'))
