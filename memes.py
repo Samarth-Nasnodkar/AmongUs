@@ -27,6 +27,7 @@ def get_prefix(client , message):
 
 class Helpfunc(menus.Menu):
     def __init__(self , client):
+        self.client = client
         self.token = os.environ.get('dbl_token')
         self.dblpy = dbl.DBLClient(client , self.token)
         super().__init__(timeout=90.0 , delete_message_after=True)
