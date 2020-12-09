@@ -956,6 +956,13 @@ async def help(ctx):
 	m = testing()
 	await m.start(ctx)
 
+@client.command()
+async def check_vote(ctx):
+	token = os.environ.get('dbl_token')  # set this to your DBL token
+	dblpy = dbl.DBLClient(client, token)
+	voted = await dblpy.get_user_vote(ctx.author.id)
+	print(voted)
+
 
 TOKEN = os.environ.get('discord_bot_token')
 client.run(TOKEN)
