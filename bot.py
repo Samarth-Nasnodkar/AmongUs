@@ -948,21 +948,16 @@ class helper(menus.Menu):
 		i = 5
 
 
-@client.command(aliases=['HELP', 'Help'])
-async def help(ctx):
-	await start_log("help")
-	users = await get_log_data()
-	await update_log("help")
-	m = testing()
-	await m.start(ctx)
-
-@client.command()
-async def check_vote(ctx):
-	token = os.environ.get('dbl_token')  # set this to your DBL token
-	dblpy = dbl.DBLClient(client, token)
-	voted = await dblpy.get_user_vote(ctx.author.id)
-	print(voted)
+# @client.command(aliases=['HELP', 'Help'])
+# async def help(ctx):
+# 	await start_log("help")
+# 	users = await get_log_data()
+# 	await update_log("help")
+# 	m = testing()
+# 	await m.start(ctx)
 
 
+
+client.load_extension('memes')
 TOKEN = os.environ.get('discord_bot_token')
 client.run(TOKEN)
