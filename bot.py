@@ -19,8 +19,6 @@ import tenorpy
 import pyfiglet
 import dbl
 
-global topggvotes
-topggvotes = 1
 
 class TopGG(commands.Cog):
     
@@ -44,19 +42,6 @@ class TopGG(commands.Cog):
 			print('Posted server count ({})'.format(server_count))
 		except Exception as e:
 			print('Failed to post server count\n{}: {}'.format(type(e).__name__, e))
-
-	@tasks.loop(minutes = 1)
-	async def updated_votes(self):
-		global topggvotes
-		channel = self.bot.get_channel(785782444594036747)
-		voters = await self.dblpy.get_bot_upvotes()
-		if len(voters) > topggvotes:
-			newvoters = voters[0 : len(voters) - topggvotes]
-			for voter in newvoters:
-				username = voter['username']
-				await channel.send(f'{username} Voted for the Among Us Bot')
-
-			topggvotes = len(voters)
 		
 
 
