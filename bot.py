@@ -553,12 +553,12 @@ async def guess(ctx):
 @client.command(aliases = ["Stats" , "STATS"])
 async def stats(ctx):
 	users = await get_log_data()
-
+	totalUsers  = get_count(client)
 	c_count =  0
 	for used in users:
 		c_count += users[used]["count"]
 
-	embed = discord.Embed(title="Among us Bot stats!",description=f"==============\n**Servers** : `{len(client.guilds)}`\n**Commands** : `{c_count}`\n==============", color=discord.Color.green())
+	embed = discord.Embed(title="Among us Bot stats!",description=f"==============\n**Servers** : `{len(client.guilds)}`\n**Commands** : `{c_count}`\n**Users** : `{totalUsers}`\n==============", color=discord.Color.green())
 
 	embed.set_thumbnail(url = "https://5droid.ru/uploads/posts/2020-02/1581588210_among-us.png")
 
