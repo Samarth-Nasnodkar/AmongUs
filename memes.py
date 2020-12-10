@@ -6,6 +6,7 @@ from PIL import Image , ImageDraw , ImageFont
 import dbl
 import os
 from discord.ext import menus
+from io import BytesIO
 
 def get_prefix(client , message):
 	main_server = client.get_guild(730075470694973461)
@@ -68,7 +69,7 @@ class Helpfunc(menus.Menu):
         p = get_prefix(self.client , self.message)
         voted = await self.dblpy.get_user_vote(self.ctx.author.id)
         if voted:
-            description = f'`{p}meme` ➜ Fetches a funny meme from Reddit\n`{p}drake <text> , <text>` ➜ Generates a Drake meme\n`{p}sword <text> , <text>`➜ Generates a Sword meme\n`{p}announce <text>` ➜ Generates a Simpson meme.\n`{p}patrick <text>` ➜ Generates a Patrick meme\n`{p}spongebob <text>` ➜ Generates a Spongebob meme\n`{p}shit <text>` ➜ Generates a stepped-in-shit meme\n`{p}santa <text>` ➜ Generates a Santa meme\n`{p}fbi <text>` ➜ Generates an FBI meme\n'
+            description = f'`{p}meme` ➜ Fetches a funny meme from Reddit\n`{p}drake <text> , <text>` ➜ Generates a Drake meme\n`{p}sword <text> , <text>`➜ Generates a Sword meme\n`{p}announce <text>` ➜ Generates a Simpson meme.\n`{p}patrick <text>` ➜ Generates a Patrick meme\n`{p}spongebob <text>` ➜ Generates a Spongebob meme\n`{p}shit <text>` ➜ Generates a stepped-in-shit meme\n`{p}santa <text>` ➜ Generates a Santa meme\n`{p}fbi <text>` ➜ Generates an FBI meme\n`{p}slap <user>` ➜ slapping others is fun\n'
         else:
             description = '''```
         .--------.
@@ -284,6 +285,33 @@ class Memes(commands.Cog):
 
         img.save('fbiout.jpg')
         await ctx.send(file = discord.File('fbiout.jpg'))
+
+    @commands.command(aliases = ['Slap' , 'SLAP'])
+    async def slap(self , ctx , user : discord.Member = None):
+        voted = await self.dblpy.get_user_vote(ctx.author.id)
+        print(voted)
+        if not voted:
+            embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
+            return await ctx.send(embed = embed)
+
+        if user is None:
+            return await ctx.send('You need to mention someone to use this command.')
+
+        bg = Image.open('slap.jpg')
+        authorAsset = ctx.author.avatar_url_as(format = 'jpg' , size=128)
+        userAsset = user.avatar_url_as(format = 'jpg' , size=128)
+
+        authorData = BytesIO(await authorAsset.read())
+        userData = BytesIO(await userAsset.read())
+        authorPFP = Image.open(authorData) # 298
+        userPFP = Image.open(userData) #338
+        authorPFP = authorPFP.resize((298,298))
+        userPFP = userPFP.resize((338,338))
+        bg.paste(authorPFP , (479,94))
+        bg.paste(userPFP , (815,334))
+
+        bg.save('slapout.jpg')
+        await ctx.send(file = discord.File('slapout.jpg'))
 
 
     @commands.command(aliases = ['Patrick' , 'PATRICK'])
