@@ -297,6 +297,9 @@ class Memes(commands.Cog):
         if user is None:
             return await ctx.send('You need to mention someone to use this command.')
 
+        if user == ctx.author:
+            return await ctx.send('You cannot slap yourself. Please mention someone else.')
+
         bg = Image.open('slap.jpg')
         authorAsset = ctx.author.avatar_url_as(format = 'jpg' , size=128)
         userAsset = user.avatar_url_as(format = 'jpg' , size=128)
