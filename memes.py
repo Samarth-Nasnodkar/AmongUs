@@ -262,7 +262,7 @@ class Memes(commands.Cog):
         img.save('announceout.png')
         await ctx.send(file = discord.File('announceout.png'))
 
-    @command.command(aliases = ['FBI' , 'Fbi'])
+    @commands.command(aliases = ['FBI' , 'Fbi'])
     async def fbi(self , ctx , * , text = ''):
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
