@@ -278,7 +278,7 @@ class Memes(commands.Cog):
 
         img = Image.open('fbi.jpg')
         draw = ImageDraw.Draw(img)
-        font = ImegeFont.truetype('arial.ttf' , 60)
+        font = ImageFont.truetype('arial.ttf' , 60)
 
         draw.text((45,450) , text , (0,0,0) , font = font)
 
