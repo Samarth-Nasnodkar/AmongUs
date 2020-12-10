@@ -68,7 +68,7 @@ class Helpfunc(menus.Menu):
         p = get_prefix(self.client , self.message)
         voted = await self.dblpy.get_user_vote(self.ctx.author.id)
         if voted:
-            description = f'`{p}meme` ➜ Fetches a funny meme from Reddit\n`{p}drake <text> , <text>` ➜ Generates a Drake meme\n`{p}sword <text> , <text>`➜ Generates a Sword meme\n`{p}announce <text>` ➜ Generates a Simpson meme.\n`{p}patrick <text>` ➜ Generates a Patrick meme\n`{p}spongebob <text>` ➜ Generates a Spongebob meme\n`{p}shit <text>` ➜ Generates a stepped-in-shit meme\n`{p}santa <text>` ➜ Generates a Santa meme'
+            description = f'`{p}meme` ➜ Fetches a funny meme from Reddit\n`{p}drake <text> , <text>` ➜ Generates a Drake meme\n`{p}sword <text> , <text>`➜ Generates a Sword meme\n`{p}announce <text>` ➜ Generates a Simpson meme.\n`{p}patrick <text>` ➜ Generates a Patrick meme\n`{p}spongebob <text>` ➜ Generates a Spongebob meme\n`{p}shit <text>` ➜ Generates a stepped-in-shit meme\n`{p}santa <text>` ➜ Generates a Santa meme\n`{p}fbi <text>` ➜ Generates an FBI meme\n'
         else:
             description = '''```
         .--------.
@@ -261,6 +261,30 @@ class Memes(commands.Cog):
 
         img.save('announceout.png')
         await ctx.send(file = discord.File('announceout.png'))
+
+    @command.command(aliases = ['FBI' , 'Fbi'])
+    async def fbi(self , ctx , * , text = ''):
+        voted = await self.dblpy.get_user_vote(ctx.author.id)
+        print(voted)
+        if not voted:
+            embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
+            return await ctx.send(embed = embed)
+
+        if text == '':
+            return await ctx.send('You need to provide some text.')
+
+        if len(text) > 32:
+            return await ctx.send('Your text cannot exceed 32 characters.')
+
+        img = Image.open('fbi.jpg')
+        draw = ImageDraw.Draw(img)
+        font = ImegeFont.truetype('arial.ttf' , 60)
+
+        draw.text((45,450) , text , (0,0,0) , font = font)
+
+        img.save('fbiout.jpg')
+        await ctx.send(file = discord.File('fbiout.jpg'))
+
 
     @commands.command(aliases = ['Patrick' , 'PATRICK'])
     async def patrick(self , ctx , * , text = ''):
