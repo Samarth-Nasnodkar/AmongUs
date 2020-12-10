@@ -103,6 +103,13 @@ class Memes(commands.Cog):
         self.token = os.environ.get('dbl_token')
         self.dblpy = dbl.DBLClient(self.client , self.token)
 
+    @commands.Cog.listener()
+    async def on_user_vote(self , data):
+        user_id = int(data['user'])
+        user = self.client.get_user(user_id)
+        channel = self.client.get_channel(785782444594036747)
+        await channel.send(f'{user.name} Just voted Among Us bot.')
+
     @commands.command(aliases = ['Meme' , 'MEME'])
     async def meme(self , ctx):
         voted = await self.dblpy.get_user_vote(ctx.author.id)
