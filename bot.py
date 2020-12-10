@@ -27,7 +27,6 @@ class TopGG(commands.Cog):
 		self.token = os.environ.get('dbl_token')  # set this to your DBL token
 		self.dblpy = dbl.DBLClient(self.bot, self.token)
 		self.update_stats.start()
-		self.updated_votes.start()
 
 	def cog_unload(self):
 		self.update_stats.cancel()
