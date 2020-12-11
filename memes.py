@@ -598,7 +598,7 @@ class Memes(commands.Cog):
 
         votes = await self.dblpy.get_bot_upvotes()
 
-        embed = discord.Embed(title="Among us Bot stats!",description=f"==============\n**Servers** : `{len(client.guilds)}`\n**Commands** : `{c_count}`\n**Users** : `{totalUsers}`\n**Votes** : `{len(Votes)}`\n==============", color=discord.Color.green())
+        embed = discord.Embed(title="Among us Bot stats!",description=f"==============\n**Servers** : `{len(self.client.guilds)}`\n**Commands** : `{c_count}`\n**Users** : `{totalUsers}`\n**Votes** : `{len(Votes)}`\n==============", color=discord.Color.green())
 
         embed.set_thumbnail(url = "https://5droid.ru/uploads/posts/2020-02/1581588210_among-us.png")
 
