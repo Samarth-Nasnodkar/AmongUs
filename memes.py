@@ -7,6 +7,8 @@ import dbl
 import os
 from discord.ext import menus
 from io import BytesIO
+import json
+
 
 def get_prefix(client , message):
 	main_server = client.get_guild(730075470694973461)
