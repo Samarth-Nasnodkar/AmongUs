@@ -26,6 +26,44 @@ def get_prefix(client , message):
 	basic_prefix = "a!"
 	return basic_prefix
 
+def get_count(client):
+	count = 0
+	for guild in client.guilds:
+		count += guild.member_count
+
+	return count
+
+async def get_log_data():
+	with open("logs.json" , "r") as f:
+		users = json.load(f)
+
+	return users
+
+async def start_log(command_name):
+	users = await get_log_data()
+
+	if command_name in users:
+		return False
+	else:
+		users[command_name] = {}
+		users[command_name]["count"] = 0
+
+	with open("logs.json" , "w") as f:
+		json.dump(users,f)
+	return True
+
+async def update_log(command_name):
+	users = await get_log_data()
+
+	users[command_name]["count"] += 1
+
+	with open("logs.json" , "w") as f:
+		json.dump(users,f)
+
+	bal = users[command_name]["count"]
+
+	return bal
+
 class Helpfunc(menus.Menu):
     def __init__(self , client):
         self.client = client
@@ -113,6 +151,8 @@ class Memes(commands.Cog):
 
     @commands.command(aliases = ['Meme' , 'MEME'])
     async def meme(self , ctx):
+        await start_log("meme")
+        await update_log("meme")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
         if not voted:
@@ -145,6 +185,8 @@ class Memes(commands.Cog):
 
     @commands.command(aliases = ['Monster' , 'MONSTER'])
     async def monster(self , ctx , * , text = ''):
+        await start_log("monster")
+        await update_log("monster")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
         if not voted:
@@ -178,6 +220,8 @@ class Memes(commands.Cog):
 
     @commands.command(aliases = ['Drake' , 'DRAKE'])
     async def drake(self , ctx , * , text = ''):
+        await start_log("drake")
+        await update_log("drake")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
         if not voted:
@@ -230,6 +274,8 @@ class Memes(commands.Cog):
 
     @commands.command(aliases = ['Sword' , 'SWORD'])
     async def sword(self , ctx , *,text = ''):
+        await start_log("sword")
+        await update_log("sword")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
         if not voted:
@@ -263,6 +309,8 @@ class Memes(commands.Cog):
 
     @commands.command(aliases = ['Announce' , 'ANNOUNCE'])
     async def announce(self , ctx , * , text = ''):
+        await start_log("announce")
+        await update_log("announce")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
         if not voted:
@@ -298,6 +346,8 @@ class Memes(commands.Cog):
 
     @commands.command(aliases = ['FBI' , 'Fbi'])
     async def fbi(self , ctx , * , text = ''):
+        await start_log("fbi")
+        await update_log("fbi")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
         if not voted:
@@ -321,6 +371,8 @@ class Memes(commands.Cog):
 
     @commands.command(aliases = ['Slap' , 'SLAP'])
     async def slap(self , ctx , user : discord.Member = None):
+        await start_log("slap")
+        await update_log("slap")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
         if not voted:
@@ -351,6 +403,8 @@ class Memes(commands.Cog):
 
     @commands.command(aliases = ['Armor' , 'ARMOR' , 'Armour' , 'armour' , 'ARMOUR'])
     async def armor(self , ctx , * , text = ''):
+        await start_log("armor")
+        await update_log("armor")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
         if not voted:
@@ -385,6 +439,8 @@ class Memes(commands.Cog):
 
     @commands.command(aliases = ['Patrick' , 'PATRICK'])
     async def patrick(self , ctx , * , text = ''):
+        await start_log("patrick")
+        await update_log("patrick")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
         if not voted:
@@ -421,6 +477,8 @@ class Memes(commands.Cog):
 
     @commands.command(aliases = ['Spongebob' , 'SPONGEBOB'])
     async def spongebob(self , ctx , * , text = ''):
+        await start_log("spongebob")
+        await update_log("spongebob")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
         if not voted:
@@ -456,6 +514,8 @@ class Memes(commands.Cog):
 
     @commands.command(aliases = ['Shit' , 'SHIT'])
     async def shit(self , ctx , * , text = ''):
+        await start_log("shit")
+        await update_log("shit")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
         if not voted:
@@ -491,6 +551,8 @@ class Memes(commands.Cog):
 
     @commands.command(aliases = ['Santa' , 'SANTA'])
     async def santa(self , ctx , * , text = ''):
+        await start_log("santa")
+        await update_log("santa")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
         if not voted:
@@ -524,8 +586,26 @@ class Memes(commands.Cog):
         img.save('santaout.jpg')
         await ctx.send(file = discord.File('santaout.jpg'))
 
+    @commands.command(aliases = ["Stats" , "STATS"])
+    async def stats(self , ctx):
+        users = await get_log_data()
+        totalUsers  = get_count(self.client)
+        c_count =  0
+        for used in users:
+            c_count += users[used]["count"]
+
+        votes = await self.dblpy.get_bot_upvotes()
+
+        embed = discord.Embed(title="Among us Bot stats!",description=f"==============\n**Servers** : `{len(client.guilds)}`\n**Commands** : `{c_count}`\n**Users** : `{totalUsers}`\n**Votes** : `{len(Votes)}`\n==============", color=discord.Color.green())
+
+        embed.set_thumbnail(url = "https://5droid.ru/uploads/posts/2020-02/1581588210_among-us.png")
+
+        await ctx.send(embed = embed)
+
     @commands.command()
     async def help(self , ctx):
+        await start_log("help")
+        await update_log("help")
         h = Helpfunc(self.client)
         await h.start(ctx)
 
