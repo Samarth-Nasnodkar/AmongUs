@@ -462,7 +462,8 @@ class Memes(commands.Cog):
         #140 , 160
         pfp = pfp.resize((120,120))
         bg.paste(pfp,(130,20))
-        bg.show()
+        bg.save('smileout.jpg')
+        await ctx.send(file = discord.File('smileout.jpg'))
 
     @commands.command(aliases = ['Slap' , 'SLAP'])
     async def slap(self , ctx , user : discord.Member = None):
