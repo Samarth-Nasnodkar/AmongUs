@@ -109,7 +109,7 @@ class Helpfunc(menus.Menu):
         p = get_prefix(self.client , self.message)
         voted = await self.dblpy.get_user_vote(self.ctx.author.id)
         if voted:
-            description = f'`{p}meme` ➜ Fetches a funny meme from Reddit\n`{p}drake <text> , <text>` ➜ Generates a Drake meme\n`{p}sword <text> , <text>`➜ Generates a Sword meme\n`{p}announce <text>` ➜ Generates a Simpson meme.\n`{p}patrick <text>` ➜ Generates a Patrick meme\n`{p}spongebob <text>` ➜ Generates a Spongebob meme\n`{p}shit <text>` ➜ Generates a stepped-in-shit meme\n`{p}santa <text>` ➜ Generates a Santa meme\n`{p}fbi <text>` ➜ Generates an FBI meme\n`{p}slap <user>` ➜ slapping others is fun\n`{p}armor <text>` ➜ Generates an Armor meme\n`{p}monster <text>` ➜ Generates a Monster meme\n`{p}fact <text>` ➜ Generates a fact meme\n`{p}unplug <text>` ➜ Generates an Unplugging meme\n`{p}smile` ➜ Generates a smile meme\n'
+            description = f'`{p}meme` ➜ Fetches a funny meme from Reddit\n`{p}drake <text> , <text>` ➜ Generates a Drake meme\n`{p}sword <text> , <text>`➜ Generates a Sword meme\n`{p}announce <text>` ➜ Generates a Simpson meme.\n`{p}patrick <text>` ➜ Generates a Patrick meme\n`{p}spongebob <text>` ➜ Generates a Spongebob meme\n`{p}shit <text>` ➜ Generates a stepped-in-shit meme\n`{p}santa <text>` ➜ Generates a Santa meme\n`{p}fbi <text>` ➜ Generates an FBI meme\n`{p}slap <user>` ➜ slapping others is fun\n`{p}armor <text>` ➜ Generates an Armor meme\n`{p}monster <text>` ➜ Generates a Monster meme\n`{p}fact <text>` ➜ Generates a fact meme\n`{p}unplug <text>` ➜ Generates an Unplugging meme\n`{p}smile <user(optional)>` ➜ Generates a smile meme\n'
         else:
             description = '''```
         .--------.
