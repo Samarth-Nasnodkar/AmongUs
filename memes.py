@@ -459,9 +459,8 @@ class Memes(commands.Cog):
         asset = user.avatar_url_as(format = 'jpg' , size=128)
         data = BytesIO(await asset.read())
         pfp = Image.open(data)
-        #140 , 160
         pfp = pfp.resize((120,120))
-        bg.paste(pfp,(130,20))
+        bg.paste(pfp,(150,20))
         bg.save('smileout.jpg')
         await ctx.send(file = discord.File('smileout.jpg'))
 
