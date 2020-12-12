@@ -239,7 +239,7 @@ class Memes(commands.Cog):
         img = Image.open('boo.png')
         draw = ImageDraw.Draw(img)
         font = ImageFont.truetype('arial.ttf' , 30)
-        inrement = 0
+        increment = 0
         if len(text) > 16:
             while len(text) > 16:
                 txt = ''
