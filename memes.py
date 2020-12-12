@@ -109,7 +109,7 @@ class Helpfunc(menus.Menu):
         p = get_prefix(self.client , self.message)
         voted = await self.dblpy.get_user_vote(self.ctx.author.id)
         if voted:
-            description = f'`{p}meme` ➜ Fetches a funny meme from Reddit\n`{p}drake <text> , <text>` ➜ Generates a Drake meme\n`{p}sword <text> , <text>`➜ Generates a Sword meme\n`{p}announce <text>` ➜ Generates a Simpson meme.\n`{p}patrick <text>` ➜ Generates a Patrick meme\n`{p}spongebob <text>` ➜ Generates a Spongebob meme\n`{p}shit <text>` ➜ Generates a stepped-in-shit meme\n`{p}santa <text>` ➜ Generates a Santa meme\n`{p}fbi <text>` ➜ Generates an FBI meme\n`{p}slap <user>` ➜ slapping others is fun\n`{p}armor <text>` ➜ Generates an Armor meme\n`{p}monster <text>` ➜ Generates a Monster meme\n`{p}fact <text>` ➜ Generates a fact meme\n'
+            description = f'`{p}meme` ➜ Fetches a funny meme from Reddit\n`{p}drake <text> , <text>` ➜ Generates a Drake meme\n`{p}sword <text> , <text>`➜ Generates a Sword meme\n`{p}announce <text>` ➜ Generates a Simpson meme.\n`{p}patrick <text>` ➜ Generates a Patrick meme\n`{p}spongebob <text>` ➜ Generates a Spongebob meme\n`{p}shit <text>` ➜ Generates a stepped-in-shit meme\n`{p}santa <text>` ➜ Generates a Santa meme\n`{p}fbi <text>` ➜ Generates an FBI meme\n`{p}slap <user>` ➜ slapping others is fun\n`{p}armor <text>` ➜ Generates an Armor meme\n`{p}monster <text>` ➜ Generates a Monster meme\n`{p}fact <text>` ➜ Generates a fact meme\n`{p}unplug <text>` ➜ Generates an Unplugging meme\n'
         else:
             description = '''```
         .--------.
@@ -184,6 +184,41 @@ class Memes(commands.Cog):
         embed.set_image(url = sendable_meme.url)
         embed.set_footer(text = f'🔥 {sendable_meme.score} | 💬 {len(sendable_meme.comments)}')
         await ctx.send(embed = embed)
+
+    @commands.command(aliases = ['Unplug' , 'UNPLUG'])
+    async def unplug(self , ctx , * , text = ''):
+        await start_log("unplug")
+        await update_log("unplug")
+        voted = await self.dblpy.get_user_vote(ctx.author.id)
+        print(voted)
+        if not voted:
+            embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
+            return await ctx.send(embed = embed)
+
+        if text == '':
+            return await ctx.send('You need to pass some text.')
+
+        if len(text) > 60:
+            return await ctx.send('Your text cannot exceed 60 characters.')
+
+        img = Image.open('unplug.jpg')
+        draw = ImageDraw.Draw(img)
+        font = ImageFont.truetype('arial.ttf' , 15)
+        increment = 0
+        if len(text) > 30:
+            txt = ''
+            while len(text) > 30:
+                txt = text[0:29]
+                draw.text((375,30+increment) , txt , (0,0,0) , font = font)
+                increment += 30
+                text = text[29:]
+
+            draw.text((375,30+increment) , text , (0,0,0) , font = font)
+        else:
+            draw.text((375,30) , text , (0,0,0) , font = font)
+
+        img.save('unplugout.jpg')
+        await ctx.send(file = discord.File('unplugout.jpg'))
 
     @commands.command(aliases = ['Fact' , 'FACT'])
     async def fact(self , ctx , * , text = ''):
