@@ -442,6 +442,28 @@ class Memes(commands.Cog):
         img.save('fbiout.jpg')
         await ctx.send(file = discord.File('fbiout.jpg'))
 
+    @commands.command(aliases = ['Smile' , 'SMILE'])
+    async def smile(self , ctx , user:discord.Member = None):
+        await start_log("slap")
+        await update_log("slap")
+        voted = await self.dblpy.get_user_vote(ctx.author.id)
+        print(voted)
+        if not voted:
+            embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
+            return await ctx.send(embed = embed)
+
+        if user is None:
+            user = ctx.author
+
+        bg = Image.open('smile.jpg')
+        asset = user.avatar_url_as(format = 'jpg' , size=128)
+        data = BytesIO(await asset.read())
+        pfp = Image.open(data)
+        #140 , 160
+        pfp = pfp.resize((120,120))
+        bg.paste(pfp,(130,20))
+        bg.show()
+
     @commands.command(aliases = ['Slap' , 'SLAP'])
     async def slap(self , ctx , user : discord.Member = None):
         await start_log("slap")
