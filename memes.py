@@ -109,7 +109,7 @@ class Helpfunc(menus.Menu):
         p = get_prefix(self.client , self.message)
         voted = await self.dblpy.get_user_vote(self.ctx.author.id)
         if voted:
-            description = f'`{p}meme` ➜ Fetches a funny meme from Reddit\n`{p}drake <text> , <text>` ➜ Generates a Drake meme\n`{p}sword <text> , <text>`➜ Generates a Sword meme\n`{p}announce <text>` ➜ Generates a Simpson meme.\n`{p}patrick <text>` ➜ Generates a Patrick meme\n`{p}spongebob <text>` ➜ Generates a Spongebob meme\n`{p}shit <text>` ➜ Generates a stepped-in-shit meme\n`{p}santa <text>` ➜ Generates a Santa meme\n`{p}fbi <text>` ➜ Generates an FBI meme\n`{p}slap <user>` ➜ slapping others is fun\n`{p}armor <text>` ➜ Generates an Armor meme\n`{p}monster <text>` ➜ Generates a Monster meme\n`{p}fact <text>` ➜ Generates a fact meme\n`{p}unplug <text>` ➜ Generates an Unplugging meme\n`{p}smile <user(optional)>` ➜ Generates a smile meme\n`{p}boo <text>` ➜ Generates a Ghost booing meme\n`{p}bastards <text>` ➜ Those bastards lied to me\n'
+            description = f'`{p}meme` ➜ Fetches a funny meme from Reddit\n`{p}drake <text> , <text>` ➜ Generates a Drake meme\n`{p}sword <text> , <text>`➜ Generates a Sword meme\n`{p}announce <text>` ➜ Generates a Simpson meme.\n`{p}patrick <text>` ➜ Generates a Patrick meme\n`{p}spongebob <text>` ➜ Generates a Spongebob meme\n`{p}shit <text>` ➜ Generates a stepped-in-shit meme\n`{p}santa <text>` ➜ Generates a Santa meme\n`{p}fbi <text>` ➜ Generates an FBI meme\n`{p}slap <user>` ➜ slapping others is fun\n`{p}armor <text>` ➜ Generates an Armor meme\n`{p}monster <text>` ➜ Generates a Monster meme\n`{p}fact <text>` ➜ Generates a fact meme\n`{p}unplug <text>` ➜ Generates an Unplugging meme\n`{p}smile <user(optional)>` ➜ Generates a smile meme\n`{p}boo <text>` ➜ Generates a Ghost booing meme\n`{p}bastards <text>` ➜ Those bastards lied to me\n`{p}worthless <user(optional)>` ➜ Generates a This-is-worthless meme\n'
         else:
             description = '''```
         .--------.
@@ -515,6 +515,28 @@ class Memes(commands.Cog):
 
         img.save('fbiout.jpg')
         await ctx.send(file = discord.File('fbiout.jpg'))
+
+    @commands.command(aliases = ['Worthless' , 'WORTHLESS'])
+    async def worthless(self , ctx , user:discord.Member):
+        await start_log("worthless")
+        await update_log("worthless")
+        voted = await self.dblpy.get_user_vote(ctx.author.id)
+        print(voted)
+        if not voted:
+            embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
+            return await ctx.send(embed = embed)
+
+        if user is None:
+            user = ctx.author
+
+        bg = Image.open('worthless.jpg')
+        asset = user.avatar_url_as(format = 'jpg' , size=128)
+        data = BytesIO(await asset.read())
+        pfp = Image.open(data)
+        pfp = pfp.resize((231,231))
+        bg.paste(pfp,(304,166))
+        bg.save('worthlessout.jpg')
+        await ctx.send(file = discord.File('worthlessout.jpg'))
 
     @commands.command(aliases = ['Smile' , 'SMILE'])
     async def smile(self , ctx , user:discord.Member = None):
