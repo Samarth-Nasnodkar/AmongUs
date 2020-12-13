@@ -517,7 +517,7 @@ class Memes(commands.Cog):
         await ctx.send(file = discord.File('fbiout.jpg'))
 
     @commands.command(aliases = ['Worthless' , 'WORTHLESS'])
-    async def worthless(self , ctx , user:discord.Member):
+    async def worthless(self , ctx , user:discord.Member = None):
         await start_log("worthless")
         await update_log("worthless")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
