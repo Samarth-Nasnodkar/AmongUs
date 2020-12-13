@@ -832,7 +832,7 @@ class Memes(commands.Cog):
 
         await ctx.send(embed = embed)
 
-    @commands.command()
+    @commands.command(aliases = ['Help' , 'HELP'])
     async def help(self , ctx):
         await start_log("help")
         await update_log("help")
