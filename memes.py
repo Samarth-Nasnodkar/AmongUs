@@ -181,7 +181,7 @@ class Memes(commands.Cog):
         sendable_meme = random.choice(memeList)
         embed = discord.Embed(description = f'**[{sendable_meme.title}]({sendable_meme.url})**' , color = discord.Color.from_rgb(random.randint(0 , 255), random.randint(0 , 255) ,random.randint(0 , 255)))
         embed.set_image(url = sendable_meme.url)
-        embed.set_footer(text = f'🔥 {sendable_meme.score} | 💬 {len(sendable_meme.comments)}')
+        embed.set_footer(text = f'🔥 {sendable_meme.score}')
         await ctx.send(embed = embed)
 
     @commands.command(aliases = ['Unplug' , 'UNPLUG'])
