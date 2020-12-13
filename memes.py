@@ -143,6 +143,11 @@ class Memes(commands.Cog):
         self.client = client
         self.token = os.environ.get('dbl_token')
         self.dblpy = dbl.DBLClient(self.client , self.token)
+        self.reddit = praw.Reddit(client_id = '0bD1UHrRzjDbGQ',
+                                client_secret = '9xoApJv0eZeRr1QVGJJulIE5cjXyFg',
+                                username = 'CooLDuDE-6_9',
+                                password = 'samarth1709',
+                                user_agent = 'AmongUsUnofficial')
 
     @commands.Cog.listener()
     async def on_user_vote(self , data):
@@ -161,20 +166,14 @@ class Memes(commands.Cog):
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
 
-        reddit = praw.Reddit(client_id = '0bD1UHrRzjDbGQ',
-                            client_secret = '9xoApJv0eZeRr1QVGJJulIE5cjXyFg',
-                            username = 'CooLDuDE-6_9',
-                            password = 'samarth1709',
-                            user_agent = 'AmongUsUnofficial')
-
         memeList = []
 
-        dankmemes = reddit.subreddit('dankmemes')
+        dankmemes = self.reddit.subreddit('dankmemes')
         hot = dankmemes.hot(limit = 25)
         for meme in hot:
             memeList.append(meme)
 
-        rmemes = reddit.subreddit('memes')
+        rmemes = self.reddit.subreddit('memes')
         mHot = rmemes.hot(limit = 25)
         for nmeme in mHot:
             memeList.append(nmeme)
