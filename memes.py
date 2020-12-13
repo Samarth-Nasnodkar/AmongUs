@@ -170,12 +170,12 @@ class Memes(commands.Cog):
         memeList = []
 
         dankmemes = reddit.subreddit('dankmemes')
-        hot = dankmemes.hot(limit = 50)
+        hot = dankmemes.hot(limit = 25)
         for meme in hot:
             memeList.append(meme)
 
         rmemes = reddit.subreddit('memes')
-        mHot = rmemes.hot(limit = 50)
+        mHot = rmemes.hot(limit = 25)
         for nmeme in mHot:
             memeList.append(nmeme)
 
