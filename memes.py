@@ -20,11 +20,11 @@ def get_prefix(client , message):
 	# 			return prfx
 
 
-	for channel in main_server.text_channels:
+    for channel in main_server.text_channels:
         try:
-    		if str(channel.name) == str(message.guild.id):
-    			prfx = channel.topic
-    			return prfx
+        	if str(channel.name) == str(message.guild.id):
+        		prfx = channel.topic
+        		return prfx
         except AttributeError:
             return 'a!'
 
