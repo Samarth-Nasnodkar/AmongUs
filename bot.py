@@ -397,7 +397,7 @@ async def flip(ctx):
 	await update_log("coin_flip")
 	embed = discord.Embed(title = f"{ctx.author.display_name} Has flipped a coin" , color = discord.Color.orange())
 	embed.set_thumbnail(url = ctx.author.avatar_url)
-	embed.set_image(url = "logo.png")
+	embed.set_image(url = "https://i.pinimg.com/originals/d7/49/06/d74906d39a1964e7d07555e7601b06ad.gif")
 	links = ["https://media.tenor.com/images/d9cc74bec0a2a582d1887045c62595c9/tenor.gif" , "https://media.tenor.com/images/1de5555846dc3e3cd279983cbd2e986d/tenor.gif"]
 	msg = await ctx.send(embed = embed)
 	nembed = discord.Embed(title = f"And the result is ....." , color = discord.Color.orange())
@@ -459,7 +459,7 @@ async def invite(ctx):
 	embed = discord.Embed(title = "Invite Among Us bot using the below link" , color = discord.Color.green())
 	embed.add_field(name = "Go to the official server" , value = "[Click Me!](https://discord.gg/tgyW2Jz)")
 	embed.add_field(name = "Invite the best Among Us Bot" , value = "[Invite](https://bit.ly/3ceYuEW)")
-	embed.set_thumbnail(url = "logo.png")
+	embed.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
 	await ctx.send(embed = embed)
 
 @client.command(aliases = ["Report" , "REPORT"])
@@ -613,7 +613,7 @@ async def guide(ctx):
 	guide.add_field(name = "<:among_us:769073995324063755>Crewmate" , value = "[Crewmate](https://bit.ly/3khxtU6)")
 	guide.add_field(name = ":detective:Imposter" , value = "[Imposter](https://bit.ly/2ZHsF2A)")
 	guide.add_field(name = "To learn about maps use the below command" , value = "a!maps" , inline = False)
-	guide.set_thumbnail(url = "logo.png")
+	guide.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
 	await msg.edit(embed = guide)
 
 @client.command(aliases = ['Maps' , 'MAPS'])
@@ -623,7 +623,7 @@ async def maps(ctx):
 	await update_log("maps")
 	prfx = get_prefix(client = client , message = ctx.message)
 	among = discord.Embed(title = f"Choose one of the below maps by typing the command `{prfx}(map name)`.\n Eg. {prfx}skeld \nyou can choose between skeld, mirahq and polus" , color = discord.Color.orange())
-	among.set_thumbnail(url = 'logo.png')
+	among.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
 	await ctx.send(embed = among)
 	
 @client.command(aliases = ['Skeld' , 'SKELD'])
