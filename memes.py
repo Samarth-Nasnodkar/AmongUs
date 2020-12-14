@@ -77,7 +77,7 @@ class Helpfunc(menus.Menu):
         super().__init__(timeout=90.0 , delete_message_after=True)
 
     async def send_initial_message(self , ctx ,channel):
-        start = discord.Embed(title = 'Among Us Help' , description = 'React below to pick an option\n:radioactive: ➜ Among Us Utilities\n:game_die: ➜ Fun & Games\n:clipboard: ➜ Utilities\n🤩 ➜ Memes\n`Liked the bot? To vote it` : **[Click here](https://top.gg/bot/757272442820362281/vote)**\n`To join support server` : [Click Here](https://discord.gg/tgyW2Jz)\n`To go to bots website` : [Click Here](https://amongusunofficial.godaddysites.com/)\n`To browse through bots code` : [Click Here](https://github.com/Cooldude069/AmongUs.git)' , color = discord.Color.orange())
+        start = discord.Embed(title = 'Among Us Help' , description = 'React below to pick an option\n:radioactive: ➜ Among Us Utilities\n:game_die: ➜ Fun & Games\n:clipboard: ➜ Utilities\n🤩 ➜ Memes\n`Liked the bot? To vote it` : **[Click here](https://top.gg/bot/757272442820362281/vote)**\n`To join support server` : [Click Here](https://discord.gg/tgyW2Jz)\n`To go to bots website` : [Click Here](https://cooldude069.github.io/AmongUsUnofficial/index.html)\n`To browse through bots code` : [Click Here](https://github.com/Cooldude069/AmongUs.git)' , color = discord.Color.orange())
         start.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
         start.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
 
@@ -102,7 +102,7 @@ class Helpfunc(menus.Menu):
     @menus.button('📋')
     async def utils(self , payload):
         p = get_prefix(self.client , self.message)
-        u = discord.Embed(title = '📋 Utilities' , description = f'`{p}emoji` ➜ Generates a random Among Us emoji\n`{p}add` ➜ Adds emojis to your server\n`{p}ping` ➜ displays the bots latency\n`{p}prefix <new prefix>` ➜ Changes the bots prefix' , color = discord.Color.orange())
+        u = discord.Embed(title = '📋 Utilities' , description = f'`{p}emoji` ➜ Generates a random Among Us emoji\n`{p}add` ➜ Adds emojis to your server\n`{p}ping` ➜ displays the bots latency\n`{p}prefix <new prefix>` ➜ Changes the bots prefix\n`{p}invite` ➜ Generates an invite link for the bot\n`{p}vote` ➜ Generates a link to vote the bot\n' , color = discord.Color.orange())
         u.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
         u.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
         await self.message.edit(embed = u)
@@ -185,6 +185,11 @@ class Memes(commands.Cog):
         embed = discord.Embed(description = f'**[{sendable_meme.title}]({sendable_meme.url})**' , color = discord.Color.from_rgb(random.randint(0 , 255), random.randint(0 , 255) ,random.randint(0 , 255)))
         embed.set_image(url = sendable_meme.url)
         embed.set_footer(text = f'🔥 {sendable_meme.score}')
+        await ctx.send(embed = embed)
+
+    @commands.command(alises = ['Vote' , 'VOTE'])
+    async def vote(self, ctx):
+        embed = discord.Embed(description = '[Upvote The bot here](https://top.gg/bot/757272442820362281/vote)\nAfter upvoting you will get access to the amazing memes category' , color = discord.Color.orange())
         await ctx.send(embed = embed)
 
     @commands.command(aliases = ['Unplug' , 'UNPLUG'])
