@@ -848,7 +848,8 @@ class Memes(commands.Cog):
         for used in users:
             c_count += users[used]["count"]
 
-        votes = await self.dblpy.get_bot_upvotes()
+        tp = await self.dblpy.get_bot_info(757272442820362281)
+        votes = tp['points']
 
         embed = discord.Embed(title="Among us Bot stats!",description=f"==============\n**Servers** : `{len(self.client.guilds)}`\n**Commands** : `{c_count}`\n**Users** : `{totalUsers}`\n**Votes** : `{len(votes)}`\n==============", color=discord.Color.green())
 
