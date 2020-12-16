@@ -85,6 +85,7 @@ class Helpfunc(menus.Menu):
 
     @menus.button('☢')
     async def amngutils(self , payload):
+        await self.message.remove_reaction('☢' , self.ctx.author)
         p = get_prefix(self.client , self.message)
         au = discord.Embed(title = '☢ Among us Utilities' , description = f'`{p}guide` ➜ Will teach you to play\n`{p}maps` ➜ Will show you the blueprints of all maps\n`{p}vc <code> <server>` ➜ Will create a voice channel\n`{p}mute` ➜ Mutes people lower than you in the vc\n`{p}unmute` ➜ Unmutes people lower than you in the vc\n`{p}host <Code> <Server>` ➜ Makes your game discoverable to others\n`{p}match <server>` ➜ Shows you the visible games in that server' , color = discord.Color.orange())
         au.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
@@ -93,6 +94,7 @@ class Helpfunc(menus.Menu):
 
     @menus.button('🎲')
     async def fng(self , payload):
+        await self.message.remove_reaction('🎲' , self.ctx.author)
         p = get_prefix(self.client , self.message)
         f = discord.Embed(title = '🎲 Fun & Games' , description = f'`{p}rps` ➜ Starts a rock, paper , scissors game with the bot\n`{p}challenge <user>` ➜ Play a 1v1 rock, paper scissors with your friend\n`{p}flip` ➜ Flips a coin for you\n`{p}kill <user>` ➜ Sends a cool among us killing gif\n`{p}imposter <user>` ➜ makes him/her an Imposter\n`{p}crewmate <user>` ➜ makes him/her a Crewmate\n`{p}guess` ➜ You have to guess the imposter\n`{p}ascii <text>` ➜ Creates an ASCII banner of that text' , color = discord.Color.orange())
         f.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
@@ -101,6 +103,7 @@ class Helpfunc(menus.Menu):
 
     @menus.button('📋')
     async def utils(self , payload):
+        await self.message.remove_reaction('📋' , self.ctx.author)
         p = get_prefix(self.client , self.message)
         u = discord.Embed(title = '📋 Utilities' , description = f'`{p}emoji` ➜ Generates a random Among Us emoji\n`{p}add` ➜ Adds emojis to your server\n`{p}ping` ➜ displays the bots latency\n`{p}prefix <new prefix>` ➜ Changes the bots prefix\n`{p}invite` ➜ Generates an invite link for the bot\n`{p}vote` ➜ Generates a link to vote the bot\n' , color = discord.Color.orange())
         u.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
@@ -109,6 +112,7 @@ class Helpfunc(menus.Menu):
 
     @menus.button('🤩')
     async def mc(self , payload):
+        await self.message.remove_reaction('🤩' , self.ctx.author)
         p = get_prefix(self.client , self.message)
         voted = await self.dblpy.get_user_vote(self.ctx.author.id)
         if voted:
@@ -136,6 +140,7 @@ class Helpfunc(menus.Menu):
 
     @menus.button('🤖')
     async def hc(self , payload):
+        await self.message.remove_reaction('🤖' , self.ctx.author)
         emb = discord.Embed(title = '🤖 Other bots' , description = 'Wanna play Cricket with your friends?\ndont worry, weve got you covered.\nWith the Hand cricketer bot, you can play cricket with your friends all day long, and if you dont have friends, still weve got you covered.\nTo invite the bot **[Click Here](https://top.gg/bot/709733907053936712)**' , color = discord.Color.orange())
         emb.set_thumbnail(url = 'https://cdn.discordapp.com/avatars/709733907053936712/0670b3d504ecbe6c4871c6301bf68cea.webp')
         emb.set_footer(text = 'Bot by Xenon devs' , icon_url = 'https://images-ext-1.discordapp.net/external/-TT71tsZvgEZYaDeq4hH6i3O4WiIQ7c4mYLt8nR7254/https/raw.githubusercontent.com/xenon-devs/xen-assets/main/xen-inc/logo/xen-logo-black-bg.png')
@@ -143,6 +148,7 @@ class Helpfunc(menus.Menu):
 
     @menus.button('🏠')
     async def home(self , payload):
+        await self.message.remove_reaction('🏠' , self.ctx.author)
         start = discord.Embed(title = 'Among Us Help' , description = 'React below to pick an option\n:radioactive: ➜ Among Us Utilities\n:game_die: ➜ Fun & Games\n:clipboard: ➜ Utilities\n🤩 ➜ Memes\n`Liked the bot? To vote it` : **[Click here](https://top.gg/bot/757272442820362281/vote)**\n`To join support server` : [Click Here](https://discord.gg/tgyW2Jz)\n`To go to bots website` : [Click Here](https://amongusunofficial.godaddysites.com/)\n`To browse through bots code` : [Click Here](https://github.com/Cooldude069/AmongUs.git)' , color = discord.Color.orange())
         start.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
         start.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
