@@ -41,6 +41,13 @@ class TopGG(commands.Cog):
 			print('Posted server count ({})'.format(server_count))
 		except Exception as e:
 			print('Failed to post server count\n{}: {}'.format(type(e).__name__, e))
+
+	@commands.Cog.listener()
+    async def on_dbl_vote(self , data):
+        user_id = int(data['user'])
+        user = self.client.get_user(user_id)
+        channel = self.client.get_channel(785782444594036747)
+        await channel.send(f'{user.name} Just voted Among Us bot.')
 		
 
 
