@@ -236,7 +236,7 @@ class Memes(commands.Cog):
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
 
-        await ctx.send(file = discord.File(MEME_TEMPLATES.GOOGLE))
+        await ctx.send(file = discord.File(MEME_TEMPLATES['GOOGLE']))
 
     @commands.command(alises = ['Vote' , 'VOTE'])
     async def vote(self, ctx):
@@ -404,7 +404,7 @@ class Memes(commands.Cog):
 
         if len(text) > 60:
             return await ctx.send('Your text cannot exceed 60 characters')
-        img = Image.open(EME_TEMPLATES['MONSTER'])
+        img = Image.open(MEME_TEMPLATES['MONSTER'])
         draw = ImageDraw.Draw(img)
         font = ImageFont.truetype(FONT_FILE_PATH , 20)
         increment = 0
