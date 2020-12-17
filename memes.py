@@ -166,7 +166,7 @@ class Memes(commands.Cog):
                                 user_agent = 'AmongUsUnofficial')
 
     @commands.Cog.listener()
-    async def on_user_vote(self , data):
+    async def on_dbl_vote(self , data):
         user_id = int(data['user'])
         user = self.client.get_user(user_id)
         channel = self.client.get_channel(785782444594036747)
