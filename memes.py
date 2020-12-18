@@ -115,7 +115,7 @@ class Helpfunc(menus.Menu):
         p = get_prefix(self.client , self.message)
         voted = await self.dblpy.get_user_vote(self.ctx.author.id)
         if voted:
-            description = f'`{p}meme` ➜ Fetches a funny meme from Reddit\n`{p}drake <text> , <text>` ➜ Generates a Drake meme\n`{p}sword <text> , <text>`➜ Generates a Sword meme\n`{p}announce <text>` ➜ Generates a Simpson meme.\n`{p}patrick <text>` ➜ Generates a Patrick meme\n`{p}spongebob <text>` ➜ Generates a Spongebob meme\n`{p}shit <text>` ➜ Generates a stepped-in-shit meme\n`{p}santa <text>` ➜ Generates a Santa meme\n`{p}fbi <text>` ➜ Generates an FBI meme\n`{p}slap <user>` ➜ slapping others is fun\n`{p}armor <text>` ➜ Generates an Armor meme\n`{p}monster <text>` ➜ Generates a Monster meme\n`{p}fact <text>` ➜ Generates a fact meme\n`{p}unplug <text>` ➜ Generates an Unplugging meme\n`{p}smile <user(optional)>` ➜ Generates a smile meme\n`{p}boo <text>` ➜ Generates a Ghost booing meme\n`{p}bastards <text>` ➜ Those bastards lied to me\n`{p}worthless <user(optional)>` ➜ Generates a This-is-worthless meme\n`{p}prison <text>` ➜ Generates a prison meme\n`{p}google <text>` ➜ Google is down, :(\n'
+            description = f'`{p}meme` ➜ Fetches a funny meme from Reddit\n`{p}drake <text> , <text>` ➜ Generates a Drake meme\n`{p}sword <text> , <text>`➜ Generates a Sword meme\n`{p}announce <text>` ➜ Generates a Simpson meme.\n`{p}patrick <text>` ➜ Generates a Patrick meme\n`{p}spongebob <text>` ➜ Generates a Spongebob meme\n`{p}shit <text>` ➜ Generates a stepped-in-shit meme\n`{p}santa <text>` ➜ Generates a Santa meme\n`{p}fbi <text>` ➜ Generates an FBI meme\n`{p}slap <user>` ➜ slapping others is fun\n`{p}armor <text>` ➜ Generates an Armor meme\n`{p}monster <text>` ➜ Generates a Monster meme\n`{p}fact <text>` ➜ Generates a fact meme\n`{p}unplug <text>` ➜ Generates an Unplugging meme\n`{p}smile <user(optional)>` ➜ Generates a smile meme\n`{p}boo <text>` ➜ Generates a Ghost booing meme\n`{p}bastards <text>` ➜ Those bastards lied to me\n`{p}worthless <user(optional)>` ➜ Generates a This-is-worthless meme\n`{p}prison <text>` ➜ Generates a prison meme\n`{p}google <text>` ➜ Google is down, :(\n`{p}electroboom <text>` ➜ Generates an Electroboom meme\n'
         else:
             description = '''```
         .--------.
@@ -204,6 +204,44 @@ class Memes(commands.Cog):
             return await ctx.send(embed = embed)
 
         await ctx.send(file = discord.File('google.png'))
+
+    @commands.command(aliases = ["Electroboom" , "ELECTROBOOM" , "electroboom" , "Electro" , "ELECTRO"])
+    async def electro(self , ctx , * , text = ''):
+        await start_log("electro")
+        await update_log("electro")
+        voted = await self.dblpy.get_user_vote(ctx.author.id)
+        print(voted)
+        if not voted:
+            embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
+            return await ctx.send(embed = embed)
+
+        if text == '':
+            return await ctx.send('You need to pass some text.')
+
+        if len(text) > 130:
+            return await ctx.send('Your text cannot exceed 130 characters.')
+
+        img = Image.open('electro.png')
+        draw = ImageDraw.Draw(img)
+        font = ImageFont.truetype('arial.ttf' , 80)
+
+        increment = 0
+        if len(text) > 26:
+            txt = ''
+
+            while len(text) > 26:
+                txt = text[0:25]
+                draw.text((800 , 130 + increment) , txt , (0,0,0) ,font = font)
+                increment += 170
+                text = text[25:]
+
+            draw.text((800 , 130 + increment) , text , (0,0,0) ,font = font)
+
+        else:
+            draw.text((800 , 130) , text , (0,0,0) ,font = font)
+
+        img.save('electroout.png')
+        await ctx.send(file = discord.File('electroout.png'))
 
     @commands.command(alises = ['Vote' , 'VOTE'])
     async def vote(self, ctx):
