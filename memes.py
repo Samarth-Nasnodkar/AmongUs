@@ -78,7 +78,7 @@ class Helpfunc(menus.Menu):
 
     async def send_initial_message(self , ctx ,channel):
         start = discord.Embed(title = 'Among Us Help' , description = 'React below to pick an option\n:radioactive: ➜ Among Us Utilities\n:game_die: ➜ Fun & Games\n:clipboard: ➜ Utilities\n🤩 ➜ Memes\n🤖 ➜ Our other bots\n`Liked the bot? To vote it` : **[Click here](https://top.gg/bot/757272442820362281/vote)**\n`To join support server` : [Click Here](https://discord.gg/tgyW2Jz)\n`To go to bots website` : [Click Here](https://cooldude069.github.io/AmongUsUnofficial/index.html)\n`To browse through bots code` : [Click Here](https://github.com/Cooldude069/AmongUs.git)' , color = discord.Color.orange())
-        start.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+        start.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
         start.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
 
         return await channel.send(embed = start)
@@ -96,7 +96,7 @@ class Helpfunc(menus.Menu):
     async def fng(self , payload):
         p = get_prefix(self.client , self.message)
         f = discord.Embed(title = '🎲 Fun & Games' , description = f'`{p}rps` ➜ Starts a rock, paper , scissors game with the bot\n`{p}challenge <user>` ➜ Play a 1v1 rock, paper scissors with your friend\n`{p}flip` ➜ Flips a coin for you\n`{p}kill <user>` ➜ Sends a cool among us killing gif\n`{p}imposter <user>` ➜ makes him/her an Imposter\n`{p}crewmate <user>` ➜ makes him/her a Crewmate\n`{p}guess` ➜ You have to guess the imposter\n`{p}ascii <text>` ➜ Creates an ASCII banner of that text' , color = discord.Color.orange())
-        f.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+        f.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
         f.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
         await self.message.edit(embed = f)
         await self.message.remove_reaction('🎲' , self.ctx.author)
@@ -105,7 +105,7 @@ class Helpfunc(menus.Menu):
     async def utils(self , payload):
         p = get_prefix(self.client , self.message)
         u = discord.Embed(title = '📋 Utilities' , description = f'`{p}emoji` ➜ Generates a random Among Us emoji\n`{p}add` ➜ Adds emojis to your server\n`{p}ping` ➜ displays the bots latency\n`{p}prefix <new prefix>` ➜ Changes the bots prefix\n`{p}invite` ➜ Generates an invite link for the bot\n`{p}vote` ➜ Generates a link to vote the bot\n' , color = discord.Color.orange())
-        u.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+        u.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
         u.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
         await self.message.edit(embed = u)
         await self.message.remove_reaction('📋' , self.ctx.author)
@@ -133,7 +133,7 @@ class Helpfunc(menus.Menu):
     '.________________.'```\nUpvote the Bot to access this category.\n`To upvote the Bot ` **[Click Here](https://top.gg/bot/757272442820362281/vote)**'''
                                             
         m = discord.Embed(title = '🤩 Memes' , description = description , color = discord.Color.orange())
-        m.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+        m.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
         m.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
         await self.message.edit(embed = m)
         await self.message.remove_reaction('🤩' , self.ctx.author)
@@ -141,7 +141,7 @@ class Helpfunc(menus.Menu):
     @menus.button('🤖')
     async def hc(self , payload):
         emb = discord.Embed(title = '🤖 Other bots' , description = 'Wanna play Cricket with your friends?\ndont worry, weve got you covered.\nWith the Hand cricketer bot, you can play cricket with your friends all day long, and if you dont have friends, still weve got you covered.\nTo invite the bot **[Click Here](https://top.gg/bot/709733907053936712)**' , color = discord.Color.orange())
-        emb.set_thumbnail(url = 'https://cdn.discordapp.com/avatars/709733907053936712/0670b3d504ecbe6c4871c6301bf68cea.webp')
+        emb.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
         emb.set_footer(text = 'Bot by Xenon devs' , icon_url = 'https://images-ext-1.discordapp.net/external/-TT71tsZvgEZYaDeq4hH6i3O4WiIQ7c4mYLt8nR7254/https/raw.githubusercontent.com/xenon-devs/xen-assets/main/xen-inc/logo/xen-logo-black-bg.png')
         await self.message.edit(embed = emb)
         await self.message.remove_reaction('🤖' , self.ctx.author)
@@ -149,7 +149,7 @@ class Helpfunc(menus.Menu):
     @menus.button('🏠')
     async def home(self , payload):
         start = discord.Embed(title = 'Among Us Help' , description = 'React below to pick an option\n:radioactive: ➜ Among Us Utilities\n:game_die: ➜ Fun & Games\n:clipboard: ➜ Utilities\n🤩 ➜ Memes\n`Liked the bot? To vote it` : **[Click here](https://top.gg/bot/757272442820362281/vote)**\n`To join support server` : [Click Here](https://discord.gg/tgyW2Jz)\n`To go to bots website` : [Click Here](https://amongusunofficial.godaddysites.com/)\n`To browse through bots code` : [Click Here](https://github.com/Cooldude069/AmongUs.git)' , color = discord.Color.orange())
-        start.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+        start.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
         start.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
         await self.message.edit(embed = start)
         await self.message.remove_reaction('🏠' , self.ctx.author)
@@ -890,7 +890,7 @@ class Memes(commands.Cog):
 
         embed = discord.Embed(title="Among us Bot stats!",description=f"==============\n**Servers** : `{len(self.client.guilds)}`\n**Commands** : `{c_count}`\n**Users** : `{totalUsers}`\n**Votes** : `{votes}`\n==============", color=discord.Color.green())
 
-        embed.set_thumbnail(url = "https://5droid.ru/uploads/posts/2020-02/1581588210_among-us.png")
+        embed.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
 
         await ctx.send(embed = embed)
 

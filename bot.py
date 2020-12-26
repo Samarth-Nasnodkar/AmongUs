@@ -325,10 +325,10 @@ async def challenge(ctx , opponent:discord.Member):
 		await ctx.author.dm_channel.send("Game starting in 5s")
 		await opponent.dm_channel.send("Game starting in 5s")
 		await asyncio.sleep(3)
-		embed = discord.Embed(title = "Among Us Hand cricket!" , color = discord.Color.red())
+		embed = discord.Embed(title = "Among Us RPS" , color = discord.Color.red())
 		embed.set_image(url = "https://media.tenor.com/images/2ab9e2f21aece2154bc36bf6c9b2e09e/tenor.gif")
 		embed.add_field(name = "Play your move(rock/paper/scissors)" , value = "** **")
-		embedo = discord.Embed(title = "Among Us Hand cricket!" , color = discord.Color.blue())
+		embedo = discord.Embed(title = "Among Us RPS" , color = discord.Color.blue())
 		embedo.set_image(url = "https://media.tenor.com/images/d075fedb342564f3aefb67ff7895b953/tenor.gif")
 		embedo.add_field(name = "Play your move(rock/paper/scissors)" , value = "** **")
 		await ctx.author.dm_channel.send(embed = embed)
@@ -466,7 +466,7 @@ async def invite(ctx):
 	embed = discord.Embed(title = "Invite Among Us bot using the below link" , color = discord.Color.green())
 	embed.add_field(name = "Go to the official server" , value = "[Click Me!](https://discord.gg/tgyW2Jz)")
 	embed.add_field(name = "Invite the best Among Us Bot" , value = "[Invite](https://bit.ly/3ceYuEW)")
-	embed.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+	embed.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
 	await ctx.send(embed = embed)
 
 @client.command(aliases = ["Report" , "REPORT"])
@@ -620,7 +620,7 @@ async def guide(ctx):
 	guide.add_field(name = "<:among_us:769073995324063755>Crewmate" , value = "[Crewmate](https://bit.ly/3khxtU6)")
 	guide.add_field(name = ":detective:Imposter" , value = "[Imposter](https://bit.ly/2ZHsF2A)")
 	guide.add_field(name = "To learn about maps use the below command" , value = "a!maps" , inline = False)
-	guide.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+	guide.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
 	await msg.edit(embed = guide)
 
 @client.command(aliases = ['Maps' , 'MAPS'])
@@ -630,7 +630,7 @@ async def maps(ctx):
 	await update_log("maps")
 	prfx = get_prefix(client = client , message = ctx.message)
 	among = discord.Embed(title = f"Choose one of the below maps by typing the command `{prfx}(map name)`.\n Eg. {prfx}skeld \nyou can choose between skeld, mirahq and polus" , color = discord.Color.orange())
-	among.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+	among.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
 	await ctx.send(embed = among)
 	
 @client.command(aliases = ['Skeld' , 'SKELD'])
@@ -755,7 +755,7 @@ class testing(menus.Menu):
 
 	async def send_initial_message(self , ctx ,channel):
 		start = discord.Embed(title = 'Among Us Help' , description = 'React below to pick an option\n:radioactive: ➜ Among Us Utilities\n:game_die: ➜ Fun & Games\n:clipboard: ➜ Utilities\n`Liked the bot? To vote it` : **[Click here](https://top.gg/bot/757272442820362281/vote)**\n`To join support server` : [Click Here](https://discord.gg/tgyW2Jz)\n`To go to bots website` : [Click Here](https://amongusunofficial.godaddysites.com/)\n`To browse through bots code` : [Click Here](https://github.com/Cooldude069/AmongUs.git)' , color = discord.Color.orange())
-		start.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+		start.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
 		start.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
 
 		return await channel.send(embed = start)
@@ -764,7 +764,7 @@ class testing(menus.Menu):
 	async def amngutils(self , payload):
 		p = get_prefix(client = client , message = self.message)
 		au = discord.Embed(title = '☢ Among us Utilities' , description = f'`{p}guide` ➜ Will teach you to play\n`{p}maps` ➜ Will show you the blueprints of all maps\n`{p}vc <code> <server>` ➜ Will create a voice channel\n`{p}mute` ➜ Mutes people lower than you in the vc\n`{p}unmute` ➜ Unmutes people lower than you in the vc\n`{p}host <Code> <Server>` ➜ Makes your game discoverable to others\n`{p}match <server>` ➜ Shows you the visible games in that server' , color = discord.Color.orange())
-		au.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+		au.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
 		au.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
 		await self.message.edit(embed = au)
 
@@ -772,7 +772,7 @@ class testing(menus.Menu):
 	async def fng(self , payload):
 		p = get_prefix(client = client , message = self.message)
 		f = discord.Embed(title = '🎲 Fun & Games' , description = f'`{p}rps` ➜ Starts a rock, paper , scissors game with the bot\n`{p}challenge <user>` ➜ Play a 1v1 rock, paper scissors with your friend\n`{p}flip` ➜ Flips a coin for you\n`{p}kill <user>` ➜ Sends a cool among us killing gif\n`{p}imposter <user>` ➜ makes him/her an Imposter\n`{p}crewmate <user>` ➜ makes him/her a Crewmate\n`{p}guess` ➜ You have to guess the imposter\n`{p}ascii <text>` ➜ Creates an ASCII banner of that text' , color = discord.Color.orange())
-		f.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+		f.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
 		f.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
 		await self.message.edit(embed = f)
 
@@ -780,14 +780,14 @@ class testing(menus.Menu):
 	async def utils(self , payload):
 		p = get_prefix(client = client , message = self.message)
 		u = discord.Embed(title = '📋 Utilities' , description = f'`{p}emoji` ➜ Generates a random Among Us emoji\n`{p}add` ➜ Adds emojis to your server\n`{p}ping` ➜ displays the bots latency\n`{p}prefix <new prefix>` ➜ Changes the bots prefix' , color = discord.Color.orange())
-		u.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+		u.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
 		u.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
 		await self.message.edit(embed = u)
 
 	@menus.button('🏠')
 	async def home(self , payload):
 		start = discord.Embed(title = 'Among Us Help' , description = 'React below to pick an option\n:radioactive: ➜ Among Us Utilities\n:game_die: ➜ Fun & Games\n:clipboard: ➜ Utilities\n`Liked the bot? To vote it` : **[Click here](https://top.gg/bot/757272442820362281/vote)**\n`To join support server` : [Click Here](https://discord.gg/tgyW2Jz)\n`To go to bots website` : [Click Here](https://amongusunofficial.godaddysites.com/)\n`To browse through bots code` : [Click Here](https://github.com/Cooldude069/AmongUs.git)' , color = discord.Color.orange())
-		start.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+		start.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
 		start.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
 		await self.message.edit(embed = start)
 
@@ -810,7 +810,7 @@ class helper(menus.Menu):
 	async def send_initial_message(self , ctx , channel):
 		prfx = get_prefix(client = client , message = self.ctx.message)
 		embed0 = discord.Embed(title = "Among Us help!" , description = f"Hey!, I am the Among us Bot!, I do some cool things(that's why i am the best)\nMy prefix is {prfx}, So let's go through my commands!\n\n==============\n\n<:deadbody:759275974708690974> **Page 2** : `Among us utilities`\n\n<:reddit:314349923103670272> **Page 3** : `Fun commands`\n\n<:staff:314068430787706880> **Page 4** : `General utilities`\n\n:cricket_game: **Page 5** : `Hand Cricket Bot`\n\n`To join the support server` : [**Click Here**](https://discord.gg/pzxhrJ4UHV)\n`To go to the official website` : [**Click Here**](https://amongusunofficial.godaddysites.com/)\n\n==============" , color = discord.Color.orange())
-		embed0.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")	
+		embed0.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")	
 		embed0.set_footer(text = "Use the below reactions to navigate")	
 		global i
 		i = 1
@@ -822,7 +822,7 @@ class helper(menus.Menu):
 		global i
 		prfx = get_prefix(client = client , message = self.ctx.message)
 		embed0 = discord.Embed(title = "Among Us help!" , description = f"Hey!, I am the Among us Bot!, I do some cool things(that's why i am the best)\nMy prefix is {prfx}, So let's go through my commands!\n\n==============\n\n<:deadbody:759275974708690974> **Page 2** : `Among us utilities`\n\n<:reddit:314349923103670272> **Page 3** : `Fun commands`\n\n<:staff:314068430787706880> **Page 4** : `General utilities`\n\n:cricket_game: **Page 5** : `Hand Cricket Bot`\n\n`To join the support server` : [**Click Here**](https://discord.gg/pzxhrJ4UHV)\n`To go to the official website` : [**Click Here**](https://amongusunofficial.godaddysites.com/)\n\n==============" , color = discord.Color.orange())
-		embed0.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+		embed0.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
 		embed0.set_footer(text = "use the below reactions to navigate")
 		await self.message.edit(embed = embed0)
 		i = 1
@@ -832,7 +832,7 @@ class helper(menus.Menu):
 		global i
 		if i == 3:
 			helpm2  = discord.Embed(title = f"Among Us Help! Page {i - 1}" , color = discord.Color.darker_grey())
-			helpm2.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+			helpm2.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
 			helpm2.add_field(name = ":one: guide -> will guide you" , value = "This will give you all the required information about the game" , inline = False)
 			helpm2.add_field(name = ":two: maps -> will show you all maps" , value = "This will give you the blueprints of all the maps" , inline = False)
 			helpm2.add_field(name = ":three: vc {code} {server} -> Makes a special voice channel" , value = "U can invite the people you want(limit = 11)" , inline = False)
@@ -845,7 +845,7 @@ class helper(menus.Menu):
 			i = i - 1
 		elif i == 4:
 			helpm2  = discord.Embed(title = f"Among Us Help! Page {i - 1}" , color = discord.Color.darker_grey())
-			helpm2.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+			helpm2.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
 			helpm2.add_field(name = ":one: rps -> Starts a rock, paper , scissors game with the bot" , value = "It is really fun" , inline = False)
 			helpm2.add_field(name = ":two: challenge {user} -> Play a 1v1 rock, paper scissors with your friend" , value = "It takes place in Dm, Don't worry" , inline = False)
 			helpm2.add_field(name = ":three: flip -> Flips a coin for you" , value = "Solve your disputes with just a flip of the coin" , inline = False)
@@ -857,13 +857,13 @@ class helper(menus.Menu):
 			i = i - 1
 		elif i == 2:
 			embed0 = discord.Embed(title = "Among Us help!" , description = "Hey!, I am the Among us Bot!, I do some cool things(that's why i am the best)\nMy prefix is a!, So let's go through my commands!\n\n==============\n\n<:deadbody:759275974708690974> **Page 2** : `Among us utilities`\n\n<:reddit:314349923103670272> **Page 3** : `Fun commands`\n\n<:staff:314068430787706880> **Page 4** : `General utilities`\n\n:cricket_game: **Page 5** : `Hand Cricket Bot`\n\n`To join the support server` : [**Click Here**](https://discord.gg/pzxhrJ4UHV)\n`To go to the official website` : [**Click Here**](https://amongusunofficial.godaddysites.com/)\n\n==============" , color = discord.Color.orange())
-			embed0.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+			embed0.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
 			i = i - 1
 			await self.message.edit(embed = embed0)
 		elif i == 5:
 			prfx = get_prefix(client = client , message = self.ctx.message)
 			helpm2 = discord.Embed(title = f"Among Us Help! Page {i - 1}" , color = discord.Color.darker_grey())
-			helpm2.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+			helpm2.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
 			helpm2.add_field(name = ":one: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
 			helpm2.add_field(name = ":two: add_emoji/add -> adds the among us emoji to your server" , value = f"use {prfx}add to know how to go forward" , inline = False)
 			helpm2.add_field(name = ":three: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
@@ -880,7 +880,7 @@ class helper(menus.Menu):
 		global i
 		if i == 1:
 			helpm2  = discord.Embed(title = f"Among Us Help! Page {i + 1}" , color = discord.Color.darker_grey())
-			helpm2.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+			helpm2.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
 			helpm2.add_field(name = ":one: guide -> will guide you" , value = "This will give you all the required information about the game" , inline = False)
 			helpm2.add_field(name = ":two: maps -> will show you all maps" , value = "This will give you the blueprints of all the maps" , inline = False)
 			helpm2.add_field(name = ":three: vc {code} {server} -> Makes a special voice channel" , value = "U can invite the people you want(limit = 11)" , inline = False)
@@ -897,7 +897,7 @@ class helper(menus.Menu):
 			i+=1
 		elif i == 2:
 			helpm2  = discord.Embed(title = f"Among Us Help! Page {i + 1}" , color = discord.Color.darker_grey())
-			helpm2.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+			helpm2.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
 			helpm2.add_field(name = ":one: rps -> Starts a rock, paper , scissors game with the bot" , value = "It is really fun" , inline = False)
 			helpm2.add_field(name = ":two: challenge {user} -> Play a 1v1 rock, paper scissors with your friend" , value = "It takes place in Dm, Don't worry" , inline = False)
 			helpm2.add_field(name = ":three: flip -> Flips a coin for you" , value = "Solve your disputes with just a flip of the coin" , inline = False)
@@ -910,7 +910,7 @@ class helper(menus.Menu):
 		elif i == 3:
 			prfx = get_prefix(client = client , message = self.ctx.message)
 			helpm2  = discord.Embed(title = f"Among Us Help! Page {i + 1}" , color = discord.Color.darker_grey())
-			helpm2.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
+			helpm2.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
 			helpm2.add_field(name = ":one: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
 			helpm2.add_field(name = ":two: add_emoji/add -> adds the among us emoji to your server" , value = f"use {prfx}add to know how to go forward" , inline = False)
 			helpm2.add_field(name = ":three: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
@@ -920,7 +920,7 @@ class helper(menus.Menu):
 		elif i == 4:
 			hc = discord.Embed(title = 'Introducing Hand Cricketer bot' , description = "**Wanna play Cricket on Discord with your friends?**\nDon't worry, we got you covered.Invite the new handcricketer bot and play cricket with your friends all day long via Discord.\n=========================\nBot Invite Link : [Click Here](https://top.gg/bot/709733907053936712)\n=========================\n" , color = discord.Color.darker_grey())
 			hc.set_footer(text = "To Advertise your discord bot/server, join the support server.")
-			hc.set_thumbnail(url = 'https://cdn.discordapp.com/avatars/709733907053936712/0670b3d504ecbe6c4871c6301bf68cea.webp')
+			hc.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
 			await self.message.edit(embed = hc)
 
 		
@@ -937,7 +937,7 @@ class helper(menus.Menu):
 		# await self.message.edit(embed = helpm2)
 		hc = discord.Embed(title = 'Introducing Hand Cricketer bot' , description = "**Wanna play Cricket on Discord with your friends?**\nDon't worry, we got you covered.Invite the new handcricketer bot and play cricket with your friends all day long via Discord.\n=========================\nBot Invite Link : [Click Here](https://top.gg/bot/709733907053936712)\n=========================\n" , color = discord.Color.darker_grey())
 		hc.set_footer(text = "To Advertise your discord bot/server, join the support server.")
-		hc.set_thumbnail(url = 'https://cdn.discordapp.com/avatars/709733907053936712/0670b3d504ecbe6c4871c6301bf68cea.webp')
+		hc.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
 		await self.message.edit(embed = hc)
 		i = 5
 
