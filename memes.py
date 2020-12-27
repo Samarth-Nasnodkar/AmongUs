@@ -114,7 +114,7 @@ class Helpfunc(menus.Menu):
     async def mc(self , payload):
         p = get_prefix(self.client , self.message)
         voted = await self.dblpy.get_user_vote(self.ctx.author.id)
-        if voted:
+        if voted or self.message.guild.id == 723435494578323476:
             description = f'`{p}meme` ➜ Fetches a funny meme from Reddit\n`{p}drake <text> , <text>` ➜ Generates a Drake meme\n`{p}sword <text> , <text>`➜ Generates a Sword meme\n`{p}announce <text>` ➜ Generates a Simpson meme.\n`{p}patrick <text>` ➜ Generates a Patrick meme\n`{p}spongebob <text>` ➜ Generates a Spongebob meme\n`{p}shit <text>` ➜ Generates a stepped-in-shit meme\n`{p}santa <text>` ➜ Generates a Santa meme\n`{p}fbi <text>` ➜ Generates an FBI meme\n`{p}slap <user>` ➜ slapping others is fun\n`{p}armor <text>` ➜ Generates an Armor meme\n`{p}monster <text>` ➜ Generates a Monster meme\n`{p}fact <text>` ➜ Generates a fact meme\n`{p}unplug <text>` ➜ Generates an Unplugging meme\n`{p}smile <user(optional)>` ➜ Generates a smile meme\n`{p}boo <text>` ➜ Generates a Ghost booing meme\n`{p}bastards <text>` ➜ Those bastards lied to me\n`{p}worthless <user(optional)>` ➜ Generates a This-is-worthless meme\n`{p}prison <text>` ➜ Generates a prison meme\n`{p}google <text>` ➜ Google is down, :(\n`{p}electroboom <text>` ➜ Generates an Electroboom meme\n'
         else:
             description = '''```
@@ -171,7 +171,7 @@ class Memes(commands.Cog):
         await update_log("meme")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
-        if not voted:
+        if not voted and ctx.guild.id != 723435494578323476:
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
 
@@ -199,7 +199,7 @@ class Memes(commands.Cog):
         await update_log("google")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
-        if not voted:
+        if not voted and ctx.guild.id != 723435494578323476:
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
 
@@ -211,7 +211,7 @@ class Memes(commands.Cog):
         await update_log("electro")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
-        if not voted:
+        if not voted and ctx.guild.id != 723435494578323476:
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
 
@@ -254,7 +254,7 @@ class Memes(commands.Cog):
         await update_log("unplug")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
-        if not voted:
+        if not voted and ctx.guild.id != 723435494578323476:
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
 
@@ -289,7 +289,7 @@ class Memes(commands.Cog):
         await update_log("boo")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
-        if not voted:
+        if not voted and ctx.guild.id != 723435494578323476:
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
 
@@ -326,7 +326,7 @@ class Memes(commands.Cog):
         await update_log("fact")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
-        if not voted:
+        if not voted and ctx.guild.id != 723435494578323476:
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
 
@@ -361,7 +361,7 @@ class Memes(commands.Cog):
         await update_log("bastards")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
-        if not voted:
+        if not voted and ctx.guild.id != 723435494578323476:
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
 
@@ -400,7 +400,7 @@ class Memes(commands.Cog):
         await update_log("monster")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
-        if not voted:
+        if not voted and ctx.guild.id != 723435494578323476:
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
 
@@ -435,7 +435,7 @@ class Memes(commands.Cog):
         await update_log("drake")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
-        if not voted:
+        if not voted and ctx.guild.id != 723435494578323476:
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
 
@@ -489,7 +489,7 @@ class Memes(commands.Cog):
         await update_log("sword")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
-        if not voted:
+        if not voted and ctx.guild.id != 723435494578323476:
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
             
@@ -524,7 +524,7 @@ class Memes(commands.Cog):
         await update_log("announce")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
-        if not voted:
+        if not voted and ctx.guild.id != 723435494578323476:
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
 
@@ -561,7 +561,7 @@ class Memes(commands.Cog):
         await update_log("fbi")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
-        if not voted:
+        if not voted and ctx.guild.id != 723435494578323476:
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
 
@@ -586,7 +586,7 @@ class Memes(commands.Cog):
         await update_log("worthless")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
-        if not voted:
+        if not voted and ctx.guild.id != 723435494578323476:
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
 
@@ -608,7 +608,7 @@ class Memes(commands.Cog):
         await update_log("slap")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
-        if not voted:
+        if not voted and ctx.guild.id != 723435494578323476:
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
 
@@ -630,7 +630,7 @@ class Memes(commands.Cog):
         await update_log("slap")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
-        if not voted:
+        if not voted and ctx.guild.id != 723435494578323476:
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
 
@@ -662,7 +662,7 @@ class Memes(commands.Cog):
         await update_log("armor")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
-        if not voted:
+        if not voted and ctx.guild.id != 723435494578323476:
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
 
@@ -698,7 +698,7 @@ class Memes(commands.Cog):
         await update_log("patrick")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
-        if not voted:
+        if not voted and ctx.guild.id != 723435494578323476:
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
 
@@ -736,7 +736,7 @@ class Memes(commands.Cog):
         await update_log("prison")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
-        if not voted:
+        if not voted and ctx.guild.id != 723435494578323476:
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
 
@@ -772,7 +772,7 @@ class Memes(commands.Cog):
         await update_log("spongebob")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
-        if not voted:
+        if not voted and ctx.guild.id != 723435494578323476:
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
 
@@ -809,7 +809,7 @@ class Memes(commands.Cog):
         await update_log("shit")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
-        if not voted:
+        if not voted and ctx.guild.id != 723435494578323476:
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
 
@@ -846,7 +846,7 @@ class Memes(commands.Cog):
         await update_log("santa")
         voted = await self.dblpy.get_user_vote(ctx.author.id)
         print(voted)
-        if not voted:
+        if not voted and ctx.guild.id != 723435494578323476:
             embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
             return await ctx.send(embed = embed)
 
