@@ -178,14 +178,19 @@ class Memes(commands.Cog):
         memeList = []
 
         dankmemes = self.reddit.subreddit('dankmemes')
-        hot = dankmemes.hot(limit = 25)
+        hot = dankmemes.hot(limit = 10)
         for meme in hot:
             memeList.append(meme)
 
         rmemes = self.reddit.subreddit('memes')
-        mHot = rmemes.hot(limit = 25)
+        mHot = rmemes.hot(limit = 10)
         for nmeme in mHot:
             memeList.append(nmeme)
+
+        mmemes = self.reddit.subreddit('meme')
+        mhot = mmemes.hot(limit = 10)
+        for m in mhot:
+            memeList.append(m)
 
         sendable_meme = random.choice(memeList)
         embed = discord.Embed(description = f'**[{sendable_meme.title}]({sendable_meme.url})**' , color = discord.Color.from_rgb(random.randint(0 , 255), random.randint(0 , 255) ,random.randint(0 , 255)))
