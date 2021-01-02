@@ -170,27 +170,36 @@ class Memes(commands.Cog):
     async def updateMeme(self):
         await self.client.wait_until_ready()
         print('Attempting to log memes')
-        memeList = []
+        memeList = {}
 
         dankmemes = self.reddit.subreddit('dankmemes')
         hot = dankmemes.hot(limit = 20)
         for meme in hot:
-            memeList.append(meme)
+            memeList[meme.title] = {}
+            memeList[meme.title]['score'] = meme.score
+            memeList[meme.title]['url'] = meme.url
 
         rmemes = self.reddit.subreddit('memes')
         mHot = rmemes.hot(limit = 20)
         for nmeme in mHot:
-            memeList.append(nmeme)
+            memeList[nmeme.title] = {}
+            memeList[nmeme.title]['score'] = nmeme.score
+            memeList[nmeme.title]['url'] = nmeme.url
 
         mmemes = self.reddit.subreddit('meme')
         mhot = mmemes.hot(limit = 20)
         for m in mhot:
-            memeList.append(m)
+            memeList[m.title] = {}
+            memeList[m.title]['score'] = m.score
+            memeList[m.title]['url'] = m.url
 
         pmemes = self.reddit.subreddit('PrequelMemes')
         phot = pmemes.hot(limit = 20)
         for p in phot:
             memeList.append(p)
+            memeList[p.title] = {}
+            memeList[p.title]['score'] = p.score
+            memeList[p.title]['url'] = p.url
 
         with open('memes.json' , 'w') as f:
             json.dump(memeList , f)
@@ -210,10 +219,8 @@ class Memes(commands.Cog):
         with open('memes.json' , 'r') as f:
             LoggedMemes = json.load(f)
 
-        memeList = []
-
         if len(LoggedMemes) == 0:
-
+            memeList = []
             dankmemes = self.reddit.subreddit('dankmemes')
             hot = dankmemes.hot(limit = 20)
             for meme in hot:
@@ -233,14 +240,24 @@ class Memes(commands.Cog):
             phot = pmemes.hot(limit = 20)
             for p in phot:
                 memeList.append(p)
+
+            sendable_meme = random.choice(memeList)
+            embed = discord.Embed(description = f'**[{sendable_meme.title}]({sendable_meme.url})**' , color = discord.Color.from_rgb(random.randint(0 , 255), random.randint(0 , 255) ,random.randint(0 , 255)))
+            embed.set_image(url = sendable_meme.url)
+            embed.set_footer(text = f'🔥 {sendable_meme.score}')
+            await ctx.send(embed = embed)
         else:
             memeList = LoggedMemes
-
-        sendable_meme = random.choice(memeList)
-        embed = discord.Embed(description = f'**[{sendable_meme.title}]({sendable_meme.url})**' , color = discord.Color.from_rgb(random.randint(0 , 255), random.randint(0 , 255) ,random.randint(0 , 255)))
-        embed.set_image(url = sendable_meme.url)
-        embed.set_footer(text = f'🔥 {sendable_meme.score}')
-        await ctx.send(embed = embed)
+            sendable_meme = random.choice(list(memeList))
+            embed = discord.Embed(description = f"**[{sendable_meme}]({memeList[sendable_meme]['url']})**" , color = discord.Color.from_rgb(random.randint(0 , 255), random.randint(0 , 255) ,random.randint(0 , 255)))
+            embed.set_image(url = memeList[sendable_meme]['url'])
+            embed.set_footer(text = f"🔥 {memeList[sendable_meme]['score']}")
+            await ctx.send(embed = embed)
+        # sendable_meme = random.choice(memeList)
+        # embed = discord.Embed(description = f'**[{sendable_meme.title}]({sendable_meme.url})**' , color = discord.Color.from_rgb(random.randint(0 , 255), random.randint(0 , 255) ,random.randint(0 , 255)))
+        # embed.set_image(url = sendable_meme.url)
+        # embed.set_footer(text = f'🔥 {sendable_meme.score}')
+        # await ctx.send(embed = embed)
 
     @commands.command(aliases = ["Google" , 'GOOGLE'])
     async def google(self , ctx , text = None):
