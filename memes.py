@@ -196,7 +196,6 @@ class Memes(commands.Cog):
         pmemes = self.reddit.subreddit('PrequelMemes')
         phot = pmemes.hot(limit = 20)
         for p in phot:
-            memeList.append(p)
             memeList[p.title] = {}
             memeList[p.title]['score'] = p.score
             memeList[p.title]['url'] = p.url
