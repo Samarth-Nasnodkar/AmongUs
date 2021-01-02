@@ -165,18 +165,8 @@ class Memes(commands.Cog):
                                 password = 'samarth1709',
                                 user_agent = 'AmongUsUnofficial')
         
-        
-
-    @commands.command(aliases = ['Meme' , 'MEME'])
-    async def meme(self , ctx):
-        await start_log("meme")
-        await update_log("meme")
-        voted = await self.dblpy.get_user_vote(ctx.author.id)
-        print(voted)
-        if not voted and ctx.guild.id != 723435494578323476:
-            embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
-            return await ctx.send(embed = embed)
-
+    @tasks.loop(minutes = 30)
+    async def updateMeme(self):
         memeList = []
 
         dankmemes = self.reddit.subreddit('dankmemes')
@@ -198,6 +188,50 @@ class Memes(commands.Cog):
         phot = pmemes.hot(limit = 20)
         for p in phot:
             memeList.append(p)
+
+        with open('memes.json' , 'w') as f:
+            json.dump(memeList , f)
+
+        print('Logged Memes')
+
+    @commands.command(aliases = ['Meme' , 'MEME'])
+    async def meme(self , ctx):
+        await start_log("meme")
+        await update_log("meme")
+        voted = await self.dblpy.get_user_vote(ctx.author.id)
+        print(voted)
+        if not voted and ctx.guild.id != 723435494578323476:
+            embed = discord.Embed(description = 'You Need to Upvote the bot to use this command.\nTo upvote the bot **[Click Here](https://top.gg/bot/757272442820362281/vote)**' , color = discord.Color.red())
+            return await ctx.send(embed = embed)
+
+        with open('memes.json' , 'r') as f:
+            LoggedMemes = json.load(f)
+
+        memeList = []
+
+        if len(LoggedMemes) == 0:
+
+            dankmemes = self.reddit.subreddit('dankmemes')
+            hot = dankmemes.hot(limit = 20)
+            for meme in hot:
+                memeList.append(meme)
+
+            rmemes = self.reddit.subreddit('memes')
+            mHot = rmemes.hot(limit = 20)
+            for nmeme in mHot:
+                memeList.append(nmeme)
+
+            mmemes = self.reddit.subreddit('meme')
+            mhot = mmemes.hot(limit = 20)
+            for m in mhot:
+                memeList.append(m)
+
+            pmemes = self.reddit.subreddit('PrequelMemes')
+            phot = pmemes.hot(limit = 20)
+            for p in phot:
+                memeList.append(p)
+        else:
+            memeList = LoggedMemes
 
         sendable_meme = random.choice(memeList)
         embed = discord.Embed(description = f'**[{sendable_meme.title}]({sendable_meme.url})**' , color = discord.Color.from_rgb(random.randint(0 , 255), random.randint(0 , 255) ,random.randint(0 , 255)))
