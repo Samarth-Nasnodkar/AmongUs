@@ -168,6 +168,8 @@ class Memes(commands.Cog):
         
     @tasks.loop(minutes = 30)
     async def updateMeme(self):
+        await self.client.wait_until_ready()
+        print('Attempting to log memes')
         memeList = []
 
         dankmemes = self.reddit.subreddit('dankmemes')
