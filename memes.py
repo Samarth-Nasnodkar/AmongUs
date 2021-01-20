@@ -173,28 +173,28 @@ class Memes(commands.Cog):
         memeList = {}
 
         dankmemes = self.reddit.subreddit("dankmemes")
-        hot = dankmemes.top(limit = 20)
+        hot = dankmemes.hot(limit = 20)
         for meme in hot:
             memeList[meme.title] = {}
             memeList[meme.title]["score"] = meme.score
             memeList[meme.title]["url"] = meme.url
 
         rmemes = self.reddit.subreddit("memes")
-        mHot = rmemes.top(limit = 20)
+        mHot = rmemes.hot(limit = 20)
         for nmeme in mHot:
             memeList[nmeme.title] = {}
             memeList[nmeme.title]["score"] = nmeme.score
             memeList[nmeme.title]["url"] = nmeme.url
 
         mmemes = self.reddit.subreddit("meme")
-        mhot = mmemes.top(limit = 20)
+        mhot = mmemes.hot(limit = 20)
         for m in mhot:
             memeList[m.title] = {}
             memeList[m.title]["score"] = m.score
             memeList[m.title]["url"] = m.url
 
         pmemes = self.reddit.subreddit("PrequelMemes")
-        phot = pmemes.top(limit = 20)
+        phot = pmemes.hot(limit = 20)
         for p in phot:
             memeList[p.title] = {}
             memeList[p.title]["score"] = p.score
