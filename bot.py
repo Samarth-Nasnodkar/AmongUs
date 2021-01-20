@@ -24,7 +24,7 @@ class TopGG(commands.Cog):
     
 	def __init__(self, bot):
 		self.bot = bot
-		self.token = os.environ.get('dbl_token')  # set this to your DBL token
+		self.token = os.environ.get("dbl_token")  # set this to your DBL token
 		self.dblpy = dbl.DBLClient(self.bot, self.token)
 		self.update_stats.start()
 
@@ -38,16 +38,16 @@ class TopGG(commands.Cog):
 		try:
 			server_count = len(self.bot.guilds)
 			await self.dblpy.post_guild_count(server_count)
-			print('Posted server count ({})'.format(server_count))
+			print("Posted server count ({})".format(server_count))
 		except Exception as e:
-			print('Failed to post server count\n{}: {}'.format(type(e).__name__, e))
+			print("Failed to post server count\n{}: {}".format(type(e).__name__, e))
 
 	@commands.Cog.listener()
 	async def on_dbl_vote(self , data):
-		user_id = int(data['user'])
+		user_id = int(data["user"])
 		user = self.client.get_user(user_id)
 		channel = self.client.get_channel(785782444594036747)
-		await channel.send(f'{user.name} Just voted Among Us bot.')
+		await channel.send(f"{user.name} Just voted Among Us bot.")
 		
 
 
@@ -73,7 +73,7 @@ def get_prefix(client , message):
 				prfx = channel.topic
 				return prfx
 		except AttributeError:
-			return 'a!'
+			return "a!"
 
 	basic_prefix = "a!"
 	return basic_prefix
@@ -87,79 +87,79 @@ def get_count(client):
 
 intents = discord.Intents(messages = True , guilds = True , reactions = True)
 client = commands.Bot(command_prefix= get_prefix , intents = intents)
-client.remove_command('help')
+client.remove_command("help")
 value = get_count(client)
 status = cycle([f"{value} members" , f"{value} members"])
 
 async def add_game(matchid , server , user , channel_to):
-    with open('games.json' , 'r') as f:
+    with open("games.json" , "r") as f:
         games = json.load(f)
 
     if str(user.id) in games:
-        return await channel_to.send('You already have a Game running.')
+        return await channel_to.send("You already have a Game running.")
 
-    servers = ['asia' , 'europe' , 'na']
+    servers = ["asia" , "europe" , "na"]
 
     if not server.lower() in servers:
-        return await channel_to.send('Please specify a valid server among Asia , Europe and NA')
+        return await channel_to.send("Please specify a valid server among Asia , Europe and NA")
 
     games[str(user.id)] = {}
-    games[str(user.id)]['id'] = matchid
-    games[str(user.id)]['server'] = server
+    games[str(user.id)]["id"] = matchid
+    games[str(user.id)]["server"] = server
 
-    with open('games.json', 'w') as f:
+    with open("games.json", "w") as f:
         json.dump(games , f)
 
-    await channel_to.send('Your game added successfully!.')
+    await channel_to.send("Your game added successfully!.")
 
-async def fetch_available_games(channel_to , server:str = ''):
-    with open('games.json' , 'r') as f:
+async def fetch_available_games(channel_to , server:str = ""):
+    with open("games.json" , "r") as f:
         games = json.load(f)
 
-    availableServers = ['asia' , 'europe' , 'na' , '']
+    availableServers = ["asia" , "europe" , "na" , ""]
 
     if not server.lower() in availableServers:
-        return await channel_to.send('Invalid server name specified. Please choose one of Asia , Europe and NA')
+        return await channel_to.send("Invalid server name specified. Please choose one of Asia , Europe and NA")
 
 
     if len(games) == 0:
-        return await channel_to.send('No games available right now. Please try again after some time.')
+        return await channel_to.send("No games available right now. Please try again after some time.")
 
-    string = ''
+    string = ""
     correctServer = False
     for game in games:
-        if server == '':
-            string = string + '**Server** : ' + games[game]['server'] + ' , **id** : ' + games[game]['id'] + '\n'
+        if server == "":
+            string = string + "**Server** : " + games[game]["server"] + " , **id** : " + games[game]["id"] + "\n"
             correctServer = True
         else:
-            if games[game]['server'].lower() == server.lower():
-                string = string + '**Server** : ' + games[game]['server'] + ' , **id** : ' + games[game]['id'] + '\n'
+            if games[game]["server"].lower() == server.lower():
+                string = string + "**Server** : " + games[game]["server"] + " , **id** : " + games[game]["id"] + "\n"
                 correctServer = True
 
     if not correctServer:
-        return await channel_to.send('No games available right now. Please try again')
+        return await channel_to.send("No games available right now. Please try again")
 
-    await channel_to.send(f'**Currently available Games**\n====================\n{string}\n====================')
+    await channel_to.send(f"**Currently available Games**\n====================\n{string}\n====================")
 
 
 async def remove_game(user):
-    with open('games.json' , 'r') as f:
+    with open("games.json" , "r") as f:
         games = json.load(f)
 
     del games[str(user.id)]
 
-    with open('games.json' , 'w') as f:
+    with open("games.json" , "w") as f:
         json.dump(games , f)
 
-@client.command(aliases = ['Ascii' , 'ASCII'])
-async def ascii(ctx , * , text = ''):
+@client.command(aliases = ["Ascii" , "ASCII"])
+async def ascii(ctx , * , text = ""):
 	await start_log("ascii")
 	await update_log("ascii")
-	if text == '':
-		return await ctx.send('Please provide some text.')
+	if text == "":
+		return await ctx.send("Please provide some text.")
 	
 	ascii_banner = pyfiglet.figlet_format(text)
-	await ctx.send(f'```{ascii_banner}```')
+	await ctx.send(f"```{ascii_banner}```")
 
 @client.command(aliases = ["Prefix" , "PREFIX"])
 async def prefix(ctx , prfx:str = ""):
@@ -198,10 +198,10 @@ async def prefix(ctx , prfx:str = ""):
 
 # 	await client.process_commands(message)
 
-@client.command(aliases = ['Host' , 'HOST'])
-async def host(ctx , matchid:str = '' , server:str = ''):
-	if matchid == '' or server == '':
-		return await ctx.send('Please specify the Match ID and Server correctly')
+@client.command(aliases = ["Host" , "HOST"])
+async def host(ctx , matchid:str = "" , server:str = ""):
+	if matchid == "" or server == "":
+		return await ctx.send("Please specify the Match ID and Server correctly")
 
 	await add_game(matchid , server , ctx.author , ctx.channel)
 
@@ -213,7 +213,7 @@ async def host(ctx , matchid:str = '' , server:str = ''):
 # 	embed = discord.Embed(title = "Among Us Bot update 2.0" ,description = "\n\n==============\n\nWe are very happy to announce the addition of some new features in the Bot.\nWith this update You can now play will all people of the Among Us community(believe me, there are a lot)\nYou can Host a game and also find matches using these new commands\nuse {prefix} help for more information`.Hope you enjoy the new feature.==============", color = discord.Color.orange())
 # 	embed.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
 # 	embed.set_footer(text = "With love. Among us team.")
-# 	print('Pushing Update')
+# 	print("Pushing Update")
 # 	for server in client.guilds:
 # 		if not server.id == 110373943822540800:
 # 			if server.system_channel is not None:
@@ -222,12 +222,12 @@ async def host(ctx , matchid:str = '' , server:str = ''):
 # 				except discord.Forbidden:
 # 					pass
 # 				else:
-# 					print(f'Update pushed in {server.name}')
+# 					print(f"Update pushed in {server.name}")
 #
 # 	print("Update pushed successfully")
 
-@client.command(aliases = ['Match' , 'MATCH'])
-async def match(ctx , server:str = ''):
+@client.command(aliases = ["Match" , "MATCH"])
+async def match(ctx , server:str = ""):
 	await fetch_available_games(ctx.channel , server)
 
 @client.event
@@ -261,7 +261,7 @@ async def rps(ctx):
 		return message.author == ctx.author and message.channel == ctx.message.channel
 
 	try:
-		msg = await client.wait_for('message' , timeout = 30.0 , check = check)
+		msg = await client.wait_for("message" , timeout = 30.0 , check = check)
 	except asyncio.TimeoutError:
 		await ctx.send("You took too long to play")
 	else:
@@ -308,10 +308,10 @@ async def challenge(ctx , opponent:discord.Member):
 
 	await ctx.send(f"{opponent.mention}, Do you accept the challenge?(yes/no)")
 	def check(message):
-		return message.channel == ctx.message.channel and message.author == opponent and message.content.lower() == 'yes' or message.content.lower() == 'no'
+		return message.channel == ctx.message.channel and message.author == opponent and message.content.lower() == "yes" or message.content.lower() == "no"
 
 	try:
-		msg = await client.wait_for('message' , timeout = 30.0 , check = check)
+		msg = await client.wait_for("message" , timeout = 30.0 , check = check)
 	except asyncio.TimeoutError:
 		await ctx.send("You took too long to accept")
 	else:
@@ -338,8 +338,8 @@ async def challenge(ctx , opponent:discord.Member):
 		def checko(message):
 			return isinstance(message.channel, discord.channel.DMChannel) and message.author == opponent
 		try:
-			msg = await client.wait_for('message' , timeout = 30.0 , check = checka)
-			mtg = await client.wait_for('message' , timeout = 30.0 , check = checko)
+			msg = await client.wait_for("message" , timeout = 30.0 , check = checka)
+			mtg = await client.wait_for("message" , timeout = 30.0 , check = checko)
 			answer = mtg.content.lower()
 		except asyncio.TimeoutError:
 			await ctx.send("You took too long to respond")
@@ -485,7 +485,7 @@ async def vc(ctx , code = None , server = None):
 	await update_log("vc")
 	if code == None:
 		await ctx.send("Please enter the code of your Among Us game")
-		msg = await client.wait_for('message' ,  check=lambda message: message.author == ctx.author)
+		msg = await client.wait_for("message" ,  check=lambda message: message.author == ctx.author)
 		print(msg.content)
 	if ctx.guild.id == 757239002826014731:
 		cat = discord.utils.get(ctx.guild.categories , id = 757247392981450813)
@@ -543,7 +543,7 @@ async def guess(ctx):
 	def check(message):
 		return message.author == ctx.author and message.channel == ctx.channel and message.content.lower() in colors
 	try:
-		msg = await client.wait_for('message' , timeout = 30.0 , check = check)
+		msg = await client.wait_for("message" , timeout = 30.0 , check = check)
 	except asyncio.TimeoutError:
 		await ctx.send("You took too long to respond. What a loser!!")
 	else:
@@ -623,41 +623,41 @@ async def guide(ctx):
 	guide.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
 	await msg.edit(embed = guide)
 
-@client.command(aliases = ['Maps' , 'MAPS'])
+@client.command(aliases = ["Maps" , "MAPS"])
 async def maps(ctx):
 	await start_log("maps")
 	users = await get_log_data()
 	await update_log("maps")
 	prfx = get_prefix(client = client , message = ctx.message)
 	among = discord.Embed(title = f"Choose one of the below maps by typing the command `{prfx}(map name)`.\n Eg. {prfx}skeld \nyou can choose between skeld, mirahq and polus" , color = discord.Color.orange())
-	among.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
+	among.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
 	await ctx.send(embed = among)
 	
-@client.command(aliases = ['Skeld' , 'SKELD'])
+@client.command(aliases = ["Skeld" , "SKELD"])
 async def skeld(ctx):
 	await start_log("skeld")
 	users = await get_log_data()
 	await update_log("skeld")
-	skeld = discord.Embed(title = 'Skeld' , color = discord.Color.orange())
-	skeld.set_image(url = 'https://preview.redd.it/tv8ef4iqszh41.png?auto=webp&s=46faf550020fd59c8d8bab29705b0fcb80521850')
+	skeld = discord.Embed(title = "Skeld" , color = discord.Color.orange())
+	skeld.set_image(url = "https://preview.redd.it/tv8ef4iqszh41.png?auto=webp&s=46faf550020fd59c8d8bab29705b0fcb80521850")
 	await ctx.send(embed = skeld)
 	
-@client.command(aliases = ['Polus' , 'POLUS'])
+@client.command(aliases = ["Polus" , "POLUS"])
 async def polus(ctx):
 	await start_log("polus")
 	users = await get_log_data()
 	await update_log("polus")
-	polus = discord.Embed(title = 'Polus' , color = discord.Color.orange())
-	polus.set_image(url = 'https://vignette.wikia.nocookie.net/among-us-wiki/images/4/4c/Polus.png/revision/latest?cb=20200907133344')
+	polus = discord.Embed(title = "Polus" , color = discord.Color.orange())
+	polus.set_image(url = "https://vignette.wikia.nocookie.net/among-us-wiki/images/4/4c/Polus.png/revision/latest?cb=20200907133344")
 	await ctx.send(embed = polus)
 	
-@client.command(aliases = ['Mirahq' , 'MIRAHQ'])
+@client.command(aliases = ["Mirahq" , "MIRAHQ"])
 async def mirahq(ctx):
 	await start_log("mirahq")
 	users = await get_log_data()
 	await update_log("mirahq")
-	mira = discord.Embed(title = 'Mira HQ' , color = discord.Color.orange())
-	mira.set_image(url = 'https://vignette.wikia.nocookie.net/among-us-wiki/images/0/0a/Mirahq.png/revision/latest?cb=20200907132939')
+	mira = discord.Embed(title = "Mira HQ" , color = discord.Color.orange())
+	mira.set_image(url = "https://vignette.wikia.nocookie.net/among-us-wiki/images/0/0a/Mirahq.png/revision/latest?cb=20200907132939")
 	await ctx.send(embed = mira)
 
 @client.command(aliases = ["Kill" , "KILL" , "hit" , "Hit" , "HIT"])
@@ -667,12 +667,12 @@ async def kill(ctx , user:discord.Member = None):
 	
 	t = tenorpy.Tenor()
 	if user == ctx.author:
-		return await ctx.send('You cannot kill yourself, Please mention someone else.')
+		return await ctx.send("You cannot kill yourself, Please mention someone else.")
 	else:
 		# links = ["https://media.tenor.com/images/2ad01fc73cc91abd54069f2e8deb50cc/tenor.gif","https://media.tenor.com/images/49f4a71df065a3bf90d9ebfd0cbd2d58/tenor.gif" , "https://media.tenor.com/images/091a8ed3a3896e8f3b4bffa02c298491/tenor.gif" , "https://media.tenor.com/images/f2295524300b47930f650f82080e0bb5/tenor.gif" ,"https://media.tenor.com/images/a461243877f3e2494a4c69999b232a97/tenor.gif" ,"https://media.tenor.com/images/7bb1baedb25f70d66d811088e464c4a3/tenor.gif" ,"https://media.tenor.com/images/d46c724d422714d738a84a51f1caf00b/tenor.gif" , "https://media.tenor.com/images/a166604b0b8f34779dbbd2dd690efb58/tenor.gif"]
 		lnk = t.search(tag = "among us kill" , limit = 20)
-		link_start = random.choice(lnk['results'])
-		link = link_start['media'][0]['gif']['url']
+		link_start = random.choice(lnk["results"])
+		link = link_start["media"][0]["gif"]["url"]
 		lit = f"{ctx.author.display_name} Killed {user.display_name}"
 	embed = discord.Embed(title = lit , color = discord.Color.red())
 	embed.set_image(url = link)
@@ -683,7 +683,7 @@ async def ping(ctx):
 	await start_log("ping")
 	users = await get_log_data()
 	await update_log("ping")
-	await ctx.send(f'Ping: {round(client.latency * 1000)} ms')
+	await ctx.send(f"Ping: {round(client.latency * 1000)} ms")
 
 
 # @client.event
@@ -692,7 +692,7 @@ async def ping(ctx):
 # 	await cnl.send(f"Among Us bot was added to {guild.name}")
 # 	embed = discord.Embed(title="Bot details!!", color=discord.Color.orange())
 # 	embed.set_thumbnail(url="https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
-# 	prfx = 'a!'
+# 	prfx = "a!"
 # 	embed.add_field(name="Among Us Unofficial#6602", value=f"** **", inline=False)
 # 	embed.add_field(name=f"Current server prefix = {prfx}", value=f"currently in {len(client.guilds)} servers",inline=False)
 # 	embed.add_field(name=f"For more information use {prfx}help",value="Join the support server here: [**Click Me**](https://discord.gg/tgyW2Jz)", inline=False)
@@ -711,7 +711,7 @@ async def imposter(ctx , user : discord.Member = None):
 
 	impost = Image.open("imposter.jpg")
 
-	asset = user.avatar_url_as(format = 'jpg' , size = 1024)
+	asset = user.avatar_url_as(format = "jpg" , size = 1024)
 	data = BytesIO(await asset.read())
 	pfp = Image.open(data)
 
@@ -736,7 +736,7 @@ async def crewmate(ctx , user : discord.Member = None):
 
 	impost = Image.open("crewmate.png")
 
-	asset = user.avatar_url_as(format = 'png' , size = 1024)
+	asset = user.avatar_url_as(format = "png" , size = 1024)
 	data = BytesIO(await asset.read())
 	pfp = Image.open(data)
 
@@ -754,48 +754,48 @@ class testing(menus.Menu):
 		super().__init__(timeout=90.0 , delete_message_after=True)
 
 	async def send_initial_message(self , ctx ,channel):
-		start = discord.Embed(title = 'Among Us Help' , description = 'React below to pick an option\n:radioactive: ➜ Among Us Utilities\n:game_die: ➜ Fun & Games\n:clipboard: ➜ Utilities\n`Liked the bot? To vote it` : **[Click here](https://top.gg/bot/757272442820362281/vote)**\n`To join support server` : [Click Here](https://discord.gg/tgyW2Jz)\n`To go to bots website` : [Click Here](https://amongusunofficial.godaddysites.com/)\n`To browse through bots code` : [Click Here](https://github.com/Cooldude069/AmongUs.git)' , color = discord.Color.orange())
+		start = discord.Embed(title = "Among Us Help" , description = "React below to pick an option\n:radioactive: ➜ Among Us Utilities\n:game_die: ➜ Fun & Games\n:clipboard: ➜ Utilities\n`Liked the bot? To vote it` : **[Click here](https://top.gg/bot/757272442820362281/vote)**\n`To join support server` : [Click Here](https://discord.gg/tgyW2Jz)\n`To go to bots website` : [Click Here](https://amongusunofficial.godaddysites.com/)\n`To browse through bots code` : [Click Here](https://github.com/Cooldude069/AmongUs.git)" , color = discord.Color.orange())
 		start.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
-		start.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
+		start.set_footer(text = f"Command ran by {self.ctx.author.display_name}")
 
 		return await channel.send(embed = start)
 
-	@menus.button('☢')
+	@menus.button("☢")
 	async def amngutils(self , payload):
 		p = get_prefix(client = client , message = self.message)
-		au = discord.Embed(title = '☢ Among us Utilities' , description = f'`{p}guide` ➜ Will teach you to play\n`{p}maps` ➜ Will show you the blueprints of all maps\n`{p}vc <code> <server>` ➜ Will create a voice channel\n`{p}mute` ➜ Mutes people lower than you in the vc\n`{p}unmute` ➜ Unmutes people lower than you in the vc\n`{p}host <Code> <Server>` ➜ Makes your game discoverable to others\n`{p}match <server>` ➜ Shows you the visible games in that server' , color = discord.Color.orange())
-		au.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
-		au.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
+		au = discord.Embed(title = "☢ Among us Utilities" , description = f"`{p}guide` ➜ Will teach you to play\n`{p}maps` ➜ Will show you the blueprints of all maps\n`{p}vc <code> <server>` ➜ Will create a voice channel\n`{p}mute` ➜ Mutes people lower than you in the vc\n`{p}unmute` ➜ Unmutes people lower than you in the vc\n`{p}host <Code> <Server>` ➜ Makes your game discoverable to others\n`{p}match <server>` ➜ Shows you the visible games in that server" , color = discord.Color.orange())
+		au.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
+		au.set_footer(text = f"Command ran by {self.ctx.author.display_name}")
 		await self.message.edit(embed = au)
 
-	@menus.button('🎲')
+	@menus.button("🎲")
 	async def fng(self , payload):
 		p = get_prefix(client = client , message = self.message)
-		f = discord.Embed(title = '🎲 Fun & Games' , description = f'`{p}rps` ➜ Starts a rock, paper , scissors game with the bot\n`{p}challenge <user>` ➜ Play a 1v1 rock, paper scissors with your friend\n`{p}flip` ➜ Flips a coin for you\n`{p}kill <user>` ➜ Sends a cool among us killing gif\n`{p}imposter <user>` ➜ makes him/her an Imposter\n`{p}crewmate <user>` ➜ makes him/her a Crewmate\n`{p}guess` ➜ You have to guess the imposter\n`{p}ascii <text>` ➜ Creates an ASCII banner of that text' , color = discord.Color.orange())
-		f.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
-		f.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
+		f = discord.Embed(title = "🎲 Fun & Games" , description = f"`{p}rps` ➜ Starts a rock, paper , scissors game with the bot\n`{p}challenge <user>` ➜ Play a 1v1 rock, paper scissors with your friend\n`{p}flip` ➜ Flips a coin for you\n`{p}kill <user>` ➜ Sends a cool among us killing gif\n`{p}imposter <user>` ➜ makes him/her an Imposter\n`{p}crewmate <user>` ➜ makes him/her a Crewmate\n`{p}guess` ➜ You have to guess the imposter\n`{p}ascii <text>` ➜ Creates an ASCII banner of that text" , color = discord.Color.orange())
+		f.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
+		f.set_footer(text = f"Command ran by {self.ctx.author.display_name}")
 		await self.message.edit(embed = f)
 
-	@menus.button('📋')
+	@menus.button("📋")
 	async def utils(self , payload):
 		p = get_prefix(client = client , message = self.message)
-		u = discord.Embed(title = '📋 Utilities' , description = f'`{p}emoji` ➜ Generates a random Among Us emoji\n`{p}add` ➜ Adds emojis to your server\n`{p}ping` ➜ displays the bots latency\n`{p}prefix <new prefix>` ➜ Changes the bots prefix' , color = discord.Color.orange())
-		u.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
-		u.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
+		u = discord.Embed(title = "📋 Utilities" , description = f"`{p}emoji` ➜ Generates a random Among Us emoji\n`{p}add` ➜ Adds emojis to your server\n`{p}ping` ➜ displays the bots latency\n`{p}prefix <new prefix>` ➜ Changes the bots prefix" , color = discord.Color.orange())
+		u.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
+		u.set_footer(text = f"Command ran by {self.ctx.author.display_name}")
 		await self.message.edit(embed = u)
 
-	@menus.button('🏠')
+	@menus.button("🏠")
 	async def home(self , payload):
-		start = discord.Embed(title = 'Among Us Help' , description = 'React below to pick an option\n:radioactive: ➜ Among Us Utilities\n:game_die: ➜ Fun & Games\n:clipboard: ➜ Utilities\n`Liked the bot? To vote it` : **[Click here](https://top.gg/bot/757272442820362281/vote)**\n`To join support server` : [Click Here](https://discord.gg/tgyW2Jz)\n`To go to bots website` : [Click Here](https://amongusunofficial.godaddysites.com/)\n`To browse through bots code` : [Click Here](https://github.com/Cooldude069/AmongUs.git)' , color = discord.Color.orange())
+		start = discord.Embed(title = "Among Us Help" , description = "React below to pick an option\n:radioactive: ➜ Among Us Utilities\n:game_die: ➜ Fun & Games\n:clipboard: ➜ Utilities\n`Liked the bot? To vote it` : **[Click here](https://top.gg/bot/757272442820362281/vote)**\n`To join support server` : [Click Here](https://discord.gg/tgyW2Jz)\n`To go to bots website` : [Click Here](https://amongusunofficial.godaddysites.com/)\n`To browse through bots code` : [Click Here](https://github.com/Cooldude069/AmongUs.git)" , color = discord.Color.orange())
 		start.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
-		start.set_footer(text = f'Command ran by {self.ctx.author.display_name}')
+		start.set_footer(text = f"Command ran by {self.ctx.author.display_name}")
 		await self.message.edit(embed = start)
 
-	# @menus.button('🏏')
+	# @menus.button("🏏")
 	# async def crick(self , payload):
-	# 	hc = discord.Embed(title = 'Introducing Hand Cricketer bot' , description = "**Wanna play Cricket on Discord with your friends?**\nDon't worry, we got you covered.Invite the new handcricketer bot and play cricket with your friends all day long via Discord.\n=========================\nBot Invite Link : [Click Here](https://top.gg/bot/709733907053936712)\n=========================\n" , color = discord.Color.darker_grey())
+	# 	hc = discord.Embed(title = "Introducing Hand Cricketer bot" , description = "**Wanna play Cricket on Discord with your friends?**\nDon"t worry, we got you covered.Invite the new handcricketer bot and play cricket with your friends all day long via Discord.\n=========================\nBot Invite Link : [Click Here](https://top.gg/bot/709733907053936712)\n=========================\n" , color = discord.Color.darker_grey())
 	# 	hc.set_footer(text = "To Advertise your discord bot/server, join the support server.")
-	# 	hc.set_thumbnail(url = 'https://cdn.discordapp.com/avatars/709733907053936712/0670b3d504ecbe6c4871c6301bf68cea.webp')
+	# 	hc.set_thumbnail(url = "https://cdn.discordapp.com/avatars/709733907053936712/0670b3d504ecbe6c4871c6301bf68cea.webp")
 	# 	await self.message.edit(embed = hc)
 
 
@@ -817,7 +817,7 @@ class helper(menus.Menu):
 
 		return await channel.send(embed = embed0)
 
-	@menus.button('⏮')
+	@menus.button("⏮")
 	async def on_begin(self , payload):
 		global i
 		prfx = get_prefix(client = client , message = self.ctx.message)
@@ -827,12 +827,12 @@ class helper(menus.Menu):
 		await self.message.edit(embed = embed0)
 		i = 1
 
-	@menus.button('⏪')
+	@menus.button("⏪")
 	async def on_rewind(self , payload):
 		global i
 		if i == 3:
 			helpm2  = discord.Embed(title = f"Among Us Help! Page {i - 1}" , color = discord.Color.darker_grey())
-			helpm2.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
+			helpm2.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
 			helpm2.add_field(name = ":one: guide -> will guide you" , value = "This will give you all the required information about the game" , inline = False)
 			helpm2.add_field(name = ":two: maps -> will show you all maps" , value = "This will give you the blueprints of all the maps" , inline = False)
 			helpm2.add_field(name = ":three: vc {code} {server} -> Makes a special voice channel" , value = "U can invite the people you want(limit = 11)" , inline = False)
@@ -845,14 +845,14 @@ class helper(menus.Menu):
 			i = i - 1
 		elif i == 4:
 			helpm2  = discord.Embed(title = f"Among Us Help! Page {i - 1}" , color = discord.Color.darker_grey())
-			helpm2.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
+			helpm2.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
 			helpm2.add_field(name = ":one: rps -> Starts a rock, paper , scissors game with the bot" , value = "It is really fun" , inline = False)
 			helpm2.add_field(name = ":two: challenge {user} -> Play a 1v1 rock, paper scissors with your friend" , value = "It takes place in Dm, Don't worry" , inline = False)
 			helpm2.add_field(name = ":three: flip -> Flips a coin for you" , value = "Solve your disputes with just a flip of the coin" , inline = False)
 			helpm2.add_field(name = ":four: kill/hit {user} -> Just a fun command" , value = "try it, it's epic" , inline = False)
 			helpm2.add_field(name = ":five: imposter/im {user} -> makes an Among Us imposter screen of that user" , value = "Please dont kick him out!" , inline = False)
 			helpm2.add_field(name = ":six: guess -> creates a guessing game where you have to guess the imposter" , value = "Hmmm, fascinating!" , inline = False)
-			helpm2.add_field(name = ':seven: ascii {text} -> creates an ascii banner of thaat text.' , value = 'ASCII is dope.' , inline = False)
+			helpm2.add_field(name = ":seven: ascii {text} -> creates an ascii banner of thaat text." , value = "ASCII is dope." , inline = False)
 			await self.message.edit(embed = helpm2)
 			i = i - 1
 		elif i == 2:
@@ -863,24 +863,24 @@ class helper(menus.Menu):
 		elif i == 5:
 			prfx = get_prefix(client = client , message = self.ctx.message)
 			helpm2 = discord.Embed(title = f"Among Us Help! Page {i - 1}" , color = discord.Color.darker_grey())
-			helpm2.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
-			helpm2.add_field(name = ":one: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
+			helpm2.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
+			helpm2.add_field(name = ":one: emoji -> Generates a random Among Us emoji" , value = "I love those Emojis" , inline = False)
 			helpm2.add_field(name = ":two: add_emoji/add -> adds the among us emoji to your server" , value = f"use {prfx}add to know how to go forward" , inline = False)
 			helpm2.add_field(name = ":three: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
 			helpm2.add_field(name = ":four: prefix {new prefix} -> to change the bot's prefix" , value = "The default prefix of the bot is a!" , inline = False)
 			await self.message.edit(embed = helpm2)
 			i = i - 1
 
-	@menus.button('⏯')
+	@menus.button("⏯")
 	async def on_stop(self, payload):
 		self.stop()
 
-	@menus.button('⏩')
+	@menus.button("⏩")
 	async def on_skip(self , payload):
 		global i
 		if i == 1:
 			helpm2  = discord.Embed(title = f"Among Us Help! Page {i + 1}" , color = discord.Color.darker_grey())
-			helpm2.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
+			helpm2.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
 			helpm2.add_field(name = ":one: guide -> will guide you" , value = "This will give you all the required information about the game" , inline = False)
 			helpm2.add_field(name = ":two: maps -> will show you all maps" , value = "This will give you the blueprints of all the maps" , inline = False)
 			helpm2.add_field(name = ":three: vc {code} {server} -> Makes a special voice channel" , value = "U can invite the people you want(limit = 11)" , inline = False)
@@ -897,52 +897,52 @@ class helper(menus.Menu):
 			i+=1
 		elif i == 2:
 			helpm2  = discord.Embed(title = f"Among Us Help! Page {i + 1}" , color = discord.Color.darker_grey())
-			helpm2.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
+			helpm2.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
 			helpm2.add_field(name = ":one: rps -> Starts a rock, paper , scissors game with the bot" , value = "It is really fun" , inline = False)
 			helpm2.add_field(name = ":two: challenge {user} -> Play a 1v1 rock, paper scissors with your friend" , value = "It takes place in Dm, Don't worry" , inline = False)
 			helpm2.add_field(name = ":three: flip -> Flips a coin for you" , value = "Solve your disputes with just a flip of the coin" , inline = False)
 			helpm2.add_field(name = ":four: kill/hit {user} -> Just a fun command" , value = "try it, it's epic" , inline = False)
 			helpm2.add_field(name = ":five: imposter/im {user} -> makes an Among Us imposter screen of that user" , value = "Please dont kick him out!" , inline = False)
 			helpm2.add_field(name = ":six: guess -> creates a guessing game where you have to guess the imposter" , value = "Hmmm, fascinating!" , inline = False)
-			helpm2.add_field(name = ':seven: ascii {text} -> creates an ascii banner of thaat text.' , value = 'ASCII is dope.' , inline = False)
+			helpm2.add_field(name = ":seven: ascii {text} -> creates an ascii banner of thaat text." , value = "ASCII is dope." , inline = False)
 			await self.message.edit(embed = helpm2)
 			i+=1
 		elif i == 3:
 			prfx = get_prefix(client = client , message = self.ctx.message)
 			helpm2  = discord.Embed(title = f"Among Us Help! Page {i + 1}" , color = discord.Color.darker_grey())
-			helpm2.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
-			helpm2.add_field(name = ":one: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
+			helpm2.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
+			helpm2.add_field(name = ":one: emoji -> Generates a random Among Us emoji" , value = "I love those Emojis" , inline = False)
 			helpm2.add_field(name = ":two: add_emoji/add -> adds the among us emoji to your server" , value = f"use {prfx}add to know how to go forward" , inline = False)
 			helpm2.add_field(name = ":three: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
 			helpm2.add_field(name = ":four: prefix {new prefix} -> to change the bot's prefix" , value = "The default prefix of the bot is a!" , inline = False)
 			await self.message.edit(embed = helpm2)
 			i+=1
 		elif i == 4:
-			hc = discord.Embed(title = 'Introducing Hand Cricketer bot' , description = "**Wanna play Cricket on Discord with your friends?**\nDon't worry, we got you covered.Invite the new handcricketer bot and play cricket with your friends all day long via Discord.\n=========================\nBot Invite Link : [Click Here](https://top.gg/bot/709733907053936712)\n=========================\n" , color = discord.Color.darker_grey())
+			hc = discord.Embed(title = "Introducing Hand Cricketer bot" , description = "**Wanna play Cricket on Discord with your friends?**\nDon't worry, we got you covered.Invite the new handcricketer bot and play cricket with your friends all day long via Discord.\n=========================\nBot Invite Link : [Click Here](https://top.gg/bot/709733907053936712)\n=========================\n" , color = discord.Color.darker_grey())
 			hc.set_footer(text = "To Advertise your discord bot/server, join the support server.")
-			hc.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
+			hc.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
 			await self.message.edit(embed = hc)
 
 		
-	@menus.button('⏭')
+	@menus.button("⏭")
 	async def on_end(self, payload):
 		global i
 		# prfx = get_prefix(client = client , message = self.ctx.message)
 		# helpm2  = discord.Embed(title = f"Among Us Help! Page 4" , color = discord.Color.darker_grey())
-		# helpm2.set_thumbnail(url = 'https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO')
-		# helpm2.add_field(name = ":one: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji's" , inline = False)
+		# helpm2.set_thumbnail(url = "https://lh3.googleusercontent.com/VHB9bVB8cTcnqwnu0nJqKYbiutRclnbGxTpwnayKB4vMxZj8pk1220Rg-6oQ68DwAkqO")
+		# helpm2.add_field(name = ":one: emoji -> Generates a random Among Us emoji" , value = "I love those Emoji"s" , inline = False)
 		# helpm2.add_field(name = ":two: add_emoji/add -> adds the among us emoji to your server" , value = f"use {prfx}add to know how to go forward" , inline = False)
-		# helpm2.add_field(name = ":three: ping -> Shows the bot's latency" , value = "Pong!" , inline = False)
-		# helpm2.add_field(name = ":four: prefix {new prefix} -> to change the bot's prefix" , value = "The default prefix of the bot is a!" , inline = False)
+		# helpm2.add_field(name = ":three: ping -> Shows the bot"s latency" , value = "Pong!" , inline = False)
+		# helpm2.add_field(name = ":four: prefix {new prefix} -> to change the bot"s prefix" , value = "The default prefix of the bot is a!" , inline = False)
 		# await self.message.edit(embed = helpm2)
-		hc = discord.Embed(title = 'Introducing Hand Cricketer bot' , description = "**Wanna play Cricket on Discord with your friends?**\nDon't worry, we got you covered.Invite the new handcricketer bot and play cricket with your friends all day long via Discord.\n=========================\nBot Invite Link : [Click Here](https://top.gg/bot/709733907053936712)\n=========================\n" , color = discord.Color.darker_grey())
+		hc = discord.Embed(title = "Introducing Hand Cricketer bot" , description = "**Wanna play Cricket on Discord with your friends?**\nDon't worry, we got you covered.Invite the new handcricketer bot and play cricket with your friends all day long via Discord.\n=========================\nBot Invite Link : [Click Here](https://top.gg/bot/709733907053936712)\n=========================\n" , color = discord.Color.darker_grey())
 		hc.set_footer(text = "To Advertise your discord bot/server, join the support server.")
-		hc.set_thumbnail(url = 'https://i.imgur.com/VEiwMQQ.png')
+		hc.set_thumbnail(url = "https://i.imgur.com/VEiwMQQ.png")
 		await self.message.edit(embed = hc)
 		i = 5
 
 
-# @client.command(aliases=['HELP', 'Help'])
+# @client.command(aliases=["HELP", "Help"])
 # async def help(ctx):
 # 	await start_log("help")
 # 	users = await get_log_data()
@@ -952,6 +952,6 @@ class helper(menus.Menu):
 
 
 
-client.load_extension('memes')
-TOKEN = os.environ.get('discord_bot_token')
+client.load_extension("memes")
+TOKEN = os.environ.get("discord_bot_token")
 client.run(TOKEN)
