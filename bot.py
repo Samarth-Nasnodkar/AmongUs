@@ -639,7 +639,7 @@ async def skeld(ctx):
 	users = await get_log_data()
 	await update_log("skeld")
 	skeld = discord.Embed(title = "Skeld" , color = discord.Color.orange())
-	skeld.set_image(url = "https://preview.redd.it/tv8ef4iqszh41.png?auto=webp&s=46faf550020fd59c8d8bab29705b0fcb80521850")
+	skeld.set_image(url = "https://i.imgur.com/bbg9qH4.jpg")
 	await ctx.send(embed = skeld)
 	
 @client.command(aliases = ["Polus" , "POLUS"])
@@ -648,7 +648,7 @@ async def polus(ctx):
 	users = await get_log_data()
 	await update_log("polus")
 	polus = discord.Embed(title = "Polus" , color = discord.Color.orange())
-	polus.set_image(url = "https://vignette.wikia.nocookie.net/among-us-wiki/images/4/4c/Polus.png/revision/latest?cb=20200907133344")
+	polus.set_image(url = "https://i.imgur.com/6aKnNxx.jpg")
 	await ctx.send(embed = polus)
 	
 @client.command(aliases = ["Mirahq" , "MIRAHQ"])
@@ -657,7 +657,7 @@ async def mirahq(ctx):
 	users = await get_log_data()
 	await update_log("mirahq")
 	mira = discord.Embed(title = "Mira HQ" , color = discord.Color.orange())
-	mira.set_image(url = "https://vignette.wikia.nocookie.net/among-us-wiki/images/0/0a/Mirahq.png/revision/latest?cb=20200907132939")
+	mira.set_image(url = "https://i.imgur.com/eE1FTcR.jpg")
 	await ctx.send(embed = mira)
 
 @client.command(aliases = ["Kill" , "KILL" , "hit" , "Hit" , "HIT"])
